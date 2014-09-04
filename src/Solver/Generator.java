@@ -6,6 +6,7 @@ import java.util.*;
  * Created by Cloud on 11.07.2014.
  */
 public class Generator {
+    private Shuffler shuffled;
     private Puzzle puzzle;
     private int width;
     private int height;
@@ -30,15 +31,19 @@ public class Generator {
 
         puzzle.print();
 
-        Shuffler shuffled = new Shuffler(puzzle,width,height);
+        shuffled = new Shuffler(puzzle,width,height);
 
         puzzle.print();
     }
 
+    public Puzzle getPuzzle(){
+        return shuffled.getShuffledPuzzle();
+    }
+
     public void settingBoarders(Pair pair, int countryID){
-        List<Pair> activeFields = new LinkedList<Pair>();
-        List<Pair> aboutToAdd = new LinkedList<Pair>();
-        List<Pair> countryPairs = new LinkedList<Pair>();
+        OwnList activeFields = new OwnList();
+        OwnList aboutToAdd = new OwnList();
+        OwnList countryPairs = new OwnList();
         double probability = this.countrySize;
         Random rand = new Random();
 
@@ -53,13 +58,16 @@ public class Generator {
                 nextPair = activeFieldIterator.next();
                 activeFieldIterator.remove();
                 // checking up, down, left, right for possible neighbours
+                //up
                 int x = nextPair.getElement0();
                 int y = nextPair.getElement1()-1;
                 if(x >= 0 && y >= 0 && x < this.width && y < this.height && puzzle.getCountry(x, y) < 0){
                     if(rand.nextDouble()<=probability){
                         System.out.println("Add " + x +" , "+ y + " to " + countryID);
                         aboutToAdd.add(new Pair(x,y));
-                        countryPairs.add(new Pair(x,y));
+                        if(!countryPairs.contains(new Pair(x,y))) {
+                            countryPairs.add(new Pair(x, y));
+                        }
                     }
                 }
                 //down
@@ -69,7 +77,9 @@ public class Generator {
                     if(rand.nextDouble()<=probability){
                         System.out.println("Add " + x +" , "+ y + " to " + countryID);
                         aboutToAdd.add(new Pair(x,y));
-                        countryPairs.add(new Pair(x,y));
+                        if(!countryPairs.contains(new Pair(x,y))) {
+                            countryPairs.add(new Pair(x, y));
+                        }
                     }
                 }
                 //left
@@ -79,7 +89,9 @@ public class Generator {
                     if(rand.nextDouble()<=probability){
                         System.out.println("Add " + x +" , "+ y + " to " + countryID);
                         aboutToAdd.add(new Pair(x,y));
-                        countryPairs.add(new Pair(x,y));
+                        if(!countryPairs.contains(new Pair(x,y))) {
+                            countryPairs.add(new Pair(x, y));
+                        }
                     }
                 }
                 //right
@@ -87,13 +99,14 @@ public class Generator {
                 y = nextPair.getElement1();
                 if(x >= 0 && y >= 0 && x < this.width && y < this.height && puzzle.getCountry(x, y) < 0){
                     if(rand.nextDouble()<=probability){
-                        System.out.println("Add " + x +" , "+ y + " to " + countryID);
+                        System.out.println("Add " + x + " , " + y + " to " + countryID);
                         aboutToAdd.add(new Pair(x,y));
-                        countryPairs.add(new Pair(x,y));
+                        if(!countryPairs.contains(new Pair(x,y))) {
+                            countryPairs.add(new Pair(x, y));
+                        }
                     }
                 }
                 activeFields.remove(nextPair);
-
             }
             // reducing the probability of adding a field for the next iteration
             probability = probability*probability;
@@ -107,12 +120,7 @@ public class Generator {
         }
 
         // Adding the new country with its ID to the Puzzle
-        Pair[] countryPairsArray = new Pair[countryPairs.size()];
-        int i = 0;
-        for(Pair countryPair : countryPairs){
-            countryPairsArray[i]=countryPair;
-            i++;
-        }
+        Pair[] countryPairsArray = countryPairs.toArray();
         puzzle.setCountry(countryPairsArray, countryID);
         // Randomly pick a Field in the country to define the circle there. The CircleID equals the CountryID. Value is not set yet.
         puzzle.setCircle(countryPairsArray[rand.nextInt(countryPairsArray.length)],-1,countryID);

@@ -64,7 +64,9 @@ public class Puzzle {
     public Pair findCircle(int circle){
         for(int y = 0; y < height; y++){
             for(int x = 0; x < width; x++){
-                if(puzzle[x][y].getCircle_trace() == circle){
+                // && puzzle[x][y].getCircle_value()!=-1 important for shuffled-puzzle. because the trace is not the pos
+                // of the circle! for there are multiple ids on the field of the same circle.
+                if(puzzle[x][y].getCircle_trace() == circle && puzzle[x][y].getCircle_value()!=-1){
                     return new Pair(x,y);
                 }
             }
@@ -165,7 +167,7 @@ public class Puzzle {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
 // Build up Circle initial position II
-                if (puzzle[x][y].getCircle_trace() >= 0) {
+                if (puzzle[x][y].getCircle_trace() >= 0 && puzzle[x][y].getCircle_value()!=-1) {
                     string_circle_init.append(" (= c" + x + "-" + y + " " + puzzle[x][y].getCircle_trace() + ")");
                     // save the positions of the circles for later.
                     circle_pos.add(new Solver.Pair(x, y));
@@ -379,7 +381,8 @@ public class Puzzle {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
 //  Build up Circle initial position II
-                if (puzzle[x][y].getCircle_trace() >= 0) {
+                //added:"&& puzzle[x][y].getCircle_value()!=-1" so that traces-only not get added to the circle_pos
+                if (puzzle[x][y].getCircle_trace() >= 0 && puzzle[x][y].getCircle_value()!=-1) {
                     string_circle_init.append(" (= c" + x + "-" + y + " " + puzzle[x][y].getCircle_trace() + ")");
                     // save the positions of the circles for later.
                     circle_pos.add(new Solver.Pair(x, y));

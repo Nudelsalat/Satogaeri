@@ -28,6 +28,16 @@ public class Shuffler {
             //todo: sent puzzle to solver
             only_one_solution = true;
         }
+
+        clearAllTraces();
+    }
+
+    public Puzzle getShuffledPuzzle(){
+        return puzzle;
+    }
+
+    public void clearAllTraces(){
+
     }
 
     public void move_circles(Pair circle_id_init_pos){
@@ -38,6 +48,7 @@ public class Shuffler {
         int direction = rand.nextInt(4); // number between 0-3 up=0 down=1 left=2 right=3
         boolean reached_obstacle = false;
 
+        System.out.println("Circle position: "+x+" "+y);
         // delete old circle-position. -1 is equivalent to "no-circle". also the Circle_trace is set to -1 because later
         // later on we will check if on the fields are any traces (for they are not to be crossed)
         puzzle.setCircle(circle_id_init_pos,-1,-1);
@@ -58,7 +69,7 @@ public class Shuffler {
                 }
             }
             if(!reached_obstacle){
-                puzzle.setCircle(new Pair(x,y+movement),movement,circleID);
+                puzzle.setCircle(new Pair(x,y-movement),movement,circleID);
             }
         }
         //down
@@ -69,7 +80,6 @@ public class Shuffler {
             }else {
                 movement = rand.nextInt((height - y) - 1); // number between 0 and the distance to the bottom boarder of the puzzle.
             }
-//todo verify
             for(int i = 0; i<=movement && !reached_obstacle;i++){
                 if(puzzle.getCircle_trace(x,y+i)==-1) {
                     puzzle.setCircle_trace(new Pair(x, y + i), circleID);
@@ -90,38 +100,36 @@ public class Shuffler {
             }else {
                 movement = rand.nextInt(x); // number between 0 and x. where x is the distance to the left boarder of the puzzle.
             }
-//todo verify
             for(int i = 0; i<=movement && !reached_obstacle;i++){
-                if(puzzle.getCircle_trace(x,y-i)==-1) {
-                    puzzle.setCircle_trace(new Pair(x, y - i), circleID);
+                if(puzzle.getCircle_trace(x-i,y)==-1) {
+                    puzzle.setCircle_trace(new Pair(x-i, y), circleID);
                 } else{
-                    puzzle.setCircle(new Pair(x,y-i+1),i-1,circleID);
+                    puzzle.setCircle(new Pair(x-i+1,y),i-1,circleID);
                     reached_obstacle = true;
                 }
             }
             if(!reached_obstacle){
-                puzzle.setCircle(new Pair(x,y+movement),movement,circleID);
+                puzzle.setCircle(new Pair(x-movement,y),movement,circleID);
             }
         }
         //right
         else if(direction == 3){
             int movement;
-            if((width - y) - 1==0) {
+            if((width - x) - 1==0) {
                 movement = 0;
             }else {
                 movement = rand.nextInt((width - x) - 1); // number between 0 and the distance to the right boarder of the puzzle.
             }
-//todo verify
             for(int i = 0; i<=movement && !reached_obstacle;i++){
-                if(puzzle.getCircle_trace(x,y+i)==-1) {
-                    puzzle.setCircle_trace(new Pair(x, y + i), circleID);
+                if(puzzle.getCircle_trace(x+i,y)==-1) {
+                    puzzle.setCircle_trace(new Pair(x+i, y), circleID);
                 } else{
-                    puzzle.setCircle(new Pair(x,y+i-1),i-1,circleID);
+                    puzzle.setCircle(new Pair(x+i-1,y),i-1,circleID);
                     reached_obstacle = true;
                 }
             }
             if(!reached_obstacle){
-                puzzle.setCircle(new Pair(x,y+movement),movement,circleID);
+                puzzle.setCircle(new Pair(x+movement,y),movement,circleID);
             }
         }
     }
