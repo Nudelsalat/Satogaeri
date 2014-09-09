@@ -12,7 +12,9 @@ public class Field {
     private boolean right = false;
     private boolean up = false;
     private boolean down = false;
+    // id of the circle
     private int circle_trace = -1;
+    // allowed movement value of the circle
     private int circle_value = -1;
 
 
