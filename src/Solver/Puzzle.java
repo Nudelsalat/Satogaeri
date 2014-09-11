@@ -308,7 +308,7 @@ public class Puzzle {
     }
 
     public void generateSMTPiping() {
-        String[] command = {"CMD", "/C", "cvc4-1.3-win32-opt.exe --lang smt -m"};
+        String[] command = {"CMD", "/C", "cvc4-1.3-win32-opt.exe --lang smt -m --statistics"};
         ProcessBuilder probuilder = new ProcessBuilder( command );
         //You can set up your work directory
         probuilder.directory(new File("C:\\Users\\Cloud\\Studium\\SS 2014\\Bachelor thesis\\CVC4"));
@@ -333,19 +333,16 @@ public class Puzzle {
                         String line = reader.readLine();
                         while(line != null){
                             //System.out.println("before line-output");
-                            System.out.println ("THREAD: " + line);
-                            System.out.flush();
-                            if(!line.contentEquals("sat") && !line.contentEquals("unsat") && !line.contentEquals("(error \"Cannot get value unless immediately preceded by SAT/INVALID or UNKNOWN response.\")")) {
-                                //print the solutions
+                            if(line.contains("((f")){
                                 System.out.println(""+line);
                                 String[] numbers = parseResult(line);
                                 //- 1 in the 3rd position of numbers means no circle there
                                 if(!numbers[2].contentEquals("- 1")){
                                     move(numbers);
                                 }
+                            }else {
+                                System.out.println("" + line);
                             }
-
-
                             line = reader.readLine();
                         }
                     } catch(IOException e) {
