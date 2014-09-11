@@ -21,6 +21,8 @@ public class Shuffler {
 
         Pair[] circle_id_init_pos = getAllCircles();
         Pair[] new_circle_pos = new Pair[circle_id_init_pos.length];
+        // important! otherwise the check_only_one_solution-string  is wrong after the first reset.
+        reset(circle_id_init_pos);
 
         // (assert (or (and (not (= f0-0 1)) (not (= f1-0 1))) (and (not (= f2-0 2)) (not (= f0-1 2)) (not (= f1-1 2)) (not (= f2-1 2)))))
         StringBuilder check_only_one_solution = new StringBuilder();
@@ -61,7 +63,7 @@ public class Shuffler {
         }
         // add all the initPositions of the circles.
         for(int i = 0; i<circle_id_init_pos.length;i++){
-            puzzle.setCircle_trace(circle_id_init_pos[i],i);
+            puzzle.setCircle_trace(circle_id_init_pos[i],i+1);
         }
     }
 

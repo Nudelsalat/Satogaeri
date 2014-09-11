@@ -333,8 +333,9 @@ public class Puzzle {
                         String line = reader.readLine();
                         while(line != null){
                             //System.out.println("before line-output");
-                            //System.out.println ("THREAD: " + line);
-                            if(!line.contentEquals("sat")) {
+                            System.out.println ("THREAD: " + line);
+                            System.out.flush();
+                            if(!line.contentEquals("sat") && !line.contentEquals("unsat") && !line.contentEquals("(error \"Cannot get value unless immediately preceded by SAT/INVALID or UNKNOWN response.\")")) {
                                 //print the solutions
                                 System.out.println(""+line);
                                 String[] numbers = parseResult(line);

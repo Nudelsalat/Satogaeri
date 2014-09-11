@@ -5,9 +5,14 @@ package Solver;
  */
 public class TestGenerator {
     public static void main(String args[]) {
-        Generator gen = new Generator(15,10,0.8);
+        Generator gen = new Generator(5,10,0.8);
         Puzzle puzzle = gen.getPuzzle();
-        //puzzle.generateSMTPiping();
+        try {
+            Thread.sleep(1000);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        puzzle.generateSMTPiping();
         puzzle.print();
     }
 }
