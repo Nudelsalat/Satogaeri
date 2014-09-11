@@ -340,7 +340,7 @@ public class Puzzle {
                                 if(!numbers[2].contentEquals("- 1")){
                                     move(numbers);
                                 }
-                            }else {
+                            }else if(line.contains("sat::") || line.contains("theory::arith::cd::unatePropagateCalls") || line.contains("theory::arith::cd::unatePropagateImplications") || line.contains("theory::arith::status::nontrivialSatChecks")){
                                 System.out.println("" + line);
                             }
                             line = reader.readLine();
