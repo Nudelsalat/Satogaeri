@@ -1,0 +1,12 @@
+sat::clauses_literals, 166
+sat::conflicts, 0
+sat::decisions, 72
+sat::learnts_literals, 0
+sat::max_literals, 0
+sat::propagations, 989
+sat::rnd_decisions, 0
+sat::starts, 1
+sat::tot_literals, 0
+theory::arith::cd::unatePropagateCalls, 392
+theory::arith::cd::unatePropagateImplications, 0
+theory::arith::status::nontrivialSatChecks, 73
