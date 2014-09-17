@@ -26,6 +26,14 @@ public class Puzzle {
         }
     }
 
+    public int getHeight(){
+        return height;
+    }
+
+    public int getWidth(){
+        return width;
+    }
+
     public int getCountry(int x, int y){
         return puzzle[x][y].getCountry();
     }
