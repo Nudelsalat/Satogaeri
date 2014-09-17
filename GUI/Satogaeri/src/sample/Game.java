@@ -3,20 +3,17 @@ package sample;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class Main extends Application {
-
-    //Todo: proper drag&Drop stuff http://docs.oracle.com/javafx/2/drag_drop/jfxpub-drag_drop.htm
-
+/**
+ * Created by Cloud on 17.09.2014.
+ */
+public class Game extends Application {
     @Override
     public void start(final Stage primaryStage) throws Exception{
         Button new_game = new Button();
@@ -56,7 +53,7 @@ public class Main extends Application {
         });
 
         GridPane root = new GridPane();
-        //root.setAlignment(Pos.CENTER);
+        root.setAlignment(Pos.CENTER);
         root.setHgap(10);
         root.setVgap(10);
         root.setPadding(new Insets(25, 25, 25, 25));
@@ -74,3 +71,4 @@ public class Main extends Application {
         launch(args);
     }
 }
+
