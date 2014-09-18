@@ -22,11 +22,10 @@ import javafx.stage.Stage;
 /**
  * Created by Cloud on 15.09.2014.
  */
-public class Generator extends Application{
+public class Generator{
+    Scene scene;
 
-
-    @Override
-    public void start(Stage primaryStage) throws Exception{
+    public Generator(){
         Button generate = new Button("generate");
         HBox hbBtn = new HBox(10);
         hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
@@ -79,14 +78,12 @@ public class Generator extends Application{
             }
         });
 
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
-        primaryStage.show();
+        scene = new Scene(root, 300, 275);
     }
 
-
-    public static void main(String[] args) {
-        launch(args);
+    public void show(Stage stage){
+        stage.setTitle("Generator");
+        stage.setScene(scene);
+        stage.show();
     }
-
 }

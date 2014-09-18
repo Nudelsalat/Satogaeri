@@ -70,6 +70,9 @@ public class Puzzle {
         return puzzle[x][y].getCircle_trace();
     }
 
+    public int getCircle_value(int x, int y){
+        return puzzle[x][y].getCircle_value();
+    }
     public Pair[] getNeighbors(Pair pair){
         return puzzle[pair.getElement0()][pair.getElement1()].getNeighbors();
     }
@@ -119,6 +122,53 @@ public class Puzzle {
                 puzzle[x][y].setup(true);
             }
         }
+    }
+
+    // TODO: do not allow crossing traces
+    public boolean move(int posCircleX, int posCircleY, int endPosX, int endPosY){
+        int circleID = puzzle[posCircleX][posCircleY].getCircle_trace();
+        Pair endPos = new Pair(endPosX,endPosY);
+
+        System.out.println("INSIDE MOVE BITCH!!!!!\n"+" pos: "+endPosX+" "+endPosY + " ursprunge: " +posCircleX+" "+posCircleY);
+        int circleValue = puzzle[posCircleX][posCircleY].getCircle_value();
+        // movement diagonal not allowed! invalid move
+        if(posCircleX!=endPosX && posCircleY != endPosY){
+            System.out.println("Keine Gerade, bitch!!!");
+            return false;
+        }
+
+        // if the distance between endPos and circlePos isNOT circle value --> invalid move
+        if(circleValue != -2 && !(circleValue == Math.abs(posCircleX-endPosX) || circleValue == Math.abs(posCircleY-endPosY))){
+            System.out.println("Weite der Bewegung != Value, bitch!!!");
+            return false;
+        }
+        puzzle[endPos.getElement0()][endPos.getElement1()].setCircle(puzzle[posCircleX][posCircleY].getCircle_value(),circleID);
+        if(circleValue!=0 && !(endPos.getElement0()==posCircleX && endPos.getElement1()==posCircleY)){
+            puzzle[posCircleX][posCircleY].setCircle_value(-1);
+        }
+        if(posCircleX<endPos.getElement0()){
+            for(int x=posCircleX;x<=endPos.getElement0();x++){
+                puzzle[x][posCircleY].setCircle_trace(circleID);
+                puzzle[x][posCircleY].setRight(true);
+            }
+        } else if(posCircleX>endPos.getElement0()){
+            for(int x=endPos.getElement0();x<=posCircleX;x++){
+                puzzle[x][posCircleY].setCircle_trace(circleID);
+                puzzle[x][posCircleY].setLeft(true);
+            }
+        } else if(posCircleY<endPos.getElement1()){
+            for(int y=posCircleY;y<=endPos.getElement1();y++){
+                puzzle[posCircleX][y].setCircle_trace(circleID);
+                puzzle[posCircleX][y].setDown(true);
+            }
+        } else if(posCircleY>endPos.getElement1()){
+            for(int y=endPos.getElement1();y<=posCircleY;y++){
+                puzzle[posCircleX][y].setCircle_trace(circleID);
+                puzzle[posCircleX][y].setup(true);
+            }
+        }
+        print();
+        return true;
     }
 
     public void print(){

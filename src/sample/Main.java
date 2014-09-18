@@ -37,13 +37,8 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent event) {
                 Generator generator = new Generator();
-                try {
-                    generator.start(primaryStage);
-                }catch(Exception e){
-                    e.printStackTrace();
+                generator.show(primaryStage);
                 }
-
-            }
         });
 
         solve.setText("Solver");
