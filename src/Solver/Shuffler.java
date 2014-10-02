@@ -24,17 +24,12 @@ public class Shuffler {
         // important! otherwise the check_only_one_solution-string  is wrong after the first reset.
         reset(circle_id_init_pos);
 
-        // (assert (or (and (not (= f0-0 1)) (not (= f1-0 1))) (and (not (= f2-0 2)) (not (= f0-1 2)) (not (= f1-1 2)) (not (= f2-1 2)))))
+        // (assert (or (not (= f0-0 1)) (not (= f1-0 1)) (not (= f2-0 2)) (not (= f0-1 2)) (not (= f1-1 2)) (not (= f2-1 2))))
         StringBuilder check_only_one_solution = new StringBuilder();
         check_only_one_solution.append("(assert (or");
         for(Pair init_pos : circle_id_init_pos){
             circle_trace = puzzle.getCircle_trace(init_pos.getElement0(),init_pos.getElement1());
-            Pair[] neighbors = puzzle.getNeighbors(init_pos);
-            check_only_one_solution.append(" (and");
-            for(Pair neighbor : neighbors){
-                check_only_one_solution.append(" (not (= f"+neighbor.getElement0()+"-"+neighbor.getElement1()+" "+circle_trace+"))");
-            }
-            check_only_one_solution.append(")");
+            check_only_one_solution.append(" (not (= f"+init_pos.getElement0()+"-"+init_pos.getElement1()+" "+circle_trace+"))");
         }
         check_only_one_solution.append("))");
 
@@ -42,7 +37,7 @@ public class Shuffler {
             for (int i = 0; i < circle_id_init_pos.length; i++) {
                 new_circle_pos[i] = move_circles(circle_id_init_pos[i]);
             }
-            setEmptyCircles(new_circle_pos);
+            setEmptyCirclesV2(new_circle_pos, circle_id_init_pos);
 
             puzzle.print();
 
@@ -71,6 +66,7 @@ public class Shuffler {
         return puzzle;
     }
 
+    //TODO: delete this!
     public void setEmptyCircles(Pair[] circle_pos){
         int max_empty_circles = circle_pos.length/5; // <= 20% of all circles
         int counter = 0;
@@ -82,6 +78,55 @@ public class Shuffler {
                 puzzle.setCircle(circle_pos[i],-2,puzzle.getCircle_trace(circle_pos[i].getElement0(),circle_pos[i].getElement1()));
                 counter++;
             }
+        }
+    }
+
+    public void setEmptyCirclesV2(Pair[] new_circle_pos, Pair[]circle_id_init_pos){
+
+        for(Pair pair : circle_id_init_pos){
+            boolean direction_found = false;
+            int x = pair.getElement0();
+            int y = pair.getElement1();
+            int circle_trace = puzzle.getCircle_trace(x,y);
+            //up
+            if(y>0 && circle_trace == puzzle.getCircle_trace(x,y-1)){
+                direction_found = true;
+                // To the moving direction there must be a different country, and to der opposite direction there must
+                // be a blockade, like a circle-trace, a circle, a different country or the end of the board
+                if(puzzle.getCountry(x,y) != puzzle.getCountry(x,y-1) && (y==height-1 || puzzle.getCircle_trace(x,y+1) != -1 || puzzle.getCountry(x,y+1) != puzzle.getCountry(x,y))){
+                    Pair set_to_zero = puzzle.findCircle(circle_trace);
+                    puzzle.setCircle(set_to_zero,-2,circle_trace);
+                }
+            }
+            //down
+            if(!direction_found && y<height-1 && circle_trace == puzzle.getCircle_trace(x,y+1)){
+                direction_found = true;
+                if(puzzle.getCountry(x,y) != puzzle.getCountry(x,y+1) && (y==0 || puzzle.getCircle_trace(x,y-1) != -1 || puzzle.getCountry(x,y-1) != puzzle.getCountry(x,y))){
+                    Pair set_to_zero = puzzle.findCircle(circle_trace);
+                    puzzle.setCircle(set_to_zero,-2,circle_trace);
+                }
+            }
+            //left
+            if(!direction_found && x>0 && circle_trace == puzzle.getCircle_trace(x-1,y)){
+                direction_found = true;
+                if(puzzle.getCountry(x,y) != puzzle.getCountry(x-1,y) && (x==width-1 || puzzle.getCircle_trace(x+1,y) != -1 || puzzle.getCountry(x+1,y) != puzzle.getCountry(x,y))){
+                    Pair set_to_zero = puzzle.findCircle(circle_trace);
+                    puzzle.setCircle(set_to_zero,-2,circle_trace);
+                }
+            }
+            //right
+            if(!direction_found && x<width-1 && circle_trace == puzzle.getCircle_trace(x+1,y)){
+                direction_found = true;
+                if(puzzle.getCountry(x,y) != puzzle.getCountry(x+1,y) && (x==0 || puzzle.getCircle_trace(x-1,y) != -1 || puzzle.getCountry(x-1,y) != puzzle.getCountry(x,y))){
+                    Pair set_to_zero = puzzle.findCircle(circle_trace);
+                    puzzle.setCircle(set_to_zero,-2,circle_trace);
+                }
+            }
+
+            if(!direction_found){
+                System.out.println("!#!#!#! no Direction found... is zero circle?"+circle_trace);
+            }
+
         }
     }
 
@@ -104,6 +149,9 @@ public class Shuffler {
                 movement = 0;
             }else{
                 movement = rand.nextInt(y); // number between 0 and y. where y is the distance to the top boarder of the puzzle.
+                if(movement==0){
+                    movement=y;
+                }
             }
             for(int i = 0; i<=movement; i++){
                 if(puzzle.getCircle_trace(x,y-i)==-1) {
@@ -126,6 +174,9 @@ public class Shuffler {
                 movement = 0;
             }else {
                 movement = rand.nextInt((height - y) - 1); // number between 0 and the distance to the bottom boarder of the puzzle.
+                if(movement==0){
+                    movement=(height-y)-1;
+                }
             }
             for(int i = 0; i<=movement; i++){
                 if(puzzle.getCircle_trace(x,y+i)==-1) {
@@ -145,6 +196,9 @@ public class Shuffler {
                 movement = 0;
             }else {
                 movement = rand.nextInt(x); // number between 0 and x. where x is the distance to the left boarder of the puzzle.
+                if(movement==0){
+                    movement=x;
+                }
             }
             for(int i = 0; i<=movement;i++){
                 if(puzzle.getCircle_trace(x-i,y)==-1) {
@@ -164,6 +218,9 @@ public class Shuffler {
                 movement = 0;
             }else {
                 movement = rand.nextInt((width - x) - 1); // number between 0 and the distance to the right boarder of the puzzle.
+                if(movement==0){
+                    movement=(width-x)-1;
+                }
             }
             for(int i = 0; i<=movement;i++){
                 if(puzzle.getCircle_trace(x+i,y)==-1) {
