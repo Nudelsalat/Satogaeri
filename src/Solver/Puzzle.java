@@ -139,9 +139,44 @@ public class Puzzle {
 
         // if the distance between endPos and circlePos isNOT circle value --> invalid move
         if(circleValue != -2 && !(circleValue == Math.abs(posCircleX-endPosX) || circleValue == Math.abs(posCircleY-endPosY))){
-            System.out.println("Weite der Bewegung != Value, bitch!!!");
+            System.out.println("Movementrange != Value, bitch!!!");
             return false;
         }
+
+        if(puzzle[endPos.getElement0()][endPos.getElement1()].getCircle_trace() != -1 && puzzle[endPos.getElement0()][endPos.getElement1()].getCircle_trace()!=circleID){
+            System.out.println("Field already occupied, bitch!!!");
+            return false;
+        }
+        if(posCircleX<endPos.getElement0()){
+            for(int x=posCircleX;x<=endPos.getElement0();x++){
+                if(puzzle[x][posCircleY].getCircle_trace()!=-1 && puzzle[x][posCircleY].getCircle_trace()!=circleID){
+                    System.out.println("There is a blockade on your path.");
+                    return false;
+                }
+            }
+        }else if(posCircleX>endPos.getElement0()){
+            for(int x=endPos.getElement0();x<=posCircleX;x++){
+                if(puzzle[x][posCircleY].getCircle_trace()!=-1 && puzzle[x][posCircleY].getCircle_trace()!=circleID){
+                    System.out.println("There is a blockade on your path.");
+                    return false;
+                }
+            }
+        }else if(posCircleY<endPos.getElement1()){
+            for(int y=posCircleY;y<=endPos.getElement1();y++){
+                if(puzzle[posCircleX][y].getCircle_trace()!=-1 && puzzle[posCircleX][y].getCircle_trace()!=circleID) {
+                    System.out.println("There is a blockade on your path.");
+                    return false;
+                }
+            }
+        }else if(posCircleY>endPos.getElement1()){
+            for(int y=endPos.getElement1();y<=posCircleY;y++){
+                if(puzzle[posCircleX][y].getCircle_trace()!=-1 && puzzle[posCircleX][y].getCircle_trace()!=circleID){
+                    System.out.println("There is a blockade on your path.");
+                    return false;
+                }
+            }
+        }
+
         puzzle[endPos.getElement0()][endPos.getElement1()].setCircle(puzzle[posCircleX][posCircleY].getCircle_value(),circleID);
         if(circleValue!=0 && !(endPos.getElement0()==posCircleX && endPos.getElement1()==posCircleY)){
             puzzle[posCircleX][posCircleY].setCircle_value(-1);

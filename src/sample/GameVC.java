@@ -196,25 +196,30 @@ public class GameVC extends Application {
             }
         });
 */
+       draw(puzzle, primaryStage);
+    }
+
+    public void draw(final Puzzle puzzle, final Stage primaryStage) {
         int height = 20;
         int width = 20;
 
-        GridPane root = new GridPane();
+        final GridPane root = new GridPane();
+        final Scene scene = new Scene(root, 300, 275);
         root.setAlignment(Pos.CENTER);
         root.setPadding(new Insets(25, 25, 25, 25));
         root.setVgap(1);
         root.setHgap(1);
         //root.add(new_game, 0, 0);
-        for(int x =0; x<puzzle.getWidth();x++){
-            for(int y = 0; y < puzzle.getHeight();y++){
-                final Rectangle drag_to = new Rectangle(x,y,width,height);
+        for (int x = 0; x < puzzle.getWidth(); x++) {
+            for (int y = 0; y < puzzle.getHeight(); y++) {
+                final Rectangle drag_to = new Rectangle(x, y, width, height);
                 drag_to.setFill(Color.AQUA);
-                drag_to.setId("f"+x+"-"+y);
-                root.add(drag_to,x,y+1);
+                drag_to.setId("f" + x + "-" + y);
+                root.add(drag_to, x, y + 1);
                 drag_to.setOnDragOver(new EventHandler<DragEvent>() {
                     public void handle(DragEvent event) {
                 /* data is dragged over the target */
-                        System.out.println("onDragOver");
+                        //System.out.println("onDragOver");
 
                 /* accept it only if it is  not dragged from the same node
                  * and if it has a string data */
@@ -236,10 +241,7 @@ public class GameVC extends Application {
                         if (event.getGestureSource() != drag_to &&
                                 event.getDragboard().hasString()) {
                             drag_to.setFill(Color.BLUE);
-                            drag_to.setHeight(19);
-                            drag_to.setWidth(19);
-                            drag_to.setStroke(Color.BLACK);
-                            System.out.println("x= "+drag_to.getX()+"\ny= "+drag_to.getY());
+                            System.out.println("x= " + drag_to.getX() + "\ny= " + drag_to.getY());
                         }
 
                         event.consume();
@@ -262,11 +264,11 @@ public class GameVC extends Application {
                         Dragboard db = event.getDragboard();
                         boolean success = false;
                         if (db.hasString()) {
-                            System.out.println("string is: "+db.getString());
+                            System.out.println("string is: " + db.getString());
                             String[] circlevalue = parseResult(db.getString());
                             System.out.println(circlevalue[0] + " " + circlevalue[1]);
-                            puzzle.move(Integer.parseInt(circlevalue[0]),Integer.parseInt(circlevalue[1]),(int) drag_to.getX(), (int) drag_to.getY());
-                            success = true;
+                            success = puzzle.move(Integer.parseInt(circlevalue[0]), Integer.parseInt(circlevalue[1]), (int) drag_to.getX(), (int) drag_to.getY());
+                            System.out.println("Success = " + success);
                         }
                 /* let the source know whether the string was successfully
                  * transferred and used */
@@ -282,18 +284,18 @@ public class GameVC extends Application {
 
         /* Add circles to the field
          */
-        for(int x =0; x<puzzle.getWidth();x++){
-            for(int y = 0; y < puzzle.getHeight();y++){
-                if(puzzle.getCircle_trace(x,y) != -1 && puzzle.getCircle_value(x,y) != -1){
-                    final Text source = new Text(20,20,""+puzzle.getCircle_value(x,y));
+        for (int x = 0; x < puzzle.getWidth(); x++) {
+            for (int y = 0; y < puzzle.getHeight(); y++) {
+                if (puzzle.getCircle_trace(x, y) != -1 && puzzle.getCircle_value(x, y) != -1) {
+                    final Text source = new Text(20, 20, "" + puzzle.getCircle_value(x, y));
                     // TODO: center does not work
                     source.setTextAlignment(TextAlignment.CENTER);
                     // TODO: Trace1Value-2 good idea?
-                    source.setId("X:"+x+"Y:"+y);
-                    source.setOnDragDetected(new EventHandler <MouseEvent>() {
+                    source.setId("X:" + x + "Y:" + y);
+                    source.setOnDragDetected(new EventHandler<MouseEvent>() {
                         public void handle(MouseEvent event) {
                 /* drag was detected, start drag-and-drop gesture*/
-                            System.out.println("onDragDetected");
+                            //System.out.println("onDragDetected");
 
                 /* allow any transfer mode */
                             Dragboard db = source.startDragAndDrop(TransferMode.ANY);
@@ -306,7 +308,7 @@ public class GameVC extends Application {
                             event.consume();
                         }
                     });
-                    source.setOnDragDone(new EventHandler <DragEvent>() {
+                    source.setOnDragDone(new EventHandler<DragEvent>() {
                         public void handle(DragEvent event) {
                 /* the drag-and-drop gesture ended */
                             System.out.println("onDragDone");
@@ -314,18 +316,18 @@ public class GameVC extends Application {
                             if (event.getTransferMode() == TransferMode.MOVE) {
                                 source.setText("");
                             }
-
+                            draw(puzzle,primaryStage);
                             event.consume();
                         }
                     });
 
-                    root.add(source,x,y+1);
+                    root.add(source, x, y + 1);
                 }
             }
         }
 
         primaryStage.setTitle("Satogaeri");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
