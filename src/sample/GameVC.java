@@ -213,7 +213,9 @@ public class GameVC extends Application {
         for (int x = 0; x < puzzle.getWidth(); x++) {
             for (int y = 0; y < puzzle.getHeight(); y++) {
                 final Rectangle drag_to = new Rectangle(x, y, width, height);
-                drag_to.setFill(Color.AQUA);
+                if(puzzle.getInhabited(x, y)){
+                    drag_to.setFill(Color.GREEN);
+                } else { drag_to.setFill(Color.AQUA);}
                 drag_to.setId("f" + x + "-" + y);
                 root.add(drag_to, x, y + 1);
                 drag_to.setOnDragOver(new EventHandler<DragEvent>() {
@@ -286,41 +288,43 @@ public class GameVC extends Application {
          */
         for (int x = 0; x < puzzle.getWidth(); x++) {
             for (int y = 0; y < puzzle.getHeight(); y++) {
-                if (puzzle.getCircle_trace(x, y) != -1 && puzzle.getCircle_value(x, y) != -1) {
-                    final Text source = new Text(20, 20, "" + puzzle.getCircle_value(x, y));
-                    // TODO: center does not work
-                    source.setTextAlignment(TextAlignment.CENTER);
-                    // TODO: Trace1Value-2 good idea?
-                    source.setId("X:" + x + "Y:" + y);
-                    source.setOnDragDetected(new EventHandler<MouseEvent>() {
-                        public void handle(MouseEvent event) {
-                /* drag was detected, start drag-and-drop gesture*/
-                            //System.out.println("onDragDetected");
+                if (puzzle.getCircle_trace(x, y) != -1) {
+                    final Text source = new Text(20, 20,""+puzzle.getCircleToString(x, y));
 
-                /* allow any transfer mode */
-                            Dragboard db = source.startDragAndDrop(TransferMode.ANY);
+                    if(puzzle.getCircle_value(x, y) != -1) {
+                        // TODO: center does not work
+                        source.setTextAlignment(TextAlignment.CENTER);
+                        // TODO: Trace1Value-2 good idea?
+                        source.setId("X:" + x + "Y:" + y);
+                        source.setOnDragDetected(new EventHandler<MouseEvent>() {
+                            public void handle(MouseEvent event) {
+                    /* drag was detected, start drag-and-drop gesture*/
+                                //System.out.println("onDragDetected");
 
-                /* put a string on dragboard */
-                            ClipboardContent content = new ClipboardContent();
-                            content.putString(source.getId());
-                            db.setContent(content);
+                    /* allow any transfer mode */
+                                Dragboard db = source.startDragAndDrop(TransferMode.ANY);
 
-                            event.consume();
-                        }
-                    });
-                    source.setOnDragDone(new EventHandler<DragEvent>() {
-                        public void handle(DragEvent event) {
-                /* the drag-and-drop gesture ended */
-                            System.out.println("onDragDone");
-                /* if the data was successfully moved, clear it */
-                            if (event.getTransferMode() == TransferMode.MOVE) {
-                                source.setText("");
+                    /* put a string on dragboard */
+                                ClipboardContent content = new ClipboardContent();
+                                content.putString(source.getId());
+                                db.setContent(content);
+
+                                event.consume();
                             }
-                            draw(puzzle,primaryStage);
-                            event.consume();
-                        }
-                    });
-
+                        });
+                        source.setOnDragDone(new EventHandler<DragEvent>() {
+                            public void handle(DragEvent event) {
+                    /* the drag-and-drop gesture ended */
+                                System.out.println("onDragDone");
+                    /* if the data was successfully moved, clear it */
+                                if (event.getTransferMode() == TransferMode.MOVE) {
+                                    source.setText("");
+                                }
+                                draw(puzzle, primaryStage);
+                                event.consume();
+                            }
+                        });
+                    }
                     root.add(source, x, y + 1);
                 }
             }

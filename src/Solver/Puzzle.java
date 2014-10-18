@@ -44,6 +44,9 @@ public class Puzzle {
         }
     }
 
+    public Boolean getInhabited(int x, int y){
+        return puzzle[x][y].getInhabited();
+    }
     // To set in a rectangular pattern. often used, and easier to write.
     // creates the pair array (representing the neighbors-list) and passes it t setCountry.
     public void setCountryBlock(Pair start, Pair end, int value){
@@ -73,8 +76,13 @@ public class Puzzle {
     public int getCircle_value(int x, int y){
         return puzzle[x][y].getCircle_value();
     }
+
     public Pair[] getNeighbors(Pair pair){
         return puzzle[pair.getElement0()][pair.getElement1()].getNeighbors();
+    }
+
+    public String getCircleToString(int x, int y){
+        return puzzle[x][y].toString();
     }
 
     public Pair findCircle(int circle){
@@ -127,83 +135,132 @@ public class Puzzle {
     // TODO: do not allow crossing traces
     public boolean move(int posCircleX, int posCircleY, int endPosX, int endPosY){
         int circleID = puzzle[posCircleX][posCircleY].getCircle_trace();
-        Pair endPos = new Pair(endPosX,endPosY);
-
-        System.out.println("INSIDE MOVE BITCH!!!!!\n"+" pos: "+endPosX+" "+endPosY + " ursprunge: " +posCircleX+" "+posCircleY);
         int circleValue = puzzle[posCircleX][posCircleY].getCircle_value();
-        // movement diagonal not allowed! invalid move
-        if(posCircleX!=endPosX && posCircleY != endPosY){
-            System.out.println("Keine Gerade, bitch!!!");
-            return false;
-        }
 
-        // if the distance between endPos and circlePos isNOT circle value --> invalid move
-        if(circleValue != -2 && !(circleValue == Math.abs(posCircleX-endPosX) || circleValue == Math.abs(posCircleY-endPosY))){
-            System.out.println("Movementrange != Value, bitch!!!");
-            return false;
-        }
+        if(puzzle[posCircleX][posCircleY].getHas_moved()){
+            //TODO exception handling for -2 values (#-circles)
+            if(puzzle[posCircleX][posCircleY].getCircle_trace() == puzzle[endPosX][endPosY].getCircle_trace() &&
+                    (circleValue == -2 || circleValue == Math.abs(posCircleX - endPosX) || circleValue == Math.abs(posCircleY - endPosY))) {
 
-        if(puzzle[endPos.getElement0()][endPos.getElement1()].getCircle_trace() != -1 && puzzle[endPos.getElement0()][endPos.getElement1()].getCircle_trace()!=circleID){
-            System.out.println("Field already occupied, bitch!!!");
-            return false;
-        }
-        if(posCircleX<endPos.getElement0()){
-            for(int x=posCircleX;x<=endPos.getElement0();x++){
-                if(puzzle[x][posCircleY].getCircle_trace()!=-1 && puzzle[x][posCircleY].getCircle_trace()!=circleID){
-                    System.out.println("There is a blockade on your path.");
-                    return false;
+                // remove inhabitation of all Fields in country
+                for(Pair pair : puzzle[posCircleX][posCircleY].getNeighbors()){
+                    puzzle[pair.getElement0()][pair.getElement1()].setInhabited(false);
                 }
-            }
-        }else if(posCircleX>endPos.getElement0()){
-            for(int x=endPos.getElement0();x<=posCircleX;x++){
-                if(puzzle[x][posCircleY].getCircle_trace()!=-1 && puzzle[x][posCircleY].getCircle_trace()!=circleID){
-                    System.out.println("There is a blockade on your path.");
-                    return false;
+                // override all arrows to non arrows
+                if (circleValue != 0 && !(endPosY == posCircleX && endPosY == posCircleY)) {
+                    puzzle[posCircleX][posCircleY].setCircle_value(-1);
+                    puzzle[posCircleX][posCircleY].setCircle_trace(-1);
                 }
-            }
-        }else if(posCircleY<endPos.getElement1()){
-            for(int y=posCircleY;y<=endPos.getElement1();y++){
-                if(puzzle[posCircleX][y].getCircle_trace()!=-1 && puzzle[posCircleX][y].getCircle_trace()!=circleID) {
-                    System.out.println("There is a blockade on your path.");
-                    return false;
+                if (posCircleX < endPosX) {
+                    for (int x = posCircleX; x <= endPosX; x++) {
+                        puzzle[x][posCircleY].setCircle_trace(-1);
+                        puzzle[x][posCircleY].setLeft(false);
+                    }
+                } else if (posCircleX > endPosX) {
+                    for (int x = endPosX; x <= posCircleX; x++) {
+                        puzzle[x][posCircleY].setCircle_trace(-1);
+                        puzzle[x][posCircleY].setRight(false);
+                    }
+                } else if (posCircleY < endPosY) {
+                    for (int y = posCircleY; y <= endPosY; y++) {
+                        puzzle[posCircleX][y].setCircle_trace(-1);
+                        puzzle[posCircleX][y].setup(false);
+                    }
+                } else if (posCircleY > endPosY) {
+                    for (int y = endPosY; y <= posCircleY; y++) {
+                        puzzle[posCircleX][y].setCircle_trace(-1);
+                        puzzle[posCircleX][y].setDown(false);
+                    }
                 }
+                puzzle[endPosX][endPosY].setCircle(circleValue, circleID);
+                puzzle[endPosX][endPosY].setHas_moved(false);
+                return true;
             }
-        }else if(posCircleY>endPos.getElement1()){
-            for(int y=endPos.getElement1();y<=posCircleY;y++){
-                if(puzzle[posCircleX][y].getCircle_trace()!=-1 && puzzle[posCircleX][y].getCircle_trace()!=circleID){
-                    System.out.println("There is a blockade on your path.");
-                    return false;
-                }
-            }
-        }
 
-        puzzle[endPos.getElement0()][endPos.getElement1()].setCircle(puzzle[posCircleX][posCircleY].getCircle_value(),circleID);
-        if(circleValue!=0 && !(endPos.getElement0()==posCircleX && endPos.getElement1()==posCircleY)){
-            puzzle[posCircleX][posCircleY].setCircle_value(-1);
+            return false;
+        } else {
+
+            System.out.println("INSIDE MOVE BITCH!!!!!\n" + " pos: " + endPosX + " " + endPosY + " ursprunge: " + posCircleX + " " + posCircleY);
+
+            // movement diagonal not allowed! invalid move
+            if (posCircleX != endPosX && posCircleY != endPosY) {
+                System.out.println("Keine Gerade, bitch!!!");
+                return false;
+            }
+
+            // if the distance between endPos and circlePos isNOT circle value --> invalid move
+            if (circleValue != -2 && !(circleValue == Math.abs(posCircleX - endPosX) || circleValue == Math.abs(posCircleY - endPosY))) {
+                System.out.println("Movementrange != Value, bitch!!!");
+                return false;
+            }
+
+            if (puzzle[endPosX][endPosY].getCircle_trace() != -1 && puzzle[endPosX][endPosY].getCircle_trace() != circleID) {
+                System.out.println("Field already occupied, bitch!!!");
+                return false;
+            }
+            if (posCircleX < endPosX) {
+                for (int x = posCircleX; x <= endPosX; x++) {
+                    if (puzzle[x][posCircleY].getCircle_trace() != -1 && puzzle[x][posCircleY].getCircle_trace() != circleID) {
+                        System.out.println("There is a blockade on your path.");
+                        return false;
+                    }
+                }
+            } else if (posCircleX > endPosX) {
+                for (int x = endPosX; x <= posCircleX; x++) {
+                    if (puzzle[x][posCircleY].getCircle_trace() != -1 && puzzle[x][posCircleY].getCircle_trace() != circleID) {
+                        System.out.println("There is a blockade on your path.");
+                        return false;
+                    }
+                }
+            } else if (posCircleY < endPosY) {
+                for (int y = posCircleY; y <= endPosY; y++) {
+                    if (puzzle[posCircleX][y].getCircle_trace() != -1 && puzzle[posCircleX][y].getCircle_trace() != circleID) {
+                        System.out.println("There is a blockade on your path.");
+                        return false;
+                    }
+                }
+            } else if (posCircleY > endPosY) {
+                for (int y = endPosY; y <= posCircleY; y++) {
+                    if (puzzle[posCircleX][y].getCircle_trace() != -1 && puzzle[posCircleX][y].getCircle_trace() != circleID) {
+                        System.out.println("There is a blockade on your path.");
+                        return false;
+                    }
+                }
+            }
+
+            puzzle[endPosX][endPosY].setCircle(puzzle[posCircleX][posCircleY].getCircle_value(), circleID);
+            // set inhabitation to the Country
+            for(Pair pair : puzzle[endPosX][endPosY].getNeighbors()){
+                puzzle[pair.getElement0()][pair.getElement1()].setInhabited(true);
+            }
+            if (circleValue != 0 && !(endPosY == posCircleX && endPosY == posCircleY)) {
+                puzzle[posCircleX][posCircleY].setCircle_value(-1);
+            }
+            if (posCircleX < endPosX) {
+                for (int x = posCircleX; x <= endPosX; x++) {
+                    puzzle[x][posCircleY].setCircle_trace(circleID);
+                    puzzle[x][posCircleY].setRight(true);
+                }
+            } else if (posCircleX > endPosX) {
+                for (int x = endPosX; x <= posCircleX; x++) {
+                    puzzle[x][posCircleY].setCircle_trace(circleID);
+                    puzzle[x][posCircleY].setLeft(true);
+                }
+            } else if (posCircleY < endPosY) {
+                for (int y = posCircleY; y <= endPosY; y++) {
+                    puzzle[posCircleX][y].setCircle_trace(circleID);
+                    puzzle[posCircleX][y].setDown(true);
+                }
+            } else if (posCircleY > endPosY) {
+                for (int y = endPosY; y <= posCircleY; y++) {
+                    puzzle[posCircleX][y].setCircle_trace(circleID);
+                    puzzle[posCircleX][y].setup(true);
+                }
+            }
+            puzzle[endPosX][endPosY].setHas_moved(true);
+            print();
+            return true;
         }
-        if(posCircleX<endPos.getElement0()){
-            for(int x=posCircleX;x<=endPos.getElement0();x++){
-                puzzle[x][posCircleY].setCircle_trace(circleID);
-                puzzle[x][posCircleY].setRight(true);
-            }
-        } else if(posCircleX>endPos.getElement0()){
-            for(int x=endPos.getElement0();x<=posCircleX;x++){
-                puzzle[x][posCircleY].setCircle_trace(circleID);
-                puzzle[x][posCircleY].setLeft(true);
-            }
-        } else if(posCircleY<endPos.getElement1()){
-            for(int y=posCircleY;y<=endPos.getElement1();y++){
-                puzzle[posCircleX][y].setCircle_trace(circleID);
-                puzzle[posCircleX][y].setDown(true);
-            }
-        } else if(posCircleY>endPos.getElement1()){
-            for(int y=endPos.getElement1();y<=posCircleY;y++){
-                puzzle[posCircleX][y].setCircle_trace(circleID);
-                puzzle[posCircleX][y].setup(true);
-            }
-        }
-        print();
-        return true;
     }
 
     public void print(){

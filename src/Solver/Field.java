@@ -6,12 +6,12 @@ package Solver;
 public class Field {
     private Pair[] neighbors;
     private int country = -1;
-    private int inhabitant = -1;
     private boolean inhabited = false;
     private boolean left = false;
     private boolean right = false;
     private boolean up = false;
     private boolean down = false;
+    private boolean has_moved = false;
     // id of the circle
     private int circle_trace = -1;
     // allowed movement value of the circle
@@ -33,25 +33,13 @@ public class Field {
     public Pair[] getNeighbors(){
         return neighbors;
     }
-    public void setInhabitant(int inhab){
-        inhabitant = inhab;
-    }
 
-    public int setInhabitant(){
-        return inhabitant;
-        // TODO: set boolean of neighbors true
-    }
-
-    public boolean getInhabitation(){
+    public boolean getInhabited(){
         return inhabited;
     }
 
-    public void inhabitated(){
-        inhabited = true;
-    }
-
-    public void uninhabitated(){
-        inhabited = false;
+    public void setInhabited(Boolean bool){
+        inhabited = bool;
     }
 
     public void setLeft(Boolean bool){
@@ -68,6 +56,14 @@ public class Field {
 
     public void setDown(Boolean bool){
         down = bool;
+    }
+
+    public void setHas_moved(Boolean bool){
+        has_moved = bool;
+    }
+
+    public Boolean getHas_moved(){
+        return has_moved;
     }
 
     public int getCircle_trace(){
