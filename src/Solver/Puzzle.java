@@ -9,7 +9,7 @@ import java.util.concurrent.*;
 /**
  * Created by Cloud on 27.05.2014.
  */
-public class Puzzle {
+public class Puzzle implements Serializable {
     private Field[][] puzzle;
     private int width;
     private int height;
@@ -949,6 +949,61 @@ public class Puzzle {
             System.exit(-1);
         }
         return only_one_solution;
+    }
+
+    private void setField(Field field, int x, int y){
+        puzzle[x][y]=field;
+    }
+
+    public Puzzle clonePuzzle(){
+        Puzzle clonedPuzzle = new Puzzle(width,height);
+        for(int i = 0; i <width;i++){
+            for(int j = 0; j <height;i++){
+                clonedPuzzle.setField(puzzle[i][j],i,j);
+            }
+        }
+        return clonedPuzzle;
+    }
+
+    public void savePuzzle(String string){
+        try {
+            FileOutputStream saveFile = new FileOutputStream(string+".pzl");
+            ObjectOutputStream save = new ObjectOutputStream(saveFile);
+
+            Puzzle clonedPuzzle = new Puzzle(width,height);
+            for(int i = 0; i <width;i++){
+                for(int j = 0; j <height;j++){
+                    clonedPuzzle.setField(puzzle[i][j],i,j);
+                }
+            }
+            save.writeObject(clonedPuzzle);
+
+            save.close();
+        } catch (Exception exc) {
+            exc.printStackTrace(); // If there was an error, print the info.
+        }
+    }
+
+    public Puzzle loadPuzzle(String string){
+        try{
+            FileInputStream loadFile;
+            if(string.contains(".pzl")){
+                loadFile = new FileInputStream(string);
+            } else {
+                loadFile = new FileInputStream(string + ".pzl");
+            }
+
+            ObjectInputStream load = new ObjectInputStream(loadFile);
+
+            Puzzle loadedPuzzle = (Puzzle) load.readObject();
+
+            load.close();
+            return loadedPuzzle;
+        }
+        catch(Exception exc){
+            exc.printStackTrace(); // If there was an error, print the info.
+        }
+        return null;
     }
 
     static public String[] parseResult(String string){

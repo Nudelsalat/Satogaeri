@@ -1,9 +1,11 @@
 package Solver;
 
+import java.io.Serializable;
+
 /**
  * Created by Cloud on 27.05.2014.
  */
-public class Pair {
+public class Pair implements Serializable {
     private final int element0;
     private final int element1;
 

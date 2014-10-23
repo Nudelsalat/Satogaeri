@@ -1,9 +1,11 @@
 package Solver;
 
+import java.io.Serializable;
+
 /**
  * Created by Cloud on 27.05.2014.
  */
-public class Field {
+public class Field implements Serializable {
     private Pair[] neighbors;
     private int country = -1;
     private boolean inhabited = false;
