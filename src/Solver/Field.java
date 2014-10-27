@@ -29,16 +29,16 @@ public class Field implements Serializable {
         country = c;
     }
 
-    public void setIs_origin(){
-        is_origin = true;
+    public int getCountry(){
+        return country;
+    }
+
+    public void setIs_origin(boolean bool){
+        is_origin = bool;
     }
 
     public boolean getIs_origin(){
         return is_origin;
-    }
-
-    public int getCountry(){
-        return country;
     }
 
     public Pair[] getNeighbors(){

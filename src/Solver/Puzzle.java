@@ -63,7 +63,7 @@ public class Puzzle implements Serializable {
 
     public void setCircle(Pair pos, int value, int id_trace){
         puzzle[pos.getElement0()][pos.getElement1()].setCircle(value, id_trace);
-        puzzle[pos.getElement0()][pos.getElement1()].setIs_origin();
+        puzzle[pos.getElement0()][pos.getElement1()].setIs_origin(true);
     }
 
     public void setCircle_trace(Pair pos, int circleID){
@@ -1057,17 +1057,43 @@ public class Puzzle implements Serializable {
     }
 
     private void setField(Field field, int x, int y){
-        puzzle[x][y]=field;
+        Field newField = new Field();
+
+        newField.setCountry(field.getCountry(),field.getNeighbors());
+        newField.setInhabited(field.getInhabited());
+        newField.setLeft(field.getLeft());
+        newField.setRight(field.getRight());
+        newField.setUp(field.getUp());
+        newField.setDown(field.getDown());
+        newField.setHas_moved(field.getHas_moved());
+        newField.setIs_origin(field.getIs_origin());
+        newField.setCircle_value(field.getCircle_value());
+        newField.setCircle_trace(field.getCircle_trace());
+
+        puzzle[x][y]=newField;
+    }
+
+    private Field getField(int x, int y){
+        return puzzle[x][y];
     }
 
     public Puzzle clonePuzzle(){
         Puzzle clonedPuzzle = new Puzzle(width,height);
         for(int i = 0; i <width;i++){
-            for(int j = 0; j <height;i++){
+            for(int j = 0; j <height;j++){
                 clonedPuzzle.setField(puzzle[i][j],i,j);
             }
         }
         return clonedPuzzle;
+    }
+
+    public void overwritePuzzle(Puzzle newPuzzle){
+        Puzzle clone = newPuzzle.clonePuzzle();
+        for(int i = 0; i <width;i++){
+            for(int j = 0; j <height;j++){
+                puzzle[i][j]=clone.getField(i,j);
+            }
+        }
     }
 
     public void savePuzzle(String string){

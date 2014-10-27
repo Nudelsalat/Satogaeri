@@ -182,9 +182,14 @@ public class GameVC extends Application {
         return puzzle;
     }
 
+    Puzzle startLayoutPuzzle;
+    Puzzle clone;
+    Boolean trymode = false;
+
     @Override
     public void start(final Stage primaryStage) throws Exception{
-        final Puzzle puzzle = EasyAquabluePuzzle();
+        Puzzle puzzle = EasyAquabluePuzzle();
+        startLayoutPuzzle = puzzle.clonePuzzle();
 
         //Button new_game = new Button();
         //new_game.setText("Start new Game");
@@ -203,8 +208,92 @@ public class GameVC extends Application {
         int height = 30;
         int width = 30;
 
+
+
         final GridPane gameGrid = new GridPane();
-        final Scene scene = new Scene(gameGrid);
+
+        Button btnClear = new Button();
+        btnClear.setText("Clear");
+        btnClear.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                puzzle.overwritePuzzle(startLayoutPuzzle);
+                trymode = false;
+                draw(puzzle,primaryStage);
+            }
+        });
+
+        Button btnUndo = new Button();
+        btnUndo.setText("Undo");
+        btnUndo.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+               //TODO implement Circle
+            }
+        });
+
+        Button btnCheck = new Button();
+        btnCheck.setText("Check");
+        btnCheck.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                //TODO maybe remove check...
+            }
+        });
+
+        Button btnTry = new Button();
+        btnTry.setText("Try");
+        btnTry.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                clone = puzzle.clonePuzzle();
+                trymode = true;
+                draw(puzzle,primaryStage);
+            }
+        });
+
+        Button btnFix = new Button();
+        btnFix.setText("Fix");
+        btnFix.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                trymode = false;
+                draw(puzzle,primaryStage);
+            }
+        });
+
+        Button btnDelete = new Button();
+        btnDelete.setText("Delete");
+        btnDelete.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                puzzle.overwritePuzzle(clone);
+                trymode = false;
+                draw(puzzle,primaryStage);
+            }
+        });
+
+        GridPane btnGrid = new GridPane();
+        btnGrid.setAlignment(Pos.CENTER_LEFT);
+        btnGrid.setHgap(10);
+        btnGrid.add(btnClear,0,0);
+        btnGrid.add(btnUndo,1,0);
+        btnGrid.add(btnCheck,2,0);
+        if(!trymode) {
+            btnGrid.add(btnTry, 3, 0);
+        }else{
+            btnGrid.add(btnFix,3,0);
+            btnGrid.add(btnDelete,4,0);
+        }
+
+        GridPane rootGrid = new GridPane();
+        final Scene scene = new Scene(rootGrid);
         gameGrid.setAlignment(Pos.CENTER);
         gameGrid.setPadding(new Insets(25, 25, 25, 25));
         //gameGrid.add(new_game, 0, 0);
@@ -359,6 +448,9 @@ public class GameVC extends Application {
             }
         }
 
+        rootGrid.add(btnGrid, 0, 0);
+        rootGrid.add(gameGrid, 0, 1);
+
         primaryStage.setTitle("Satogaeri");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -371,15 +463,6 @@ public class GameVC extends Application {
         string = string.replaceAll(pattern, "$2;$4");
 
         return string.split(pattern2);
-    }
-
-    public boolean checkIfNumber(String string){
-        try {
-            int i = Integer.parseInt(string);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
     }
 
     public static void main(String[] args) {
