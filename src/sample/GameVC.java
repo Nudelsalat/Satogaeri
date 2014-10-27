@@ -200,98 +200,127 @@ public class GameVC extends Application {
     }
 
     public void draw(final Puzzle puzzle, final Stage primaryStage) {
-        int height = 20;
-        int width = 20;
+        int height = 30;
+        int width = 30;
 
-        final GridPane root = new GridPane();
-        final Scene scene = new Scene(root, 300, 275);
-        root.setAlignment(Pos.CENTER);
-        root.setPadding(new Insets(25, 25, 25, 25));
-        root.setVgap(1);
-        root.setHgap(1);
-        //root.add(new_game, 0, 0);
-        for (int x = 0; x < puzzle.getWidth(); x++) {
-            for (int y = 0; y < puzzle.getHeight(); y++) {
-                final Rectangle drag_to = new Rectangle(x, y, width, height);
-                if(puzzle.getInhabited(x, y)){
-                    drag_to.setFill(Color.GREEN);
-                } else { drag_to.setFill(Color.AQUA);}
-                drag_to.setId("f" + x + "-" + y);
-                root.add(drag_to, x, y + 1);
-                drag_to.setOnDragOver(new EventHandler<DragEvent>() {
-                    public void handle(DragEvent event) {
+        final GridPane gameGrid = new GridPane();
+        final Scene scene = new Scene(gameGrid);
+        gameGrid.setAlignment(Pos.CENTER);
+        gameGrid.setPadding(new Insets(25, 25, 25, 25));
+        //gameGrid.add(new_game, 0, 0);
+        for (int x = 1; x < puzzle.getWidth()*2; x++) {
+            for (int y = 1; y < puzzle.getHeight() * 2; y++) {
+                if (y % 2 == 0) {
+                    if (x % 2 == 0) {
+                        final Rectangle point = new Rectangle(x, y, 2, 2);
+                        point.setFill(Color.GREY);
+                        gameGrid.add(point, x, y);
+                    } else {
+                        final Rectangle line = new Rectangle(x, y, width, 2);
+                        // out of bounds should not happen, because
+                        System.out.println("at " + x + " " + y + " Countrys are: " + puzzle.getCountry(x / 2, (y - 1) / 2) + " and " + puzzle.getCountry(x / 2, (y + 1) / 2));
+                        if (puzzle.getCountry(x / 2, (y / 2) - 1) != puzzle.getCountry(x / 2, y / 2)) {
+                            line.setFill(Color.BLACK);
+                        } else {
+                            line.setFill(Color.WHITE);
+                        }
+                        gameGrid.add(line, x, y);
+                    }
+                } else if (y % 2 != 0 && x % 2 == 0) {
+                    final Rectangle line = new Rectangle(x, y, 2, height);
+                    // out of bounds should not happen, because we don't check outer borders
+                    if (puzzle.getCountry((x / 2) - 1, y / 2) != puzzle.getCountry(x / 2, y / 2)) {
+                        line.setFill(Color.BLACK);
+                    } else {
+                        line.setFill(Color.WHITE);
+                    }
+                    gameGrid.add(line, x, y);
+                } else {
+                    final Rectangle drag_to = new Rectangle(x, y, width, height);
+                    if (puzzle.getInhabited(x/2, y/2)) {
+                        drag_to.setFill(Color.LIGHTGREEN);
+                    } else {
+                        drag_to.setFill(Color.AQUA);
+                    }
+                    drag_to.setId("f" + x + "-" + y);
+                    gameGrid.add(drag_to, x, y);
+                    drag_to.setOnDragOver(new EventHandler<DragEvent>() {
+                        public void handle(DragEvent event) {
                 /* data is dragged over the target */
-                        //System.out.println("onDragOver");
+                            //System.out.println("onDragOver");
 
                 /* accept it only if it is  not dragged from the same node
                  * and if it has a string data */
-                        if (event.getGestureSource() != drag_to &&
-                                event.getDragboard().hasString()) {
+                            if (event.getGestureSource() != drag_to &&
+                                    event.getDragboard().hasString()) {
                     /* allow for both copying and moving, whatever user chooses */
-                            event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+                                event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+                            }
+
+                            event.consume();
                         }
+                    });
 
-                        event.consume();
-                    }
-                });
-
-                drag_to.setOnDragEntered(new EventHandler<DragEvent>() {
-                    public void handle(DragEvent event) {
+                    drag_to.setOnDragEntered(new EventHandler<DragEvent>() {
+                        public void handle(DragEvent event) {
                 /* the drag-and-drop gesture entered the target */
-                        System.out.println("onDragEntered");
+                            System.out.println("onDragEntered");
                 /* show to the user that it is an actual gesture target */
-                        if (event.getGestureSource() != drag_to &&
-                                event.getDragboard().hasString()) {
-                            drag_to.setFill(Color.BLUE);
-                            System.out.println("x= " + drag_to.getX() + "\ny= " + drag_to.getY());
+                            if (event.getGestureSource() != drag_to &&
+                                    event.getDragboard().hasString()) {
+                                drag_to.setFill(Color.BLUE);
+                                System.out.println("x= " + drag_to.getX() + "\ny= " + drag_to.getY());
+                            }
+
+                            event.consume();
                         }
+                    });
 
-                        event.consume();
-                    }
-                });
-
-                drag_to.setOnDragExited(new EventHandler<DragEvent>() {
-                    public void handle(DragEvent event) {
+                    drag_to.setOnDragExited(new EventHandler<DragEvent>() {
+                        public void handle(DragEvent event) {
                 /* mouse moved away, remove the graphical cues */
-                        drag_to.setFill(Color.AQUA);
-                        event.consume();
-                    }
-                });
-
-                drag_to.setOnDragDropped(new EventHandler<DragEvent>() {
-                    public void handle(DragEvent event) {
-                /* data dropped */
-                        System.out.println("onDragDropped");
-                /* if there is a string data on dragboard, read it and use it */
-                        Dragboard db = event.getDragboard();
-                        boolean success = false;
-                        if (db.hasString()) {
-                            System.out.println("string is: " + db.getString());
-                            String[] circlevalue = parseResult(db.getString());
-                            System.out.println(circlevalue[0] + " " + circlevalue[1]);
-                            success = puzzle.move(Integer.parseInt(circlevalue[0]), Integer.parseInt(circlevalue[1]), (int) drag_to.getX(), (int) drag_to.getY());
-                            System.out.println("Success = " + success);
+                            drag_to.setFill(Color.AQUA);
+                            event.consume();
                         }
+                    });
+
+                    drag_to.setOnDragDropped(new EventHandler<DragEvent>() {
+                        public void handle(DragEvent event) {
+                /* data dropped */
+                            System.out.println("onDragDropped");
+                /* if there is a string data on dragboard, read it and use it */
+                            Dragboard db = event.getDragboard();
+                            boolean success = false;
+                            if (db.hasString()) {
+                                System.out.println("string is: " + db.getString());
+                                String[] circlevalue = parseResult(db.getString());
+                                System.out.println(circlevalue[0] + " " + circlevalue[1]);
+                                success = puzzle.move(Integer.parseInt(circlevalue[0])/2, Integer.parseInt(circlevalue[1])/2, ((int) drag_to.getX())/2, ((int) drag_to.getY())/2);
+                                System.out.println("Success = " + success);
+                            }
                 /* let the source know whether the string was successfully
                  * transferred and used */
-                        event.setDropCompleted(success);
+                            event.setDropCompleted(success);
 
-                        event.consume();
-                    }
-                });
+                            event.consume();
+                        }
+                    });
 
 
+                }
             }
         }
 
         /* Add circles to the field
          */
-        for (int x = 0; x < puzzle.getWidth(); x++) {
-            for (int y = 0; y < puzzle.getHeight(); y++) {
-                if (puzzle.getCircle_trace(x, y) != -1) {
-                    final Text source = new Text(20, 20,""+puzzle.getCircleToString(x, y));
-
-                    if(puzzle.getCircle_value(x, y) != -1) {
+        for (int x = 1; x < puzzle.getWidth()*2; x=x+2) {
+            for (int y = 1; y < puzzle.getHeight()*2; y=y+2) {
+                if (puzzle.getCircle_trace(x/2, y/2) != -1) {
+                    final Text source = new Text(20, 20,""+puzzle.getCircleToString(x/2, y/2));
+                    if(puzzle.getHas_moved(x/2, y/2)){
+                        source.setFill(Color.RED);
+                    }
+                    if(puzzle.getCircle_value(x/2, y/2) != -1) {
                         // TODO: center does not work
                         source.setTextAlignment(TextAlignment.CENTER);
                         // TODO: Trace1Value-2 good idea?
@@ -325,7 +354,7 @@ public class GameVC extends Application {
                             }
                         });
                     }
-                    root.add(source, x, y + 1);
+                    gameGrid.add(source, x, y);
                 }
             }
         }
@@ -333,6 +362,7 @@ public class GameVC extends Application {
         primaryStage.setTitle("Satogaeri");
         primaryStage.setScene(scene);
         primaryStage.show();
+        puzzle.print();
     }
 
     static public String[] parseResult(String string){
@@ -341,6 +371,15 @@ public class GameVC extends Application {
         string = string.replaceAll(pattern, "$2;$4");
 
         return string.split(pattern2);
+    }
+
+    public boolean checkIfNumber(String string){
+        try {
+            int i = Integer.parseInt(string);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public static void main(String[] args) {

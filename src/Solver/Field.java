@@ -14,6 +14,7 @@ public class Field implements Serializable {
     private boolean up = false;
     private boolean down = false;
     private boolean has_moved = false;
+    private boolean is_origin = false;
     // id of the circle
     private int circle_trace = -1;
     // allowed movement value of the circle
@@ -26,6 +27,14 @@ public class Field implements Serializable {
     public void setCountry(int c, Pair[] neighbors){
         this.neighbors = neighbors;
         country = c;
+    }
+
+    public void setIs_origin(){
+        is_origin = true;
+    }
+
+    public boolean getIs_origin(){
+        return is_origin;
     }
 
     public int getCountry(){
@@ -48,16 +57,32 @@ public class Field implements Serializable {
         left = bool;
     }
 
+    public boolean getRight(){
+        return right;
+    }
+
     public void setRight(Boolean bool){
         right = bool;
     }
 
-    public void setup(Boolean bool){
+    public boolean getLeft(){
+        return left;
+    }
+
+    public void setUp(Boolean bool){
         up = bool;
+    }
+
+    public boolean getUp(){
+        return up;
     }
 
     public void setDown(Boolean bool){
         down = bool;
+    }
+
+    public boolean getDown(){
+        return down;
     }
 
     public void setHas_moved(Boolean bool){

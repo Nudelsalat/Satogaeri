@@ -63,6 +63,7 @@ public class Puzzle implements Serializable {
 
     public void setCircle(Pair pos, int value, int id_trace){
         puzzle[pos.getElement0()][pos.getElement1()].setCircle(value, id_trace);
+        puzzle[pos.getElement0()][pos.getElement1()].setIs_origin();
     }
 
     public void setCircle_trace(Pair pos, int circleID){
@@ -83,6 +84,10 @@ public class Puzzle implements Serializable {
 
     public String getCircleToString(int x, int y){
         return puzzle[x][y].toString();
+    }
+
+    public boolean getHas_moved(int x, int y){
+        return puzzle[x][y].getHas_moved();
     }
 
     public Pair findCircle(int circle){
@@ -127,27 +132,124 @@ public class Puzzle implements Serializable {
         } else if(posCircle.getElement1()>endPos.getElement1()){
             for(int x=posCircle.getElement0(),y=endPos.getElement1();y<=posCircle.getElement1();y++){
                 puzzle[x][y].setCircle_trace(circleID);
-                puzzle[x][y].setup(true);
+                puzzle[x][y].setUp(true);
             }
         }
     }
 
+    public boolean allAreUninhabited(Pair[] neighbors){
+        for (Pair pair : neighbors) {
+            if(puzzle[pair.getElement0()][pair.getElement1()].getHas_moved()) {
+                return false;
+            }
+        }
+        return true;
+    }
     // TODO: do not allow crossing traces
     public boolean move(int posCircleX, int posCircleY, int endPosX, int endPosY){
         int circleID = puzzle[posCircleX][posCircleY].getCircle_trace();
         int circleValue = puzzle[posCircleX][posCircleY].getCircle_value();
 
         if(puzzle[posCircleX][posCircleY].getHas_moved()){
-            //TODO exception handling for -2 values (#-circles)
-            if(puzzle[posCircleX][posCircleY].getCircle_trace() == puzzle[endPosX][endPosY].getCircle_trace() &&
-                    (circleValue == -2 || circleValue == Math.abs(posCircleX - endPosX) || circleValue == Math.abs(posCircleY - endPosY))) {
+            if(circleValue == -2 && (
+                    (posCircleX!=0 && circleID == puzzle[posCircleX-1][posCircleY].getCircle_trace() && endPosY == posCircleY)
+                    ||
+                    (posCircleX!=width && circleID == puzzle[posCircleX+1][posCircleY].getCircle_trace() && endPosY == posCircleY)
+                    ||
+                    (posCircleY!=0 && circleID == puzzle[posCircleX][posCircleY-1].getCircle_trace() && endPosX == posCircleX)
+                    ||
+                    (posCircleY!=height && circleID == puzzle[posCircleX][posCircleY+1].getCircle_trace() && endPosX == posCircleX)
+                    ||
+                    (posCircleX==endPosX && posCircleY==endPosY))){
 
-                // remove inhabitation of all Fields in country
-                for(Pair pair : puzzle[posCircleX][posCircleY].getNeighbors()){
-                    puzzle[pair.getElement0()][pair.getElement1()].setInhabited(false);
+                puzzle[posCircleX][posCircleY].setHas_moved(false);
+                if(allAreUninhabited(puzzle[posCircleX][posCircleY].getNeighbors())) {
+                    for (Pair pair : puzzle[posCircleX][posCircleY].getNeighbors()) {
+                        puzzle[pair.getElement0()][pair.getElement1()].setInhabited(false);
+                    }
+                }
+
+                // override all arrows to non arrows
+                if (posCircleX < endPosX) {
+                    for (int x = posCircleX; x <= endPosX; x++) {
+                        if(puzzle[x][posCircleY].getCircle_trace()==circleID && !puzzle[x][posCircleY].getRight() && !puzzle[x][posCircleY].getIs_origin()) {
+                            puzzle[x][posCircleY].setCircle_trace(-1);
+                            puzzle[x][posCircleY].setLeft(false);
+                        }else{
+                            puzzle[x][posCircleY].setCircle_trace(circleID);
+                            puzzle[x][posCircleY].setLeft(false);
+                            puzzle[x][posCircleY].setRight(true);
+                        }
+                    }
+                } else if (posCircleX > endPosX) {
+                    for (int x = endPosX; x <= posCircleX; x++) {
+                        if(puzzle[x][posCircleY].getCircle_trace()==circleID && !puzzle[x][posCircleY].getLeft() && !puzzle[x][posCircleY].getIs_origin()) {
+                            puzzle[x][posCircleY].setCircle_trace(-1);
+                            puzzle[x][posCircleY].setRight(false);
+                        }else{
+                            puzzle[x][posCircleY].setCircle_trace(circleID);
+                            puzzle[x][posCircleY].setRight(false);
+                            puzzle[x][posCircleY].setLeft(true);
+                        }
+                    }
+                } else if (posCircleY < endPosY) {
+                    for (int y = posCircleY; y <= endPosY; y++) {
+                        if(puzzle[posCircleX][y].getCircle_trace()==circleID && !puzzle[posCircleX][y].getDown() && !puzzle[posCircleX][y].getIs_origin()) {
+                            puzzle[posCircleX][y].setCircle_trace(-1);
+                            puzzle[posCircleX][y].setUp(false);
+                        }else{
+                            puzzle[posCircleX][y].setCircle_trace(circleID);
+                            puzzle[posCircleX][y].setUp(false);
+                            puzzle[posCircleX][y].setDown(true);
+                        }
+                    }
+                } else if (posCircleY > endPosY) {
+                    for (int y = endPosY; y <= posCircleY; y++) {
+                        if(puzzle[posCircleX][y].getCircle_trace()==circleID && !puzzle[posCircleX][y].getUp() && !puzzle[posCircleX][y].getIs_origin()) {
+                            puzzle[posCircleX][y].setCircle_trace(-1);
+                            puzzle[posCircleX][y].setDown(false);
+                        }else{
+                            puzzle[posCircleX][y].setCircle_trace(circleID);
+                            puzzle[posCircleX][y].setDown(false);
+                            puzzle[posCircleX][y].setUp(true);
+                        }
+                    }
+                }
+                if(puzzle[endPosX][endPosY].getIs_origin()){
+                    puzzle[endPosX][endPosY].setRight(false);
+                    puzzle[endPosX][endPosY].setLeft(false);
+                    puzzle[endPosX][endPosY].setUp(false);
+                    puzzle[endPosX][endPosY].setDown(false);
+                }
+                if (!(endPosX == posCircleX && endPosY == posCircleY)) {
+                    puzzle[posCircleX][posCircleY].setCircle_value(-1);
+                }
+                puzzle[endPosX][endPosY].setCircle(circleValue, circleID);
+                if((endPosX!=0 && puzzle[endPosX-1][endPosY].getCircle_trace()==circleID) ||
+                        (endPosX!=width && puzzle[endPosX+1][endPosY].getCircle_trace()==circleID) ||
+                        (endPosY!=0 && puzzle[endPosX][endPosY-1].getCircle_trace()==circleID) ||
+                        (endPosX!=height && puzzle[endPosX][endPosY+1].getCircle_trace()==circleID)) {
+                    puzzle[endPosX][endPosY].setHas_moved(true);
+                    for(Pair pair : puzzle[endPosX][endPosY].getNeighbors()){
+                        puzzle[pair.getElement0()][pair.getElement1()].setInhabited(true);
+                    }
+                }else{
+                    puzzle[endPosX][endPosY].setHas_moved(false);
+                }
+                return true;
+// #### End -2 Circles #####
+            }else if(puzzle[posCircleX][posCircleY].getCircle_trace() == puzzle[endPosX][endPosY].getCircle_trace() &&
+                    (circleValue == Math.abs(posCircleX - endPosX) || circleValue == Math.abs(posCircleY - endPosY))) {
+
+                // remove inhabitation of all Fields in country. IF there is no other hasMoved circle in there.
+                puzzle[posCircleX][posCircleY].setHas_moved(false);
+                if(allAreUninhabited(puzzle[posCircleX][posCircleY].getNeighbors())) {
+                    for (Pair pair : puzzle[posCircleX][posCircleY].getNeighbors()) {
+                        puzzle[pair.getElement0()][pair.getElement1()].setInhabited(false);
+                    }
                 }
                 // override all arrows to non arrows
-                if (circleValue != 0 && !(endPosY == posCircleX && endPosY == posCircleY)) {
+                if (circleValue != 0 && !(endPosX == posCircleX && endPosY == posCircleY)) {
                     puzzle[posCircleX][posCircleY].setCircle_value(-1);
                     puzzle[posCircleX][posCircleY].setCircle_trace(-1);
                 }
@@ -164,7 +266,7 @@ public class Puzzle implements Serializable {
                 } else if (posCircleY < endPosY) {
                     for (int y = posCircleY; y <= endPosY; y++) {
                         puzzle[posCircleX][y].setCircle_trace(-1);
-                        puzzle[posCircleX][y].setup(false);
+                        puzzle[posCircleX][y].setUp(false);
                     }
                 } else if (posCircleY > endPosY) {
                     for (int y = endPosY; y <= posCircleY; y++) {
@@ -179,9 +281,12 @@ public class Puzzle implements Serializable {
 
             return false;
         } else {
-
+// #### not moved yet region
             System.out.println("INSIDE MOVE BITCH!!!!!\n" + " pos: " + endPosX + " " + endPosY + " ursprunge: " + posCircleX + " " + posCircleY);
 
+            if(circleValue == 0 && (posCircleX!=endPosX || posCircleY!=endPosY)){
+                return false;
+            }
             // movement diagonal not allowed! invalid move
             if (posCircleX != endPosX && posCircleY != endPosY) {
                 System.out.println("Keine Gerade, bitch!!!");
@@ -233,7 +338,7 @@ public class Puzzle implements Serializable {
             for(Pair pair : puzzle[endPosX][endPosY].getNeighbors()){
                 puzzle[pair.getElement0()][pair.getElement1()].setInhabited(true);
             }
-            if (circleValue != 0 && !(endPosY == posCircleX && endPosY == posCircleY)) {
+            if (circleValue != 0 && !(endPosX == posCircleX && endPosY == posCircleY)) {
                 puzzle[posCircleX][posCircleY].setCircle_value(-1);
             }
             if (posCircleX < endPosX) {
@@ -254,7 +359,7 @@ public class Puzzle implements Serializable {
             } else if (posCircleY > endPosY) {
                 for (int y = endPosY; y <= posCircleY; y++) {
                     puzzle[posCircleX][y].setCircle_trace(circleID);
-                    puzzle[posCircleX][y].setup(true);
+                    puzzle[posCircleX][y].setUp(true);
                 }
             }
             puzzle[endPosX][endPosY].setHas_moved(true);

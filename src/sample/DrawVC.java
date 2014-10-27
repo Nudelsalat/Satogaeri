@@ -159,104 +159,130 @@ public class DrawVC extends Application{
         superRoot.setAlignment(Pos.CENTER);
         gameGrid.setAlignment(Pos.CENTER);
         gameGrid.setPadding(new Insets(25, 25, 25, 25));
-        gameGrid.setVgap(1);
-        gameGrid.setHgap(1);
-        for (int x = 0; x < puzzle.getWidth(); x++) {
-            for (int y = 0; y < puzzle.getHeight(); y++) {
-                final Rectangle rectangle = new Rectangle(x, y, width, height);
-                if (puzzle.getCountry(x, y) != -1) {
-                    rectangle.setFill(Color.GREEN);
-                } else {
-                    rectangle.setFill(Color.AQUA);
-                }
-                rectangle.setId("X:" + x + "Y:" + y);
-                gameGrid.add(rectangle, x, y + 1);
-//Country & Drag part:
-                rectangle.setOnDragDetected(new EventHandler<MouseEvent>() {
-                    public void handle(MouseEvent event) {
-                        if (drawmode == Drawmode.COUNTRY) {
-                            Dragboard db = rectangle.startDragAndDrop(TransferMode.ANY);
-                            ClipboardContent content = new ClipboardContent();
-                            content.putString(rectangle.getId());
-                            db.setContent(content);
-
-                            Pair[] pair = new Pair[1];
-                            pair[0] = new Pair((int) rectangle.getX(), (int) rectangle.getY());
-                            puzzle.setCountry(pair, countryCounter);
+        //gameGrid.setVgap(1);
+        //gameGrid.setHgap(1);
+        for (int x = 1; x < puzzle.getWidth()*2; x++) {
+            for (int y = 1; y < puzzle.getHeight() * 2; y++) {
+                if (y % 2 == 0) {
+                    if (x % 2 == 0) {
+                        final Rectangle point = new Rectangle(x, y, 2, 2);
+                        point.setFill(Color.WHITE);
+                        gameGrid.add(point, x, y);
+                    } else {
+                        final Rectangle line = new Rectangle(x, y, width, 2);
+                        // out of bounds should not happen, because
+                        System.out.println("at "+x+" "+y+" Countrys are: "+puzzle.getCountry(x / 2, (y-1) / 2)+" and "+puzzle.getCountry(x / 2, (y + 1) / 2));
+                        if (puzzle.getCountry(x / 2, (y/2)-1) != puzzle.getCountry(x / 2, y /2)) {
+                            line.setFill(Color.BLACK);
+                        } else {
+                            line.setFill(Color.WHITE);
                         }
-                        event.consume();
+                        gameGrid.add(line, x, y);
                     }
-                });
+                } else if (y % 2 != 0 && x % 2 == 0) {
+                    final Rectangle line = new Rectangle(x, y, 2, height);
+                    // out of bounds should not happen, because we don't check outer borders
+                    if (puzzle.getCountry((x / 2)-1, y / 2) != puzzle.getCountry(x / 2, y / 2)) {
+                        line.setFill(Color.BLACK);
+                    } else {
+                        line.setFill(Color.WHITE);
+                    }
+                    gameGrid.add(line, x, y);
+                } else {
+                    final Rectangle rectangle = new Rectangle(x, y, width, height);
+                    if (puzzle.getCountry(x/2, y/2) != -1) {
+                        rectangle.setFill(Color.LIGHTGREEN);
+                    } else {
+                        rectangle.setFill(Color.AQUA);
+                    }
+                    rectangle.setId("X:" + x + "Y:" + y);
+                    gameGrid.add(rectangle, x, y);
+//Country & Drag part:
+                    rectangle.setOnDragDetected(new EventHandler<MouseEvent>() {
+                        public void handle(MouseEvent event) {
+                            if (drawmode == Drawmode.COUNTRY) {
+                                Dragboard db = rectangle.startDragAndDrop(TransferMode.ANY);
+                                ClipboardContent content = new ClipboardContent();
+                                content.putString(rectangle.getId());
+                                db.setContent(content);
 
-                rectangle.setOnDragDone(new EventHandler<DragEvent>() {
-                    public void handle(DragEvent event) {
-                        if (drawmode == Drawmode.COUNTRY) {
+                                Pair[] pair = new Pair[1];
+                                pair[0] = new Pair(((int) rectangle.getX())/2, ((int) rectangle.getY())/2);
+                                puzzle.setCountry(pair, countryCounter);
+                            }
+                            event.consume();
+                        }
+                    });
+
+                    rectangle.setOnDragDone(new EventHandler<DragEvent>() {
+                        public void handle(DragEvent event) {
+                            if (drawmode == Drawmode.COUNTRY) {
                     /* the drag-and-drop gesture ended */
-                            System.out.println("onDragDone");
+                                System.out.println("onDragDone");
                     /* if the data was successfully moved, clear it */
 
-                            countryCounter++;
-                            System.out.println("Next Country has ID " + countryCounter);
+                                countryCounter++;
+                                System.out.println("Next Country has ID " + countryCounter);
 
-                            draw(puzzle, primaryStage);
+                                draw(puzzle, primaryStage);
+                            }
+                            event.consume();
                         }
-                        event.consume();
-                    }
-                });
+                    });
 
-                rectangle.setOnDragEntered(new EventHandler<DragEvent>() {
-                    public void handle(DragEvent event) {
-                        if (drawmode == Drawmode.COUNTRY) {
-                            Pair[] pair = new Pair[1];
-                            pair[0] = new Pair((int) rectangle.getX(), (int) rectangle.getY());
-                            puzzle.setCountry(pair, countryCounter);
+                    rectangle.setOnDragEntered(new EventHandler<DragEvent>() {
+                        public void handle(DragEvent event) {
+                            if (drawmode == Drawmode.COUNTRY) {
+                                Pair[] pair = new Pair[1];
+                                pair[0] = new Pair(((int) rectangle.getX())/2, ((int) rectangle.getY())/2);
+                                puzzle.setCountry(pair, countryCounter);
 
-                            rectangle.setFill(Color.BLUE);
-                            System.out.println("x= " + rectangle.getX() + "\ny= " + rectangle.getY());
+                                rectangle.setFill(Color.BLUE);
+                                System.out.println("x= " + rectangle.getX()/2 + "\ny= " + rectangle.getY()/2);
+                            }
+
+                            event.consume();
                         }
-
-                        event.consume();
-                    }
-                });
+                    });
 
 // Circle & Click Part:
-                rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    public void handle(MouseEvent event) {
-                        if (drawmode == Drawmode.CIRCLE) {
-                            if (popup.isShowing()) {
-                                popup.hide();
-                            } else {
-                                xCoordinate = (int) rectangle.getX();
-                                yCoordinate = (int) rectangle.getY();
-                                popup.show(primaryStage);
+                    rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                        public void handle(MouseEvent event) {
+                            if (drawmode == Drawmode.CIRCLE) {
+                                if (popup.isShowing()) {
+                                    popup.hide();
+                                } else {
+                                    xCoordinate = ((int) rectangle.getX())/2;
+                                    yCoordinate = ((int) rectangle.getY())/2;
+                                    popup.show(primaryStage);
 
-                                rectangle.setFill(Color.RED);
+                                    rectangle.setFill(Color.RED);
+                                }
                             }
-                        }
 
-                        event.consume();
-                    }
-                });
+                            event.consume();
+                        }
+                    });
+                }
             }
         }
 
 
 
-
     /* Add circles to the field
      */
-        for (int x = 0; x < puzzle.getWidth(); x++) {
-            for (int y = 0; y < puzzle.getHeight(); y++) {
-                if (puzzle.getCircle_trace(x, y) != -1) {
-                    final Text source = new Text(20, 20,""+puzzle.getCircleToString(x, y));
+        for (int x = 1; x < puzzle.getWidth()*2; x=x+2) {
+            for (int y = 1; y < puzzle.getHeight()*2; y=y+2) {
+                if (puzzle.getCircle_trace(x/2, y/2) != -1) {
+                    final Text source = new Text(20, 20,""+puzzle.getCircleToString(x/2, y/2));
 
-                    if(puzzle.getCircle_value(x, y) != -1) {
+                    if(puzzle.getCircle_value(x/2, y/2) != -1) {
                         // TODO: center does not work
                         source.setTextAlignment(TextAlignment.CENTER);
                         // TODO: Trace1Value-2 good idea?
                         source.setId("X:" + x + "Y:" + y);
                     }
-                    gameGrid.add(source, x, y + 1);
+                    gameGrid.add(source, x, y);
                 }
             }
         }
@@ -269,6 +295,7 @@ public class DrawVC extends Application{
         primaryStage.setTitle("Satogaeri");
         primaryStage.setScene(scene);
         primaryStage.show();
+        puzzle.print();
     }
 
     public static void main(String[] args) {
