@@ -219,6 +219,7 @@ public class GameVC extends Application {
             @Override
             public void handle(ActionEvent event) {
                 puzzle.overwritePuzzle(startLayoutPuzzle);
+                puzzle.clearLog();
                 trymode = false;
                 draw(puzzle,primaryStage);
             }
@@ -230,7 +231,10 @@ public class GameVC extends Application {
 
             @Override
             public void handle(ActionEvent event) {
-               //TODO implement Circle
+                if(!puzzle.logListIsEmpty()){
+                    puzzle.logListGet();
+                }
+                draw(puzzle,primaryStage);
             }
         });
 
@@ -385,6 +389,9 @@ public class GameVC extends Application {
                                 String[] circlevalue = parseResult(db.getString());
                                 System.out.println(circlevalue[0] + " " + circlevalue[1]);
                                 success = puzzle.move(Integer.parseInt(circlevalue[0])/2, Integer.parseInt(circlevalue[1])/2, ((int) drag_to.getX())/2, ((int) drag_to.getY())/2);
+                                if(success){
+                                    puzzle.logListAdd(((int) drag_to.getX())/2, ((int) drag_to.getY())/2,Integer.parseInt(circlevalue[0])/2, Integer.parseInt(circlevalue[1])/2);
+                                }
                                 System.out.println("Success = " + success);
                             }
                 /* let the source know whether the string was successfully

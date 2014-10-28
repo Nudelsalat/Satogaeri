@@ -13,6 +13,7 @@ public class Puzzle implements Serializable {
     private Field[][] puzzle;
     private int width;
     private int height;
+    private RingList<Pair[]> log_list = new RingList(25);
 
     public Puzzle(int width, int height){
         this.width = width;
@@ -145,7 +146,7 @@ public class Puzzle implements Serializable {
         }
         return true;
     }
-    // TODO: do not allow crossing traces
+
     public boolean move(int posCircleX, int posCircleY, int endPosX, int endPosY){
         int circleID = puzzle[posCircleX][posCircleY].getCircle_trace();
         int circleValue = puzzle[posCircleX][posCircleY].getCircle_value();
@@ -236,6 +237,7 @@ public class Puzzle implements Serializable {
                 }else{
                     puzzle[endPosX][endPosY].setHas_moved(false);
                 }
+
                 return true;
 // #### End -2 Circles #####
             }else if(puzzle[posCircleX][posCircleY].getCircle_trace() == puzzle[endPosX][endPosY].getCircle_trace() &&
@@ -1085,6 +1087,26 @@ public class Puzzle implements Serializable {
             }
         }
         return clonedPuzzle;
+    }
+
+    public boolean logListIsEmpty(){
+        return log_list.isEmpty();
+    }
+
+    public void logListAdd(int endX, int endY, int startX, int startY){
+        Pair[] pair = new Pair[2];
+        pair[0] = new Pair(endX, endY);
+        pair[1] = new Pair(startX, startY);
+        log_list.add(pair);
+    }
+
+    public void logListGet(){
+        Pair[] pair = log_list.get();
+        move(pair[0].getElement0(),pair[0].getElement1(),pair[1].getElement0(),pair[1].getElement1());
+    }
+
+    public void clearLog(){
+        log_list.clear();
     }
 
     public void overwritePuzzle(Puzzle newPuzzle){
