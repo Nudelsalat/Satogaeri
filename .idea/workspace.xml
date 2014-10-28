@@ -26,27 +26,13 @@
       <file leaf-file-name="Puzzle.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Solver/Puzzle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="18148" max-vertical-offset="19482">
-              <caret line="1103" column="0" selection-start-line="1103" selection-start-column="0" selection-end-line="1103" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="19159" max-vertical-offset="19669">
+              <caret line="1169" column="20" selection-start-line="1169" selection-start-column="20" selection-end-line="1169" selection-end-column="20" />
               <folding>
                 <element signature="e#49392#49393#0" expanded="true" />
                 <element signature="e#49433#49434#0" expanded="true" />
                 <element signature="e#49866#49867#0" expanded="true" />
                 <element signature="e#49898#49899#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RingList.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Solver/RingList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.457971" vertical-offset="403" max-vertical-offset="952">
-              <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#530#531#0" expanded="true" />
-                <element signature="e#573#574#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -65,30 +51,35 @@
       <file leaf-file-name="DrawVC.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/DrawVC.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1241" max-vertical-offset="4522">
-              <caret line="94" column="31" selection-start-line="94" selection-start-column="31" selection-end-line="94" selection-end-column="31" />
-              <folding />
+            <state vertical-scroll-proportion="-6.642857" vertical-offset="222" max-vertical-offset="4828">
+              <caret line="24" column="3" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameVC.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="GameVC.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/GameVC.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.607143" vertical-offset="3809" max-vertical-offset="7939">
-              <caret line="234" column="0" selection-start-line="234" selection-start-column="0" selection-end-line="234" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.7763158" vertical-offset="4609" max-vertical-offset="8653">
+              <caret line="285" column="13" selection-start-line="285" selection-start-column="13" selection-end-line="285" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#7312#7592#0" expanded="true" />
-                <element signature="e#7581#7582#0" expanded="true" />
-                <element signature="e#7700#7877#0" expanded="true" />
-                <element signature="e#7866#7867#0" expanded="true" />
-                <element signature="e#7977#8230#0" expanded="true" />
-                <element signature="e#8219#8220#0" expanded="true" />
-                <element signature="e#8330#8538#0" expanded="true" />
-                <element signature="e#8527#8528#0" expanded="true" />
-                <element signature="e#8650#8905#0" expanded="true" />
-                <element signature="e#8894#8895#0" expanded="true" />
+                <element signature="e#7611#7811#0" expanded="true" />
+                <element signature="e#7800#7801#0" expanded="true" />
+                <element signature="e#8002#8304#0" expanded="true" />
+                <element signature="e#8293#8294#0" expanded="true" />
+                <element signature="e#8408#8688#0" expanded="true" />
+                <element signature="e#8677#8678#0" expanded="true" />
+                <element signature="e#8796#9107#0" expanded="true" />
+                <element signature="e#9207#9460#0" expanded="true" />
+                <element signature="e#9449#9450#0" expanded="true" />
+                <element signature="e#9560#9768#0" expanded="true" />
+                <element signature="e#9757#9758#0" expanded="true" />
+                <element signature="e#9880#10135#0" expanded="true" />
+                <element signature="e#10124#10125#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -97,28 +88,8 @@
       <file leaf-file-name="MainMediumCubic_Function.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Solver/MainMediumCubic_Function.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="697">
+            <state vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="680">
               <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestGenerator.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Solver/TestGenerator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="61" max-vertical-offset="408">
-              <caret line="6" column="44" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Field.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Solver/Field.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="782" max-vertical-offset="2448">
-              <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -190,9 +161,9 @@
         <option value="$PROJECT_DIR$/src/sample/DrawVC.java" />
         <option value="$PROJECT_DIR$/src/Solver/MainMediumCubic_Function.java" />
         <option value="$PROJECT_DIR$/src/Solver/Field.java" />
+        <option value="$PROJECT_DIR$/src/Solver/RingList.java" />
         <option value="$PROJECT_DIR$/src/Solver/Puzzle.java" />
         <option value="$PROJECT_DIR$/src/sample/GameVC.java" />
-        <option value="$PROJECT_DIR$/src/Solver/RingList.java" />
       </list>
     </option>
   </component>
@@ -983,6 +954,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Solver/SmallSatogaeriPipingTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="94" max-vertical-offset="561">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Solver/RingList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.457971" vertical-offset="403" max-vertical-offset="952">
+          <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#530#531#0" expanded="true" />
+            <element signature="e#573#574#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Solver/Field.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="442" max-vertical-offset="1870">
@@ -999,46 +990,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Solver/SmallSatogaeriPipingTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="94" max-vertical-offset="561">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/DrawVC.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1598" max-vertical-offset="5270">
-          <caret line="94" column="31" selection-start-line="94" selection-start-column="31" selection-end-line="94" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/GameVC.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.607143" vertical-offset="3809" max-vertical-offset="7939">
-          <caret line="234" column="0" selection-start-line="234" selection-start-column="0" selection-end-line="234" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#7312#7592#0" expanded="true" />
-            <element signature="e#7581#7582#0" expanded="true" />
-            <element signature="e#7700#7877#0" expanded="true" />
-            <element signature="e#7866#7867#0" expanded="true" />
-            <element signature="e#7977#8230#0" expanded="true" />
-            <element signature="e#8219#8220#0" expanded="true" />
-            <element signature="e#8330#8538#0" expanded="true" />
-            <element signature="e#8527#8528#0" expanded="true" />
-            <element signature="e#8650#8905#0" expanded="true" />
-            <element signature="e#8894#8895#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Solver/Puzzle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="18148" max-vertical-offset="19482">
-          <caret line="1103" column="0" selection-start-line="1103" selection-start-column="0" selection-end-line="1103" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="19159" max-vertical-offset="19669">
+          <caret line="1169" column="20" selection-start-line="1169" selection-start-column="20" selection-end-line="1169" selection-end-column="20" />
           <folding>
             <element signature="e#49392#49393#0" expanded="true" />
             <element signature="e#49433#49434#0" expanded="true" />
@@ -1048,14 +1003,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Solver/RingList.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/DrawVC.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.457971" vertical-offset="403" max-vertical-offset="952">
-          <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+        <state vertical-scroll-proportion="-6.642857" vertical-offset="222" max-vertical-offset="4828">
+          <caret line="24" column="3" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#530#531#0" expanded="true" />
-            <element signature="e#573#574#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/GameVC.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7763158" vertical-offset="4609" max-vertical-offset="8653">
+          <caret line="285" column="13" selection-start-line="285" selection-start-column="13" selection-end-line="285" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#7611#7811#0" expanded="true" />
+            <element signature="e#7800#7801#0" expanded="true" />
+            <element signature="e#8002#8304#0" expanded="true" />
+            <element signature="e#8293#8294#0" expanded="true" />
+            <element signature="e#8408#8688#0" expanded="true" />
+            <element signature="e#8677#8678#0" expanded="true" />
+            <element signature="e#8796#9107#0" expanded="true" />
+            <element signature="e#9207#9460#0" expanded="true" />
+            <element signature="e#9449#9450#0" expanded="true" />
+            <element signature="e#9560#9768#0" expanded="true" />
+            <element signature="e#9757#9758#0" expanded="true" />
+            <element signature="e#9880#10135#0" expanded="true" />
+            <element signature="e#10124#10125#0" expanded="true" />
           </folding>
         </state>
       </provider>

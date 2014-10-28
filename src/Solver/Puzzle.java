@@ -1159,6 +1159,17 @@ public class Puzzle implements Serializable {
         return null;
     }
 
+    public boolean check(){
+        for(int y = 0; y < height; y++){
+            for(int x = 0; x < width; x++){
+                if(!puzzle[x][y].getInhabited()){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     static public String[] parseResult(String string){
         String pattern = "(\\(\\(f)(\\d+)(-)(\\d+)( *\\(*)(-* *\\d+)(\\)+)";
         String pattern2 = ";";

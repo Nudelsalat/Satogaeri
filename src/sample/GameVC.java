@@ -10,12 +10,16 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 /**
@@ -208,6 +212,37 @@ public class GameVC extends Application {
         int height = 30;
         int width = 30;
 
+// ### winning Popup start ###
+        final Text hello = new Text();
+        hello.setText("Congratz! You are victorious.");
+        hello.setFont(Font.font(24));
+        final Text errorMessage = new Text();
+        Button ok = new Button("Back to Mainmenu");
+
+        VBox popUpVBox = new VBox();
+        popUpVBox.getChildren().add(hello);
+        popUpVBox.getChildren().add(ok);
+        popUpVBox.getChildren().add(errorMessage);
+        popUpVBox.setStyle("-fx-background-color: #FF00FF;");
+
+        final Popup popup = new Popup();
+        popup.setAutoFix(false);
+        popup.setHideOnEscape(true);
+        popup.getContent().addAll(popUpVBox);
+        popup.setX(500);
+        popup.setY(255);
+
+        ok.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent t) {
+                errorMessage.setText("back to menu not done yet....");
+
+            }
+        });
+// ### winning popup end ###
+
+
 
 
         final GridPane gameGrid = new GridPane();
@@ -244,7 +279,10 @@ public class GameVC extends Application {
 
             @Override
             public void handle(ActionEvent event) {
-                //TODO maybe remove check...
+                if(puzzle.check()){
+                    //TODO congratz you're ze winner field + back to main menu
+                    popup.show(primaryStage);
+                }
             }
         });
 
