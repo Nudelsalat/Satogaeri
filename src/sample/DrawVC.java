@@ -279,7 +279,6 @@ public class DrawVC extends Application{
                     if(puzzle.getCircle_value(x/2, y/2) != -1) {
                         // TODO: center does not work
                         source.setTextAlignment(TextAlignment.CENTER);
-                        // TODO: Trace1Value-2 good idea?
                         source.setId("X:" + x + "Y:" + y);
                     }
                     gameGrid.add(source, x, y);

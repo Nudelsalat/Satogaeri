@@ -1,5 +1,6 @@
 package sample;
 
+import Solver.Puzzle;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -27,6 +28,8 @@ public class Main extends Application {
 
             @Override
             public void handle(ActionEvent event) {
+                Puzzles puzzles = new Puzzles(primaryStage);
+                puzzles.show(primaryStage);
                 System.out.println("game in progress...");
             }
         });
@@ -36,7 +39,7 @@ public class Main extends Application {
 
             @Override
             public void handle(ActionEvent event) {
-                Generator generator = new Generator();
+                Generator generator = new Generator(primaryStage);
                 generator.show(primaryStage);
                 }
         });

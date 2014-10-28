@@ -1,5 +1,6 @@
 package sample;
 
+import Solver.Puzzle;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,9 +14,13 @@ import javafx.stage.Stage;
 /**
  * Created by Cloud on 17.09.2014.
  */
-public class Puzzles extends Application {
-    @Override
-    public void start(final Stage primaryStage) throws Exception{
+public class Puzzles {
+
+    Scene scene;
+    Stage primarystage;
+
+    public Puzzles(final Stage primarystage){
+        this.primarystage = primarystage;
         Button easy = new Button("easy");
         Button medium = new Button("medium");
         Button hard = new Button("hard");
@@ -31,7 +36,7 @@ public class Puzzles extends Application {
         easy_grid.setPadding(new Insets(25, 25, 25, 25));
         easy_grid.add(sakamoto, 0, 0);
         easy_grid.add(aquablue, 0, 1);
-        easy_grid.add(easy_back, 1,3);
+        easy_grid.add(easy_back, 1, 3);
         final Scene easy_scene = new Scene(easy_grid, 300, 275);
 
         sakamoto.setOnAction(new EventHandler<ActionEvent>() {
@@ -51,7 +56,6 @@ public class Puzzles extends Application {
         });
 
 
-
         Button z_h = new Button("Z_H");
         Button alkaline = new Button("alkaline");
         Button casty = new Button("Casty");
@@ -67,7 +71,7 @@ public class Puzzles extends Application {
         medium_grid.add(alkaline, 0, 1);
         medium_grid.add(casty, 0, 2);
         medium_grid.add(cubic_function, 0, 3);
-        medium_grid.add(medium_back, 1,5);
+        medium_grid.add(medium_back, 1, 5);
         final Scene medium_scene = new Scene(medium_grid, 300, 275);
 
         alkaline.setOnAction(new EventHandler<ActionEvent>() {
@@ -98,7 +102,7 @@ public class Puzzles extends Application {
 
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("not done yet."+this.toString());
+                System.out.println("not done yet." + this.toString());
             }
         });
 
@@ -118,7 +122,7 @@ public class Puzzles extends Application {
         hard_grid.add(minus_4, 0, 1);
         hard_grid.add(aiko, 0, 2);
         hard_grid.add(bay_wolf_jr, 0, 3);
-        hard_grid.add(hard_back, 1,5);
+        hard_grid.add(hard_back, 1, 5);
         final Scene hard_scene = new Scene(hard_grid, 300, 275);
 
 
@@ -126,28 +130,28 @@ public class Puzzles extends Application {
 
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("not done yet."+this.toString());
+                System.out.println("not done yet." + this.toString());
             }
         });
         minus_4.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("not done yet."+this.toString());
+                System.out.println("not done yet." + this.toString());
             }
         });
         aiko.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("not done yet."+this.toString());
+                System.out.println("not done yet." + this.toString());
             }
         });
         bay_wolf_jr.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("not done yet."+this.toString());
+                System.out.println("not done yet." + this.toString());
             }
         });
 
@@ -157,7 +161,8 @@ public class Puzzles extends Application {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("screen shows easy-puzzles");
-                primaryStage.setScene(easy_scene);
+                scene = easy_scene;
+                show(primarystage);
             }
         });
 
@@ -165,7 +170,8 @@ public class Puzzles extends Application {
 
             @Override
             public void handle(ActionEvent event) {
-                primaryStage.setScene(medium_scene);
+                scene = medium_scene;
+                show(primarystage);
             }
         });
 
@@ -174,7 +180,8 @@ public class Puzzles extends Application {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("Solver not done yet.");
-                primaryStage.setScene(hard_scene);
+                scene = hard_scene;
+                show(primarystage);
             }
         });
 
@@ -194,7 +201,8 @@ public class Puzzles extends Application {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("Solver not done yet.");
-                primaryStage.setScene(root_scene);
+                scene = root_scene;
+                show(primarystage);
             }
         });
         medium_back.setOnAction(new EventHandler<ActionEvent>() {
@@ -202,7 +210,8 @@ public class Puzzles extends Application {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("Solver not done yet.");
-                primaryStage.setScene(root_scene);
+                scene = root_scene;
+                show(primarystage);
             }
         });
         hard_back.setOnAction(new EventHandler<ActionEvent>() {
@@ -210,17 +219,16 @@ public class Puzzles extends Application {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("Solver not done yet.");
-                primaryStage.setScene(root_scene);
+                scene = root_scene;
+                show(primarystage);
             }
         });
-
-        primaryStage.setTitle("Satogaeri");
-        primaryStage.setScene(root_scene);
-        primaryStage.show();
+        scene = root_scene;
     }
 
-
-    public static void main(String[] args) {
-        launch(args);
+    public void show(Stage stage) {
+        stage.setTitle("Puzzles");
+        stage.setScene(scene);
+        stage.show();
     }
 }

@@ -63,22 +63,16 @@ public class Shuffler {
     }
 
     public Puzzle getShuffledPuzzle(){
-        return puzzle;
-    }
-
-    //TODO: delete this!
-    public void setEmptyCircles(Pair[] circle_pos){
-        int max_empty_circles = circle_pos.length/5; // <= 20% of all circles
-        int counter = 0;
-        Random rand = new Random();
-
-        for(int i = 0; i<circle_pos.length && counter<max_empty_circles; i++){
-            // 10% chance foreach Circle to become a 0-Circle
-            if(rand.nextInt(9)==0){
-                puzzle.setCircle(circle_pos[i],-2,puzzle.getCircle_trace(circle_pos[i].getElement0(),circle_pos[i].getElement1()));
-                counter++;
+        //remove all the * symbols && all old Origin-points
+        for(int y = 0; y < height; y++){
+            for(int x = 0; x < width; x++){
+                if(puzzle.getCircle_trace(x,y)!=-1 && puzzle.getCircle_value(x,y)==-1){
+                    puzzle.setCircle_trace(new Pair(x,y),-1);
+                    puzzle.setIs_origin(x,y,false);
+                }
             }
         }
+        return puzzle;
     }
 
     public void setEmptyCirclesV2(Pair[] new_circle_pos, Pair[]circle_id_init_pos){

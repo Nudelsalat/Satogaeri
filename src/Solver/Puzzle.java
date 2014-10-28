@@ -62,6 +62,10 @@ public class Puzzle implements Serializable {
         setCountry(pair, value);
     }
 
+    public void setIs_origin(int x, int y, boolean bool){
+        puzzle[x][y].setIs_origin(bool);
+    }
+
     public void setCircle(Pair pos, int value, int id_trace){
         puzzle[pos.getElement0()][pos.getElement1()].setCircle(value, id_trace);
         puzzle[pos.getElement0()][pos.getElement1()].setIs_origin(true);
@@ -172,7 +176,7 @@ public class Puzzle implements Serializable {
 
                 // override all arrows to non arrows
                 if (posCircleX < endPosX) {
-                    for (int x = posCircleX; x <= endPosX; x++) {
+                    for (int x = posCircleX; x < endPosX; x++) {
                         if(puzzle[x][posCircleY].getCircle_trace()==circleID && !puzzle[x][posCircleY].getRight() && !puzzle[x][posCircleY].getIs_origin()) {
                             puzzle[x][posCircleY].setCircle_trace(-1);
                             puzzle[x][posCircleY].setLeft(false);
@@ -182,8 +186,11 @@ public class Puzzle implements Serializable {
                             puzzle[x][posCircleY].setRight(true);
                         }
                     }
+                    if(puzzle[endPosX][endPosY].getCircle_trace()!=circleID){
+                        puzzle[endPosX][endPosY].setRight(true);
+                    }
                 } else if (posCircleX > endPosX) {
-                    for (int x = endPosX; x <= posCircleX; x++) {
+                    for (int x = endPosX+1; x <= posCircleX; x++) {
                         if(puzzle[x][posCircleY].getCircle_trace()==circleID && !puzzle[x][posCircleY].getLeft() && !puzzle[x][posCircleY].getIs_origin()) {
                             puzzle[x][posCircleY].setCircle_trace(-1);
                             puzzle[x][posCircleY].setRight(false);
@@ -193,8 +200,11 @@ public class Puzzle implements Serializable {
                             puzzle[x][posCircleY].setLeft(true);
                         }
                     }
+                    if(puzzle[endPosX][endPosY].getCircle_trace()!=circleID){
+                        puzzle[endPosX][endPosY].setLeft(true);
+                    }
                 } else if (posCircleY < endPosY) {
-                    for (int y = posCircleY; y <= endPosY; y++) {
+                    for (int y = posCircleY; y < endPosY; y++) {
                         if(puzzle[posCircleX][y].getCircle_trace()==circleID && !puzzle[posCircleX][y].getDown() && !puzzle[posCircleX][y].getIs_origin()) {
                             puzzle[posCircleX][y].setCircle_trace(-1);
                             puzzle[posCircleX][y].setUp(false);
@@ -204,8 +214,11 @@ public class Puzzle implements Serializable {
                             puzzle[posCircleX][y].setDown(true);
                         }
                     }
+                    if(puzzle[endPosX][endPosY].getCircle_trace()!=circleID){
+                        puzzle[endPosX][endPosY].setDown(true);
+                    }
                 } else if (posCircleY > endPosY) {
-                    for (int y = endPosY; y <= posCircleY; y++) {
+                    for (int y = endPosY+1; y <= posCircleY; y++) {
                         if(puzzle[posCircleX][y].getCircle_trace()==circleID && !puzzle[posCircleX][y].getUp() && !puzzle[posCircleX][y].getIs_origin()) {
                             puzzle[posCircleX][y].setCircle_trace(-1);
                             puzzle[posCircleX][y].setDown(false);
@@ -214,6 +227,9 @@ public class Puzzle implements Serializable {
                             puzzle[posCircleX][y].setDown(false);
                             puzzle[posCircleX][y].setUp(true);
                         }
+                    }
+                    if(puzzle[endPosX][endPosY].getCircle_trace()!=circleID){
+                        puzzle[endPosX][endPosY].setUp(true);
                     }
                 }
                 if(puzzle[endPosX][endPosY].getIs_origin()){
@@ -446,9 +462,9 @@ public class Puzzle implements Serializable {
                         string_countries.append(" (and");
                         for (Pair element : pair) {
                             if (greater.equals(element)) {
-                                string_countries.append(" (> f" + element.getElement0() + "-" + element.getElement1() + " 0)");
+                                string_countries.append(" (> f").append(element.getElement0()).append("-").append(element.getElement1()).append(" 0)");
                             } else {
-                                string_countries.append(" (< f" + element.getElement0() + "-" + element.getElement1() + " 0)");
+                                string_countries.append(" (< f").append(element.getElement0()).append("-").append(element.getElement1()).append(" 0)");
                             }
                         }
                         string_countries.append(")");
@@ -561,7 +577,7 @@ public class Puzzle implements Serializable {
                 System.out.println("(get-value (f"+ x1 +"-"+ y1 +"))");
             }
         }
-        // TODO: CHECK SAT BITCH! Piping to CVC4 and back...
+
     }
 
     public void generateSMTPiping() {
@@ -657,9 +673,9 @@ public class Puzzle implements Serializable {
                         string_countries.append(" (and");
                         for (Pair element : pair) {
                             if (greater.equals(element)) {
-                                string_countries.append(" (> f" + element.getElement0() + "-" + element.getElement1() + " 0)");
+                                string_countries.append(" (> f").append(element.getElement0()).append("-").append(element.getElement1()).append(" 0)");
                             } else {
-                                string_countries.append(" (< f" + element.getElement0() + "-" + element.getElement1() + " 0)");
+                                string_countries.append(" (< f").append(element.getElement0()).append("-").append(element.getElement1()).append(" 0)");
                             }
                         }
                         string_countries.append(")");
@@ -795,7 +811,7 @@ public class Puzzle implements Serializable {
             System.exit(-1);
         }
         reader.close();
-        // TODO: catchblock
+
         } catch (IOException e){
 
             e.printStackTrace();
@@ -1048,7 +1064,7 @@ public class Puzzle implements Serializable {
                 ex.printStackTrace();
             }
             reader.close();
-            // TODO: catchblock
+
         } catch (IOException e){
 
             e.printStackTrace();
@@ -1102,7 +1118,9 @@ public class Puzzle implements Serializable {
 
     public void logListGet(){
         Pair[] pair = log_list.get();
-        move(pair[0].getElement0(),pair[0].getElement1(),pair[1].getElement0(),pair[1].getElement1());
+        if(pair != null) {
+            move(pair[0].getElement0(), pair[0].getElement1(), pair[1].getElement0(), pair[1].getElement1());
+        }
     }
 
     public void clearLog(){
@@ -1171,7 +1189,8 @@ public class Puzzle implements Serializable {
     }
 
     static public String[] parseResult(String string){
-        String pattern = "(\\(\\(f)(\\d+)(-)(\\d+)( *\\(*)(-* *\\d+)(\\)+)";
+        String pattern;
+        pattern = "(\\(\\(f)(\\d+)(-)(\\d+)( *\\(*)(-* *\\d+)(\\)+)";
         String pattern2 = ";";
         string = string.replaceAll(pattern, "$2;$4;$6");
 
