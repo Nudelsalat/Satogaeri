@@ -18,7 +18,7 @@ public class TestLoad {
 
         try{
 // Open file to read from, named SavedObj.sav.
-            FileInputStream loadFile = new FileInputStream("SaveObj.sav");
+            FileInputStream loadFile = new FileInputStream("test.pzl");
 
 // Create an ObjectInputStream to get objects from save file.
             ObjectInputStream load = new ObjectInputStream(loadFile);

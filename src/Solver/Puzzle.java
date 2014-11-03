@@ -87,6 +87,11 @@ public class Puzzle implements Serializable {
         return puzzle[pair.getElement0()][pair.getElement1()].getNeighbors();
     }
 
+    public void setNeighbors(Pair[] pair, int x , int y){
+        puzzle[x][y].setNeighbors(pair);
+    }
+
+
     public String getCircleToString(int x, int y){
         return puzzle[x][y].toString();
     }

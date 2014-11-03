@@ -42,8 +42,8 @@ public class DrawVC extends Application{
     @Override
     public void start(final Stage primaryStage) throws Exception{
 
-        height=18;
-        width=10;
+        height=5;
+        width=5;
 
         puzzle = new Puzzle(height,width);
 

@@ -45,6 +45,10 @@ public class Field implements Serializable {
         return neighbors;
     }
 
+    public void setNeighbors(Pair[] pair){
+        neighbors = pair;
+    }
+
     public boolean getInhabited(){
         return inhabited;
     }
