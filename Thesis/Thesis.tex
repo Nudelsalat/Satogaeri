@@ -3,6 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{amsmath}
+\usepackage{amsfonts}
 
 \begin{document}
 
@@ -33,7 +34,7 @@ And additionally the 4th rule, which counts for every logic puzzle:
 
 \begin{figure}
   \centering
-  \includegraphics[scale=1]{Pictures/sample_small.png} 
+  \includegraphics[width=0.9\textwidth]{Pictures/sample_small.png} 
   \caption{Small sample puzzle with its solution}
   \label{fig:sample_small}
 \end{figure}
@@ -47,17 +48,45 @@ SMT can be seen as an enhancement of the traditional Satisfiability (SAT) solvin
 To state an example: the formula
 \[(a \lor b \lor (\neg c)) \iff ((\neg a) \land c)\]
 is satisfied with the assignment \textit{a} is 'false', \textit{b} and \textit{c} are 'true'. Therefore the originating problem of this formula must be solvable too.
-
-
+SMT goes one step beyond that by replacing some boolean variables with predicates. A predicate is basically a binary-valued function of non-binary variables, which allows us to have function symbols with different arities. Now we can express formulas in first-order logic like
+\[x > y \land 3 x + 4 \leq 4 y\]
+where a natural number can be seen as a function symbol with arity 0, a so called constant.
+There are many different approaches of implementing SMT solvers, but the two major ones are the \textit{eager} and the \textit{lazy} approach.
+\subsection{Eager SMT}
+In the \textit{eager} approach one tries to convert the given formula into an equisatisfiable propositional formula with all the additional needed constraints of the originating problem. With this constraints the search-space should be reduced so that a common SAT solver can solve the formula much quicker. And this is the appealing part of thes approach: one can use already existing SAT solver to finally check the satisfiability. However the converting process into a propositional formula can be cost-intensive.\cite{2009satisfiability}
 \subsection{Lazy SMT}
+The \textit{lazy} approach consists of two parts. The first part are theory-specific solvers ($\mathcal{T}$-solvers) to handle conjunctions of literals, which are embedded again into a SAT solver. The advantage of incorporating $\mathcal{T}$-solvers is that one can use a specific algorithm and data-structure which fits the problem at hand best. This should lead to a better performance.\cite{sebastiani2007lazy}
 
 \subsection{SMT-Library}
+The SMT-Library (SMT-Lib) was found in 2003 to provide common standards and a library of benchmarks for diverse SMT-Solvers. With this standards and benchmarks evaluation and comparison of SMT-Systems should be made easier to give the research a competitive touch, which ultimately should result in advancing the state of the art in the SMT-Field. They even organize an annually SMT-Solver competition (SMT-COMP).
+SMT-Lib was greatly useful for this thesis by providing an easily understandable syntax which made many SMT-Solver accessible, like Boolector, CVC4 and MathSAT 5 to state a few. On their web-site\footnote{www.SMT-LIB.org} one can find a long list of Solver supporting SMT-LIB and a separate list of these Solver still under active development.
 
 \subsection{Logics}
+SMT-LIB supports a huge variety of different logics. The advantage here is to be able to apply more specialized and therefore more efficient algorithms.
+\begin{figure}
+  \centering
+  \includegraphics[width=0.9\textwidth]{Pictures/logics.png}  
+  \caption{A link from a logic L1 to a logic L2 means that every formula of L1 is also a formula of L2}
+  \label{fig:logics}
+\end{figure}
+The meaning of the logics in Figure~\ref{fig:logics} is letter coded. For example:
+\begin{enumerate}
+  \item QF stands for the restriction to quantifier free formulas
+  \item IA stands for the theory Ints (Integer Arithmetic)
+  \item L before IA, RA, or IRA stands for the linear fragment of those arithmetics 
+\end{enumerate}
+So QF\_LIA is an unquantified linear integer arithmetic. In essence, Boolean combinations of inequations between linear polynomials over integer variables.
+The whole explanation can be found on the SMT-Lib web-site\footnote{www.SMT-LIB.org} in the section Logics.
 
 \subsection{CVC4}
+The SMT-Solver used in this project is the Cooperating Validity Checker 4 (CVC4), currently the most novel  successor of the Stanford Validity Checker which was found in 1996. CVC4 is a joined project of the New York University and the University of Iowa.
+Supported features are inter alia: several built-in base theories, support of quantifiers and a model generation ability. The latter is a very important requirement for this project at hand.
+Furthermore CVC4 has its own wiki-web-page\footnote{http://cvc4.cs.nyu.edu/wiki} with useful tutorials, user manual and an developer section.
+
 
 \section{The Solver}
+
+
 
 \section{The Generator}
 
@@ -71,4 +100,19 @@ is satisfied with the assignment \textit{a} is 'false', \textit{b} and \textit{c
 
 
 \end{document}
-
+% eager SMT
+@article{barrett2009satisfiability,
+  title={Satisfiability Modulo Theories.},
+  author={Barrett, Clark W and Sebastiani, Roberto and Seshia, Sanjit A and Tinelli, Cesare},
+  journal={Handbook of satisfiability},
+  volume={185},
+  pages={825--885},
+  year={2009}
+}
+% lazy SMT
+@article{sebastiani2007lazy,
+  title={Lazy satisfiability modulo theories},
+  author={Sebastiani, Roberto},
+  year={2007},
+  publisher={University of Trento}
+}
