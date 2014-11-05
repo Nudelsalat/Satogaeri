@@ -4,6 +4,8 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{listings}
+
 
 \begin{document}
 
@@ -83,10 +85,149 @@ The SMT-Solver used in this project is the Cooperating Validity Checker 4 (CVC4)
 Supported features are inter alia: several built-in base theories, support of quantifiers and a model generation ability. The latter is a very important requirement for this project at hand.
 Furthermore CVC4 has its own wiki-web-page\footnote{http://cvc4.cs.nyu.edu/wiki} with useful tutorials, user manual and an developer section.
 
-
 \section{The Solver}
+Now we will discuss how to represent a Satogaeri puzzle in SMT and what are the needed inputs for the CVC4 solver. Because we use the SMT-Lib and its generalized input syntax the CVC4 solver could be replaced by any other solver supporting the SMT-Lib. For illustration purposes we will now manually create a SMT representation of the Satogaeri puzzle of Figure~\ref{fig:solver_example}.
+\begin{figure}
+  \centering
+  \includegraphics[scale=1]{Pictures/Solver_example.png} 
+  \caption{Trivial Satogaeri puzzle}
+  \label{fig:solver_example}
+\end{figure}
 
+\subsection{Presetting}
+Before starting up the CVC4 solver we need to ensure some presetting which is mandatory for our purpose.
+The parameter additionally given to the program via the command-line are the following:
+\begin{lstlisting}
+--lang smt -m --statistics
+\end{lstlisting}
 
+\emph{--lang smt} enables the use of the SMT-Lib syntax other than the regular CVC4 syntax.
+
+\emph{-m} enables the generation of a model which means once our problem is satisfiable the solver also generates a satisfying assignment for all variables to give us an example model in which the problem has a solution.
+
+\emph{--statistics} prints a long list of statistics if our problem was satisfiable. We will use these statistics to decide how 'difficult' the given Satogaeri puzzle was. More about that later in section ''''. 
+
+\subsection{Declaring Functions}
+Now that CVC4 is started with the proper presetting we can start our representation of the puzzle in Figure~\ref{fig:solver_example}.
+
+First thing to do is to define the logic to be used.
+\begin{lstlisting}
+(set-logic QF_LIA)
+\end{lstlisting}
+In our case it is the unquantified linear integer arithmetic. Simple because we do not need quantifiers nor anything other than simple integer functions. By restricting the search-space for the solver it should be faster in find a solution.
+
+Finally we can start our SMT-interpretation of the Satogaeri puzzle. First of all we define every cell of the puzzle as a constant integer. One can think of the puzzle as an 2-by-3 matrix filled with yet unknown numbers.
+\begin{lstlisting}
+(declare-fun f1-1 () Int)
+(declare-fun f1-2 () Int)
+(declare-fun f1-3 () Int)
+(declare-fun f2-1 () Int)
+(declare-fun f2-2 () Int)
+(declare-fun f2-3 () Int)
+\end{lstlisting}
+This lines introduce a new function with the name e.g. 'f2-3' which has no arguments (empty brackets) and returns an integer. 'f2-3' in our case represents the field in row 2 and column 3. The collection of these functions will be our matrix, to be more precise its the matrix where we will define our 'country' restrictions of the Satogaeri rules, referred to as country-matrix from here on.
+
+Now we will create a second 2-by-3 matrix just to model the restrictions of the circles.
+\begin{lstlisting}
+(declare-fun c1-1 () Int)
+(declare-fun c1-2 () Int)
+(declare-fun c1-3 () Int)
+(declare-fun c2-1 () Int)
+(declare-fun c2-2 () Int)
+(declare-fun c2-3 () Int)
+\end{lstlisting}
+Same principle as before only that the 'c' in 'c2-3' stands for circle.
+One can think of it as a circle-matrix on top of an country-matrix each of those only checks for specific rules of the Satogaeri puzzle.
+
+\subsection{Country Rules}
+We declared a country-matrix but there are no restrictions on it whatsoever. Next up is the definition of the rule: 'one or several fields combined result in a country. Every country only can be occupied by one circle.'
+For example 'f1-1' and 'f2-1' combined are one country. That means once 'f1-1' is occupied 'f2-1' is not allowed accommodate any circles and vice versa. Later on we will define that a circle is a positive natural number, where as no circle is a negative number. In the SMT-syntax it will look like this
+\begin{lstlisting}
+(assert (or (and (> f1-1 0) (< f2-1 0)) (and (< f1-1 0) (> f2-1 0))))
+\end{lstlisting}
+Important to state is that the SMT-syntax consists only of prefix notations. The simplest way to look at this line is as a tree-structure. (Figure~\ref{fig:tree_structure})
+\begin{figure}
+  \centering
+  \includegraphics[scale=1]{Pictures/tree_structure.png} 
+  \caption{Tree-structure representation of a SMT line}
+  \label{fig:tree_structure}
+\end{figure}
+
+\emph{assert} will make sure that in the end there is an assignment to these fields that this line will become 'true' otherwise the problem is unsatisfiable. The \emph{or} states that at least one of its arguments must be 'true', and the \emph{and} only yields true if all of its arguments evaluate to 'true'. Both \emph{or} and \emph{and} can take one or more arguments inside its brackets whereas \emph{assert} only takes one.
+
+This line basically translates to: either f1-1 is a positive number and f2-1 is negative or vice versa.
+
+Now we have successfully translated rule number 1 into SMT-syntax for one country. Let's do the same with the other two countries:
+\begin{lstlisting}
+(assert (or (and (> f1-1 0) (< f2-1 0)) (and (< f1-1 0) (> f2-1 0))))
+(assert (or (and (> f1-1 0) (< f2-1 0)) (and (< f1-1 0) (> f2-1 0))))
+\end{lstlisting}
+And we are done with the country-matrix.
+
+\subsection{Circle Rules}
+First thing we do is to assign every circle with its own ID.
+\begin{lstlisting}
+(assert (and (= c1-1 1) (= c2-1 2) (= c2-3 3)))
+\end{lstlisting}
+At the start of this section we defined c1-1 as a function with no arguments which yields an integer. All we did was to define that this integer has to be 1. In other words: c1-1 is constant 1.
+Now the '\#'-cirlce at c1-1 has the ID 1, '1'-circle at c2-1 has the ID 2 and so on and so forth.
+
+Our next step is to define the possible moves every circle is able to make. Let's start of with the easiest on. The '0'-circle at c2-3. The 0 indicates that this circle is not allowed to move at all which means he will occupy the field he is already in.
+\begin{lstlisting}
+(assert (= f2-3 c2-3)))
+\end{lstlisting}
+We have our first interaction with the country-matrix and the circle-matrix. With this line we finally declare that function f2-3 has to yield the same value as c2-3 which is its ID: 3. This leads to, as we remember, that the country consisting of f2-3 and f1-3 is occupied and f1-3 has to be a negative number in other words is not allowed to be occupied by any circle anymore.
+
+Next is the '1'-circle in c2-1. This circle can move to 2 positions either to c1-1 or c2-2 because of its movement-range of 1.
+\begin{lstlisting}
+(assert (or (and (= c1-1 c2-1) (= f1-1 c2-1)) 
+(and (= c2-2 c2-1) (= f2-2 c2-1))))
+\end{lstlisting}
+In this case we not only override the position in the country-matrix but also all the fields we pass in the circle-matrix, because rule 3 states:'The circles cannot cross the tracks of other circles and cannot go over other circles.' By leaving the ID of every circle in the fields they passed we basically leave a track which is not allowed to be crossed.
+For example: the '1'-circle in c2-1 is not allowed to move to c1-1 because '\#'-cirlce is already there. We made sure of this by first defining the constant c1-1 with the ID 1 and now we said if the '1'-circle wants to occupy f1-1 it has to leave its ID in c1-1, which yields a contradiction because a constant can never be both 1 and 2.
+Long story short: in this case only f2-2 can be reached and occupied without violating any rules.
+
+Last one is the '\#'-circle at c1-1. Because of rule 2:'Circles without numbers may move any distance, but some of them do not move.' this circle has 4 possible moves to make. either stay at c1-1, move to c1-2, move to c1-3 or move to c2-1. The encoding for each possible move is devoted its own line
+\begin{lstlisting}
+(assert (or (and (= f1-1 c1-1)) 
+(and (= c1-2 c1-1) (= f1-2 c1-1))
+(and (= c1-2 c1-1) (= c1-3 c1-1) (= f1-3 c1-1)) 
+(and (= c2-1 c1-1) (= f2-1 c1-1))))
+\end{lstlisting}
+Now we are done. The Satogaeri puzzle of Figure~\ref{fig:solver_example} is translated into SMT.
+Mention worthy is that the final solver is smart enough to detect simple collisions like if there is a circle in the path before hand and will not add that particular move to the SMT-syntax, this reduces the possible cases the CVC4 solver has to check.
+
+\subsection{The solution}
+Once we translated the puzzle into an SMT-problem we can evoke the solving procedure by simply typing
+\begin{lstlisting}
+(check-sat)
+\end{lstlisting}
+Now there are 3 possible outputs the solver can give:
+\begin{enumerate}
+  \item unsat: It means that there is no possible assignment to solve the problem at hand.
+  \item unknown: Is used when a solver did not manage to establish whether the set of assertions is satisfiable or not. However some solver will create a candidate model.
+  \item sat: There is at least one possible assignment which satisfies the problem.
+\end{enumerate}
+Obviously we looking for a sat result. Once the problem is sat and we enabled \emph{-m}, the model generating, we now can check for possible assignments of all fields in the country-matrix as well as in the circle-matrix. Our major interest lies in the country-matrix:
+\begin{lstlisting}
+(get-value (f1-1))
+(get-value (f1-2))
+(get-value (f1-3))
+(get-value (f2-1))
+(get-value (f2-2))
+(get-value (f2-3))
+\end{lstlisting}
+Fields that are not occupied by any circle will yield a negative number, most likely -1. However the occupied once will give us the ID-number of the circle which is currently occupying this field, the whole country.
+We could also look into the circle-matrix with this lines:
+\begin{lstlisting}
+(get-value (c1-1))
+(get-value (c1-2))
+(get-value (c1-3))
+(get-value (c2-1))
+(get-value (c2-2))
+(get-value (c2-3))
+\end{lstlisting}
+However there we will only see the path taken of every circle marked with its ID and the unneeded fields will be filled with random numbers most likely 0, but it could also be a number used as an ID for a circle which makes the circle-matrix inaccurate.
 
 \section{The Generator}
 

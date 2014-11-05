@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.11.3)  4 NOV 2014 13:49
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.11.3)  5 NOV 2014 14:18
 entering extended mode
 **Thesis.tex
 ("C:\Users\Cloud\Studium\SS 2014\Bachelor thesis\Satogaeri\Thesis\Thesis.tex"
@@ -348,53 +348,65 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )
+("C:\Program Files\MiKTeX 2.9\tex\latex\listings\listings.sty"
+\lst@mode=\count102
+\lst@gtempboxa=\box28
+\lst@token=\toks22
+\lst@length=\count103
+\lst@currlwidth=\dimen114
+\lst@column=\count104
+\lst@pos=\count105
+\lst@lostspace=\dimen115
+\lst@width=\dimen116
+\lst@newlines=\count106
+\lst@lineno=\count107
+\lst@maxwidth=\dimen117
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
+File: lstmisc.sty 2014/09/06 1.5e (Carsten Heinz)
+\c@lstnumber=\count108
+\lst@skipnumbers=\count109
+\lst@framebox=\box29
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\listings\listings.cfg"
+File: listings.cfg 2014/09/06 1.5e listings configuration
+))
+Package: listings 2014/09/06 1.5e (Carsten Heinz)
+
 ("C:\Users\Cloud\Studium\SS 2014\Bachelor thesis\Satogaeri\Thesis\Thesis.aux")
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
 
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count102
-\scratchdimen=\dimen114
-\scratchbox=\box28
-\nofMPsegments=\count103
-\nofMParguments=\count104
-\everyMPshowfont=\toks22
-\MPscratchCnt=\count105
-\MPscratchDim=\dimen115
-\MPnumerator=\count106
-\makeMPintoPDFobject=\count107
-\everyMPtoPDFconversion=\toks23
+\scratchcounter=\count110
+\scratchdimen=\dimen118
+\scratchbox=\box30
+\nofMPsegments=\count111
+\nofMParguments=\count112
+\everyMPshowfont=\toks23
+\MPscratchCnt=\count113
+\MPscratchDim=\dimen119
+\MPnumerator=\count114
+\makeMPintoPDFobject=\count115
+\everyMPtoPDFconversion=\toks24
 )
-Overfull \hbox (6.72296pt too wide) in paragraph at lines 11--26
-\OT1/cmr/m/n/10 the-o-ries, au-thor=Sebastiani, Roberto, year=2007, pub-lisher=
-University of Trento
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 11--26
-
- []
-
-[1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
-
-]
-LaTeX Font Info:    Try loading font information for U+msa on input line 29.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+\c@lstlisting=\count116
+LaTeX Font Info:    Try loading font information for U+msa on input line 14.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 29.
+LaTeX Font Info:    Try loading font information for U+msb on input line 14.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -402,46 +414,89 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ("C:\Users\Cloud\Studium\SS 2014\Bachelor thesis\Satogaeri\Thesis\Thesis.toc")
 \tf@toc=\write3
 
-<Pictures/sample_small.png, id=7, 249.18094pt x 122.70844pt>
+[1
+
+
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
+<Pictures/sample_small.png, id=8, 249.18094pt x 122.70844pt>
 File: Pictures/sample_small.png Graphic file (type png)
 
 <use Pictures/sample_small.png>
-Package pdftex.def Info: Pictures/sample_small.png used on input line 54.
+Package pdftex.def Info: Pictures/sample_small.png used on input line 39.
 (pdftex.def)             Requested size: 310.4979pt x 152.91705pt.
- [2
-
-]
+ [2 <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesis/Pictures/s
+ample_small.png>]
 
 LaTeX Warning: Citation `2009satisfiability' on page 3 undefined on input line 
-73.
+58.
 
-[3 <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesis/Pictures/sa
-mple_small.png>]
 
-LaTeX Warning: Citation `sebastiani2007lazy' on page 4 undefined on input line 
-75.
+LaTeX Warning: Citation `sebastiani2007lazy' on page 3 undefined on input line 
+60.
 
-<Pictures/logics.png, id=23, 761.84625pt x 423.5825pt>
+<Pictures/logics.png, id=20, 761.84625pt x 423.5825pt>
 File: Pictures/logics.png Graphic file (type png)
 
 <use Pictures/logics.png>
-Package pdftex.def Info: Pictures/logics.png used on input line 85.
+Package pdftex.def Info: Pictures/logics.png used on input line 70.
 (pdftex.def)             Requested size: 310.4979pt x 172.62935pt.
- [4] [5 <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesis/Pictur
-es/logics.png>]
+ [3]
+<Pictures/Solver_example.png, id=28, 50.43843pt x 35.38219pt>
+File: Pictures/Solver_example.png Graphic file (type png)
+
+<use Pictures/Solver_example.png>
+Package pdftex.def Info: Pictures/Solver_example.png used on input line 92.
+(pdftex.def)             Requested size: 50.4383pt x 35.3821pt.
+ [4 <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesis/Pictures/l
+ogics.png> <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesis/Pic
+tures/Solver_example.png>] [5]
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 146.
+
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\omlcmr.fd"
+File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 146.
+
+Overfull \hbox (69.00421pt too wide) in paragraph at lines 146--147
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][] 
+ []
+
+<Pictures/tree_structure.png, id=35, 280.79906pt x 137.7647pt>
+File: Pictures/tree_structure.png Graphic file (type png)
+
+<use Pictures/tree_structure.png>
+Package pdftex.def Info: Pictures/tree_structure.png used on input line 151.
+(pdftex.def)             Requested size: 280.79837pt x 137.76434pt.
+
+Overfull \hbox (69.00421pt too wide) in paragraph at lines 162--163
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][] 
+ []
+
+
+Overfull \hbox (69.00421pt too wide) in paragraph at lines 163--164
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][] 
+ []
+
+[6 <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesis/Pictures/tr
+ee_structure.png>] [7] [8]
 ("C:\Users\Cloud\Studium\SS 2014\Bachelor thesis\Satogaeri\Thesis\Thesis.aux")
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 2206 strings out of 493921
- 27064 string characters out of 3147282
- 83516 words of memory out of 3000000
- 5478 multiletter control sequences out of 15000+200000
+ 3830 strings out of 493921
+ 48558 string characters out of 3147282
+ 113040 words of memory out of 3000000
+ 7085 multiletter control sequences out of 15000+200000
  14012 words of font info for 53 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 27i,8n,24p,575b,226s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,8n,32p,575b,1210s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTe
@@ -454,9 +509,9 @@ C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Pro
 gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssi12.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKT
 eX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on Thesis.pdf (5 pages, 220567 bytes).
+Output written on Thesis.pdf (8 pages, 239920 bytes).
 PDF statistics:
- 74 PDF objects out of 1000 (max. 8388607)
+ 88 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
