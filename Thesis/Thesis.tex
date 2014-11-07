@@ -230,8 +230,49 @@ We could also look into the circle-matrix with this lines:
 However there we will only see the path taken of every circle marked with its ID and the unneeded fields will be filled with random numbers most likely 0, but it could also be a number used as an ID for a circle which makes the circle-matrix inaccurate.
 
 \section{The Generator}
+\begin{figure}
+  \centering
+  \includegraphics[scale=1]{Pictures/generator.png} 
+  \caption{Generator graphical interface}
+  \label{fig:generator}
+\end{figure}
+The Generator should be able to generate random Satogaeri puzzles with varying size and difficulty. The user enters the width and hight of the desired puzzle and another parameter called Countrysize which is a double between 0.0 and 1.0. (Figure~\ref{fig:generator}) The higher the value of Countrysize the more likely it is to get countries with a higher amount of fields. The idea was that the more smaller countries are generated the more difficult the puzzle may get. Unfortunately it contributes very little to the difficulty of the generated puzzle.
 
-\subsection{Drawing}
+\subsection{Country generation}
+As mentioned before the user defines the width and hight of the puzzle. Now the program will take the topmost leftmost field which is not yet involved in any country and will declare it as a new country. With the probability of \emph{Countrysize} each of the four connecting fields (top, bottom, left, right) will be added to this newly created country. Next the four connecting fields of each new member have a chance of \emph{\((previous_chance)^2\)} to be added too until there are no new members.
+
+Theoretically with this algorithm it is possible to generate countries in every conceivable shape, however some general shape are more likely than others. And a very small Countrysize-value will end up in puzzles with a lot of countries consisting only of one field which are uninterestingly easy to solve.
+
+\subsection{Circle generation}
+After we know the layout of all the countries we can start adding Circles. The Generator now randomly picks one field in every country and declares it as the origin of the circle. At this point we do have the solution to the upcoming puzzle. Next step is to shuffle these circles around.
+Therefore the Generator randomly picks a direction in which the circle should move and calculates the distance to the next obstacle (e.g.: the boarder of the puzzle, another circle, the track of another circle). Another random number will be picked between 1 and the distance to the next obstacle and this indicates the movement of this circle. 
+However if the obstacle is right next to the circle a new direction will be chose. If that scenario happens twice in a row, it will become a '0'-circle. This is necessary to reduce the number of boring '0'-circles but do not remove them in general.
+
+Now everything is generated except '\#'-circles. Those are not be picked randomly but must meet some requirements. A circle will become a '\#'-circle if and only if:
+\begin{enumerate}
+  \item from its origin point on into the moving direction it has to leave its country with the first field
+  \item in the opposite direction on the origin point there mus be a blockade (a cirlce-trace, a circle, a boarder or a different country)
+  \item if its a '0'-circle it should not be possible to reach another field inside the own country
+\end{enumerate}
+If one of these requirements is violated it will break the uniqueness of the puzzle.
+
+\subsection{Verifying uniqueness}
+Uniqueness of the solution to a puzzle is very important for the joy of play. In other words the Generator must assure that the puzzle only has one solution. This is done by simply giving the puzzle to the solver with the premiss that the already known solution is prohibited, and if the solver finds a different solution the uniqueness of the puzzle is violated.
+
+But how to model this premiss in SMT? To answer that we will look again at the puzzle in Figure~\ref{fig:solver_example}. But this time we need the solution to this puzzle which looks like in Figure~\ref{fig:solver_example_solution}.
+\begin{figure}
+  \centering
+  \includegraphics[scale=1]{Pictures/solver_example_solution.png} 
+  \caption{Solution to trivial Satogaeri puzzle}
+  \label{fig:solver_example_solution}
+\end{figure}
+We remember that for example the '\#'-circle had the ID 1. So all we have to do is to tell the origin point of '\#'-circle that the ID 1 is not allowed to land there. And the same goes for the rest of the circles. In the SMT-syntax it will look like this:
+\begin{lstlisting}
+(asser (or (not (= f1-1 1)) (not (= f2-2 2)) (not (= f2-3 3))))
+\end{lstlisting}
+If this line is added to our previous example of SMT-encoding the solver will return \emph{unsat} if the given solution is the only one and will return \emph{sat} if there is a second possible solution. Because we enabled the model generating feature we can also have a look at this second solution via the \emph{(get-value ())} input.
+
+\section{Drawing}
 
 \section{Statistics}
 

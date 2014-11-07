@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.11.3)  5 NOV 2014 14:18
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.11.3)  7 NOV 2014 16:02
 entering extended mode
 **Thesis.tex
 ("C:\Users\Cloud\Studium\SS 2014\Bachelor thesis\Satogaeri\Thesis\Thesis.tex"
@@ -448,8 +448,8 @@ File: Pictures/Solver_example.png Graphic file (type png)
 Package pdftex.def Info: Pictures/Solver_example.png used on input line 92.
 (pdftex.def)             Requested size: 50.4383pt x 35.3821pt.
  [4 <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesis/Pictures/l
-ogics.png> <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesis/Pic
-tures/Solver_example.png>] [5]
+ogics.png>] [5 <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesis
+/Pictures/Solver_example.png>]
 LaTeX Font Info:    Try loading font information for OML+cmr on input line 146.
 
 
@@ -483,35 +483,58 @@ Overfull \hbox (69.00421pt too wide) in paragraph at lines 163--164
  []
 
 [6 <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesis/Pictures/tr
-ee_structure.png>] [7] [8]
+ee_structure.png>] [7]
+<Pictures/generator.png, id=44, 191.21437pt x 141.52875pt>
+File: Pictures/generator.png Graphic file (type png)
+
+<use Pictures/generator.png>
+Package pdftex.def Info: Pictures/generator.png used on input line 235.
+(pdftex.def)             Requested size: 191.2139pt x 141.5284pt.
+ [8] [9 <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesis/Pictur
+es/generator.png>]
+<Pictures/solver_example_solution.png, id=53, 74.52844pt x 46.67438pt>
+File: Pictures/solver_example_solution.png Graphic file (type png)
+
+<use Pictures/solver_example_solution.png>
+Package pdftex.def Info: Pictures/solver_example_solution.png used on input lin
+e 265.
+(pdftex.def)             Requested size: 74.52824pt x 46.67424pt.
+
+Overfull \hbox (33.00385pt too wide) in paragraph at lines 271--272
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[10 <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesis/Pictures/s
+olver_example_solution.png>]
 ("C:\Users\Cloud\Studium\SS 2014\Bachelor thesis\Satogaeri\Thesis\Thesis.aux")
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3830 strings out of 493921
- 48558 string characters out of 3147282
- 113040 words of memory out of 3000000
- 7085 multiletter control sequences out of 15000+200000
+ 3842 strings out of 493921
+ 48912 string characters out of 3147282
+ 113057 words of memory out of 3000000
+ 7095 multiletter control sequences out of 15000+200000
  14012 words of font info for 53 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 27i,8n,32p,575b,1210s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,8n,32p,584b,1210s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
-blic/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
-nts/cm/cmr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cms
-s10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss9.pfb><
-C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Pro
-gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssi12.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on Thesis.pdf (8 pages, 239920 bytes).
+les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
+ublic/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsf
+onts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+r9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss10.pfb><
+C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss9.pfb><C:/Progra
+m Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Program File
+s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssi12.pfb><C:/Program Files/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on Thesis.pdf (10 pages, 262721 bytes).
 PDF statistics:
- 88 PDF objects out of 1000 (max. 8388607)
+ 102 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 
