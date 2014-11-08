@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.11.3)  7 NOV 2014 16:02
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.11.3)  8 NOV 2014 14:16
 entering extended mode
 **Thesis.tex
 ("C:\Users\Cloud\Studium\SS 2014\Bachelor thesis\Satogaeri\Thesis\Thesis.tex"
@@ -504,18 +504,45 @@ Overfull \hbox (33.00385pt too wide) in paragraph at lines 271--272
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[10 <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesis/Pictures/s
-olver_example_solution.png>]
+<Pictures/main_menu.png, id=54, 164.11313pt x 155.07938pt>
+File: Pictures/main_menu.png Graphic file (type png)
+
+<use Pictures/main_menu.png>
+Package pdftex.def Info: Pictures/main_menu.png used on input line 281.
+(pdftex.def)             Requested size: 164.11272pt x 155.07898pt.
+
+
+LaTeX Warning: Reference `sec:The Generator' on page 10 undefined on input line
+ 289.
+
+
+LaTeX Warning: Reference `fig:drawing_screen' on page 10 undefined on input lin
+e 291.
+
+<Pictures/drawing_screen.png, id=55, 201.00093pt x 211.54031pt>
+File: Pictures/drawing_screen.png Graphic file (type png)
+
+<use Pictures/drawing_screen.png>
+Package pdftex.def Info: Pictures/drawing_screen.png used on input line 297.
+(pdftex.def)             Requested size: 201.00043pt x 211.53978pt.
+ [10 <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesis/Pictures/
+solver_example_solution.png>] [11 <C:/Users/Cloud/Studium/SS 2014/Bachelor thes
+is/Satogaeri/Thesis/Pictures/main_menu.png>]
+[12 <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesis/Pictures/d
+rawing_screen.png>]
 ("C:\Users\Cloud\Studium\SS 2014\Bachelor thesis\Satogaeri\Thesis\Thesis.aux")
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 3842 strings out of 493921
- 48912 string characters out of 3147282
- 113057 words of memory out of 3000000
- 7095 multiletter control sequences out of 15000+200000
+ 3855 strings out of 493921
+ 49231 string characters out of 3147282
+ 113066 words of memory out of 3000000
+ 7106 multiletter control sequences out of 15000+200000
  14012 words of font info for 53 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  27i,8n,32p,584b,1210s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -532,9 +559,9 @@ m Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Program File
 s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssi12.pfb><C:/Program Files/MiKTe
 X 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fo
 nts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on Thesis.pdf (10 pages, 262721 bytes).
+Output written on Thesis.pdf (12 pages, 294324 bytes).
 PDF statistics:
- 102 PDF objects out of 1000 (max. 8388607)
+ 112 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 31 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
 

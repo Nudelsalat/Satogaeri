@@ -272,7 +272,34 @@ We remember that for example the '\#'-circle had the ID 1. So all we have to do 
 \end{lstlisting}
 If this line is added to our previous example of SMT-encoding the solver will return \emph{unsat} if the given solution is the only one and will return \emph{sat} if there is a second possible solution. Because we enabled the model generating feature we can also have a look at this second solution via the \emph{(get-value ())} input.
 
-\section{Drawing}
+\section{The Tool}
+With the tool one should be able to play crafted and generated Satogaeri puzzles. In addition to that one has the option of drawing puzzles and save them as .pzl files. These files can of course be loaded by the tool so one can share puzzles and play puzzles created by others.
+
+\subsection{Usability}
+\begin{figure}
+  \centering
+  \includegraphics[scale=1]{Pictures/main_menu.png} 
+  \caption{The main menu}
+  \label{fig:main_menu}
+\end{figure}
+In Figure~\ref{fig:main_menu} we can see the main menu and its options.
+
+\emph{Start new game} will open up another menu where on can choose a difficulty for the upcoming puzzle which ranges from Easy, Medium to Hard. After choosing the difficulty one has the option between a few puzzles which were created and published by Nikolin\footnote{http://www.nikoli.com/en/puzzles/satogaeri/}.
+
+\emph{Generator} will lead to the generator menu which was already shown and explained in Section~\ref{sec:The Generator}.
+
+\emph{Drawing} leads to similar menu like in Generator where one can choose the width and height of the puzzle and this is followed by a screen similar to the one in Figure~\ref{fig:drawing_screen}.
+Now one can draw his own puzzle. If in \emph{Draw Country mode} one can add countries via clicking into a field and hovering over all fields which should be part of this country. By releasing the left mouse button the sequence is over and ever 'added' field will turn green and the country will receive its boarders. Fields that are already in a country can be easily overwritten by hovering over them whilst creating a different country.
+In \emph{Draw Circle mode} one can click on the desired field and a pop-up will arise in which one can enter positive numbers or '\#' to enter a circle with the given movement value to this field. If a circle is misplaced one can re-click the field and by typing a negative number the circle will be removed.
+Once done one can either click the \emph{save button} to type in the name of the puzzle and create a entered-name.pzl file or click the \emph{solve button} to get a solution to the drawn puzzle. The solver will also state if the solution is unique or not. This is meant to enable a possibility for the user to check if the created puzzle is valid or not. And as an addition to that one can find answers to an unsolved Satogaeri puzzles.
+\begin{figure}
+  \centering
+  \includegraphics[scale=1]{Pictures/drawing_screen.png} 
+  \caption{The drawing screen}
+  \label{fig:drawing_screen}
+\end{figure}
+
+\emph{Loading Puzzle} intuitive lets you load a saved .pzl-file to play that puzzle.
 
 \section{Statistics}
 
