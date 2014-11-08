@@ -42,7 +42,7 @@ public class DrawVC extends Application{
     @Override
     public void start(final Stage primaryStage) throws Exception{
 
-        height=8;
+        height=10;
         width=10;
 
         puzzle = new Puzzle(width,height);

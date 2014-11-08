@@ -1,5 +1,6 @@
 package sample;
 
+import Solver.OwnList;
 import Solver.Pair;
 import Solver.Puzzle;
 
@@ -18,7 +19,7 @@ public class TestLoad {
 
         try{
 // Open file to read from, named SavedObj.sav.
-            FileInputStream loadFile = new FileInputStream("test.pzl");
+            FileInputStream loadFile = new FileInputStream("BayWolfJr.pzl");
 
 // Create an ObjectInputStream to get objects from save file.
             ObjectInputStream load = new ObjectInputStream(loadFile);
@@ -30,10 +31,29 @@ public class TestLoad {
             puzzle = (Puzzle) load.readObject();
 // Close the file.
             load.close(); // This also closes saveFile.
+            for(int x =0; x<puzzle.getWidth();x++){
+                for(int y = 0; y<puzzle.getHeight();y++){
+                    OwnList pairs = new OwnList();
+                    for(int i =0; i<puzzle.getWidth();i++) {
+                        for (int j = 0; j < puzzle.getHeight(); j++) {
+                            if(puzzle.getCountry(x,y) == puzzle.getCountry(i,j)){
+                                pairs.add(new Pair(i,j));
+                            }
+                        }
+                    }
+                    Pair[] pairs2 = pairs.toArray();
+                    puzzle.setNeighbors(pairs2, x, y);
+                }
+            }
+            puzzle.print();
+
+            puzzle.generateSMTPiping();
+
             puzzle.print();
         }
         catch(Exception exc){
             exc.printStackTrace(); // If there was an error, print the info.
         }
+
     }
 }

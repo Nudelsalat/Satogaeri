@@ -615,7 +615,7 @@ public class Puzzle implements Serializable {
                                 System.out.println(""+line);
                                 String[] numbers = parseResult(line);
                                 //- 1 in the 3rd position of numbers means no circle there
-                                if(!numbers[2].contentEquals("- 1")){
+                                if(!numbers[2].contentEquals("- 1") && !numbers[2].contentEquals("0")){
                                     move(numbers);
                                 }
                             }else if(line.contains("sat::") || line.contains("theory::arith::cd::unatePropagateCalls") || line.contains("theory::arith::cd::unatePropagateImplications") || line.contains("theory::arith::status::nontrivialSatChecks")){
