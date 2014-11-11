@@ -1,0 +1,26 @@
+\BOOKMARK [1][-]{section.0.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.0.2}{Satogaeri}{}% 2
+\BOOKMARK [2][-]{subsection.0.2.1}{Rules}{section.0.2}% 3
+\BOOKMARK [1][-]{section.0.3}{Satisfiability Modulo Theories}{}% 4
+\BOOKMARK [2][-]{subsection.0.3.1}{Eager SMT}{section.0.3}% 5
+\BOOKMARK [2][-]{subsection.0.3.2}{Lazy SMT}{section.0.3}% 6
+\BOOKMARK [2][-]{subsection.0.3.3}{SMT-Library}{section.0.3}% 7
+\BOOKMARK [2][-]{subsection.0.3.4}{Logics}{section.0.3}% 8
+\BOOKMARK [2][-]{subsection.0.3.5}{CVC4}{section.0.3}% 9
+\BOOKMARK [1][-]{section.0.4}{The Solver}{}% 10
+\BOOKMARK [2][-]{subsection.0.4.1}{Presetting}{section.0.4}% 11
+\BOOKMARK [2][-]{subsection.0.4.2}{Declaring Functions}{section.0.4}% 12
+\BOOKMARK [2][-]{subsection.0.4.3}{Country Rules}{section.0.4}% 13
+\BOOKMARK [2][-]{subsection.0.4.4}{Circle Rules}{section.0.4}% 14
+\BOOKMARK [2][-]{subsection.0.4.5}{The solution}{section.0.4}% 15
+\BOOKMARK [1][-]{section.0.5}{The Generator}{}% 16
+\BOOKMARK [2][-]{subsection.0.5.1}{Country generation}{section.0.5}% 17
+\BOOKMARK [2][-]{subsection.0.5.2}{Circle generation}{section.0.5}% 18
+\BOOKMARK [2][-]{subsection.0.5.3}{Verifying uniqueness}{section.0.5}% 19
+\BOOKMARK [1][-]{section.0.6}{The Tool}{}% 20
+\BOOKMARK [2][-]{subsection.0.6.1}{Usability}{section.0.6}% 21
+\BOOKMARK [1][-]{section.0.7}{JavaFX}{}% 22
+\BOOKMARK [2][-]{subsection.0.7.1}{What is JavaFX?}{section.0.7}% 23
+\BOOKMARK [2][-]{subsection.0.7.2}{New Features over Swing}{section.0.7}% 24
+\BOOKMARK [1][-]{section.0.8}{Statistics}{}% 25
+\BOOKMARK [1][-]{section.0.9}{Conclusion}{}% 26

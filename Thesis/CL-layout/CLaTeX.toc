@@ -1,0 +1,23 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}
+\contentsline {section}{\numberline {2}Usage}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}Prelude}{2}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Lemmas, Theorems, and Friends}{2}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Bibliography}{2}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}How to Generate a PDF?}{3}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}Examples}{3}{subsection.2.5}
+\contentsline {section}{\numberline {3}Installation}{3}{section.3}
+\contentsline {section}{\numberline {4}Implementation}{4}{section.4}
+\contentsline {subsection}{\numberline {4.1}Provided Class files}{4}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Conditionals}{4}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Base Class}{4}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Dependencies}{4}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5}Available Class Options}{5}{subsection.4.5}
+\contentsline {subsection}{\numberline {4.6}Prepare Begin of Document}{5}{subsection.4.6}
+\contentsline {subsection}{\numberline {4.7}Macro Definitions}{5}{subsection.4.7}
+\contentsline {subsubsection}{\numberline {4.7.1}Theorem Environments}{6}{subsubsection.4.7.1}
+\contentsline {subsubsection}{\numberline {4.7.2}Bibliography}{7}{subsubsection.4.7.2}
+\contentsline {subsubsection}{\numberline {4.7.3}Miscellany}{7}{subsubsection.4.7.3}
+\contentsline {subsubsection}{\numberline {4.7.4}Document Structure}{9}{subsubsection.4.7.4}
+\contentsline {subsubsection}{\numberline {4.7.5}Titlepage}{10}{subsubsection.4.7.5}
+\contentsline {subsubsection}{\numberline {4.7.6}Table of Contents}{15}{subsubsection.4.7.6}
+\contentsline {subsection}{\numberline {4.8}The End}{16}{subsection.4.8}
