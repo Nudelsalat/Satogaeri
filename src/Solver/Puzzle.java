@@ -160,15 +160,19 @@ public class Puzzle implements Serializable {
         int circleID = puzzle[posCircleX][posCircleY].getCircle_trace();
         int circleValue = puzzle[posCircleX][posCircleY].getCircle_value();
 
+        if(puzzle[endPosX][endPosY].getCircle_trace() != circleID && puzzle[endPosX][endPosY].getCircle_trace() != -1){
+            return false;
+        }
+
         if(puzzle[posCircleX][posCircleY].getHas_moved()){
             if(circleValue == -2 && (
                     (posCircleX!=0 && circleID == puzzle[posCircleX-1][posCircleY].getCircle_trace() && endPosY == posCircleY)
                     ||
-                    (posCircleX!=width && circleID == puzzle[posCircleX+1][posCircleY].getCircle_trace() && endPosY == posCircleY)
+                    (posCircleX!=width-1 && circleID == puzzle[posCircleX+1][posCircleY].getCircle_trace() && endPosY == posCircleY)
                     ||
                     (posCircleY!=0 && circleID == puzzle[posCircleX][posCircleY-1].getCircle_trace() && endPosX == posCircleX)
                     ||
-                    (posCircleY!=height && circleID == puzzle[posCircleX][posCircleY+1].getCircle_trace() && endPosX == posCircleX)
+                    (posCircleY!=height-1 && circleID == puzzle[posCircleX][posCircleY+1].getCircle_trace() && endPosX == posCircleX)
                     ||
                     (posCircleX==endPosX && posCircleY==endPosY))){
 
@@ -247,10 +251,8 @@ public class Puzzle implements Serializable {
                     puzzle[posCircleX][posCircleY].setCircle_value(-1);
                 }
                 puzzle[endPosX][endPosY].setCircle(circleValue, circleID);
-                if((endPosX!=0 && puzzle[endPosX-1][endPosY].getCircle_trace()==circleID) ||
-                        (endPosX!=width && puzzle[endPosX+1][endPosY].getCircle_trace()==circleID) ||
-                        (endPosY!=0 && puzzle[endPosX][endPosY-1].getCircle_trace()==circleID) ||
-                        (endPosX!=height && puzzle[endPosX][endPosY+1].getCircle_trace()==circleID)) {
+
+                if(!puzzle[endPosX][endPosY].getIs_origin()) {
                     puzzle[endPosX][endPosY].setHas_moved(true);
                     for(Pair pair : puzzle[endPosX][endPosY].getNeighbors()){
                         puzzle[pair.getElement0()][pair.getElement1()].setInhabited(true);

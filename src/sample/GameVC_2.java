@@ -179,7 +179,6 @@ public class GameVC_2 {
                     } else {
                         final Rectangle line = new Rectangle(x, y, width, 2);
                         // out of bounds should not happen, because
-                        System.out.println("at " + x + " " + y + " Countrys are: " + puzzle.getCountry(x / 2, (y - 1) / 2) + " and " + puzzle.getCountry(x / 2, (y + 1) / 2));
                         if (puzzle.getCountry(x / 2, (y / 2) - 1) != puzzle.getCountry(x / 2, y / 2)) {
                             line.setFill(Color.BLACK);
                         } else {

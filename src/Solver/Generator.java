@@ -29,10 +29,7 @@ public class Generator {
             }
         }
 
-        puzzle.print();
-
         shuffled = new Shuffler(puzzle,width,height);
-
         puzzle.print();
     }
 
