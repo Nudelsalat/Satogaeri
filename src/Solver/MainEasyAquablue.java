@@ -160,7 +160,7 @@ public class MainEasyAquablue {
 
             puzzle.print();
 
-            puzzle.generateSMTPiping();
+            puzzle.generateSMT_QF_UF_Piping();
 
             puzzle.print();
         }

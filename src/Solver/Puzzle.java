@@ -827,6 +827,253 @@ public class Puzzle implements Serializable {
         }
     }
 
+    public void generateSMT_QF_UF_Piping() {
+        String[] command = {"CMD", "/C", "cvc4-1.3-win32-opt.exe --lang smt -m --statistics"};
+        ProcessBuilder probuilder = new ProcessBuilder( command );
+        //You can set up your work directory
+        probuilder.directory(new File("C:\\Users\\Cloud\\Studium\\SS 2014\\Bachelor thesis\\CVC4"));
+        probuilder.redirectErrorStream(true);
+
+        try {
+            Process process = probuilder.start();
+
+            OutputStream outs = process.getOutputStream();
+
+
+            //Read out dir output
+            InputStream ins = process.getInputStream();
+
+            final BufferedReader reader = new BufferedReader (new InputStreamReader(ins));
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outs));
+
+
+            Thread one = new Thread() {
+                public void run() {
+                    try {
+                        String line = reader.readLine();
+                        while(line != null){
+                            System.out.println("Line= "+line);
+                            if(line.contains("((f")){
+                                System.out.println(""+line);
+                                String[] numbers = parseResult_QF_UF(line);
+                                //- 1 in the 3rd position of numbers means no circle there
+                                if(!numbers[2].contentEquals("- 1") && !numbers[2].contentEquals("0")){
+                                    move(numbers);
+                                }
+                            }else if(line.contains("sat::") || line.contains("theory::arith::cd::unatePropagateCalls") || line.contains("theory::arith::cd::unatePropagateImplications") || line.contains("theory::arith::status::nontrivialSatChecks")){
+                                System.out.println("" + line);
+                            }
+                            line = reader.readLine();
+                        }
+                    } catch(IOException e) {
+                        System.out.println(e);
+                    }
+                }
+            };
+            one.start();
+
+
+            System.out.println("(set-logic QF_UF)");
+            writer.write("(set-logic QF_UF)" +"\n");
+
+            System.out.println("(declare-sort A 0)");
+            writer.write("(declare-sort A 0)" +"\n");
+
+            System.out.println("(declare-fun zero () A)");
+            writer.write("(declare-fun zero () A)" +"\n");
+
+            // writer.flush();
+            // declare all fields and circle-plains
+            for (int y = 0; y < height; y++) {
+                for (int x = 0; x < width; x++) {
+                    System.out.println("(declare-fun f" + x + "-" + y + " () A)");
+                    writer.write("(declare-fun f" + x + "-" + y + " () A)" + "\n");
+                    //writer.flush();
+                    System.out.println("(declare-fun c" + x + "-" + y + " () A)");
+                    writer.write("(declare-fun c" + x + "-" + y + " () A)" +"\n");
+                    //writer.flush();
+                }
+            }
+
+            // encode countries
+            List countries = new LinkedList<Integer>();
+            int temp;
+            Pair[] pair;
+            StringBuilder string_countries = new StringBuilder();
+//  Build up Circle initial position I
+            StringBuilder string_circle_init = new StringBuilder();
+            string_circle_init.append("(assert (distinct");
+//  \I
+            List circle_pos = new LinkedList<Solver.Pair>();
+
+
+            for (int y = 0; y < height; y++) {
+                for (int x = 0; x < width; x++) {
+//  Build up Circle initial position II
+                    //added:"&& puzzle[x][y].getCircle_value()!=-1" so that traces-only not get added to the circle_pos
+                    if (puzzle[x][y].getCircle_trace() >= 0 && puzzle[x][y].getCircle_value()!=-1) {
+                        string_circle_init.append(" c" + x + "-" + y);
+                        // save the positions of the circles for later.
+                        circle_pos.add(new Solver.Pair(x, y));
+                    }
+//  \II
+                    temp = puzzle[x][y].getCountry();
+                    if (!countries.contains(temp)) {
+                        countries.add(temp);
+                        pair = puzzle[x][y].getNeighbors();
+                        // (assert (or (and (> f0-0 0) (< f0-1 0) (< f1-0 0) (< f1-1 0) (< f2-0 0) (< f2-1 0) (< f3-0 0) (< f3-1 0) (< f4-0 0) (< f4-1 0))
+                        string_countries.append("(assert (or");
+                        for (Pair greater : pair) {
+                            string_countries.append(" (and");
+                            for (Pair element : pair) {
+                                if (greater.equals(element)) {
+                                    string_countries.append(" (distinct f").append(element.getElement0()).append("-").append(element.getElement1()).append(" zero)");
+                                } else {
+                                    string_countries.append(" (= f").append(element.getElement0()).append("-").append(element.getElement1()).append(" zero)");
+                                }
+                            }
+                            string_countries.append(")");
+                        }
+                        string_countries.append("))");
+                        System.out.println(string_countries);
+                        writer.write(string_countries + "\n");
+                        //writer.flush();
+                        string_countries.delete(0, string_countries.length());
+                    }
+                }
+            }
+//  Build up Circle initial position III
+            string_circle_init.append(" zero))");
+            System.out.println(string_circle_init);
+            writer.write(string_circle_init +"\n");
+            //writer.flush();
+//  \III
+
+            // encode Movement of circles
+            int movement, x, y, k;
+            Pair position;
+            Iterator iterator = circle_pos.iterator();
+            boolean reachable = true;
+
+            // (assert (or (and (= c0-2 c0-1) (= c0-3 c0-1) (= f0-3 c0-1)) (and (= c1-1 c0-1) (= c2-1 c0-1) (= f2-1 c0-1))))
+            while (iterator.hasNext()) {
+                k = 0;
+                string_circle_init.delete(0, string_circle_init.length());
+                string_circle_init.append("(assert (or");
+                position = (Pair) iterator.next();
+                x = position.getElement0();
+                y = position.getElement1();
+                movement = puzzle[x][y].getCircle_value();
+                // Circles with no number:
+                if (movement == -2) {
+                    if (width > height) {
+                        k = width;
+                    } else {
+                        k = height;
+                    }
+                    movement = 0;
+
+                }
+                for (int u = 0; u <= k; u++, movement++) {
+                    if(movement == 0) {
+                        string_circle_init.append(" (= f" + x + "-" + y + " c" + x + "-" + y + ")");
+                    } else {
+//  right
+                        for (int i = 1; i <= movement; i++) {
+                            if (!(x + i < width) || !(puzzle[x + i][y].getCircle_value() == -1)) {
+                                reachable = false;
+                            }
+                        }
+                        if (reachable) {
+                            string_circle_init.append(" (and");
+                            for (int i = 1; i <= movement; i++) {
+                                string_circle_init.append(" (= c" + (x + i) + "-" + y + " c" + x + "-" + y + ")");
+                            }
+                            string_circle_init.append(" (= f" + (x + movement) + "-" + y + " c" + x + "-" + y + "))");
+                        }
+                        reachable = true;
+//  left
+                        for (int i = 1; i <= movement; i++) {
+                            if ((x - i < 0) || !(puzzle[x - i][y].getCircle_value() == -1)) {
+                                reachable = false;
+                            }
+                        }
+                        if (reachable) {
+                            string_circle_init.append(" (and");
+                            for (int i = 1; i <= movement; i++) {
+                                string_circle_init.append(" (= c" + (x - i) + "-" + y + " c" + x + "-" + y + ")");
+                            }
+                            string_circle_init.append(" (= f" + (x - movement) + "-" + y + " c" + x + "-" + y + "))");
+                        }
+                        reachable = true;
+//  down
+                        for (int i = 1; i <= movement; i++) {
+                            if (!(y + i < height) || !(puzzle[x][y + i].getCircle_value() == -1)) {
+                                reachable = false;
+                            }
+                        }
+                        if (reachable) {
+                            string_circle_init.append(" (and");
+                            for (int i = 1; i <= movement; i++) {
+                                string_circle_init.append(" (= c" + x + "-" + (y + i) + " c" + x + "-" + y + ")");
+                            }
+                            string_circle_init.append(" (= f" + x + "-" + (y + movement) + " c" + x + "-" + y + "))");
+                        }
+                        reachable = true;
+//  up
+                        for (int i = 1; i <= movement; i++) {
+                            if ((y - i < 0) || !(puzzle[x][y - i].getCircle_value() == -1)) {
+                                reachable = false;
+                            }
+                        }
+                        if (reachable) {
+                            string_circle_init.append(" (and");
+                            for (int i = 1; i <= movement; i++) {
+                                string_circle_init.append(" (= c" + x + "-" + (y - i) + " c" + x + "-" + y + ")");
+                            }
+                            string_circle_init.append(" (= f" + x + "-" + (y - movement) + " c" + x + "-" + y + "))");
+                        }
+                        reachable = true;
+                    }
+                }
+                string_circle_init.append("))");
+                System.out.println(string_circle_init);
+                writer.write(string_circle_init +"\n");
+                //writer.flush();
+            }
+
+            System.out.println("(check-sat)");
+            writer.write("(check-sat)" +"\n");
+            writer.flush();
+            for (int y1 = 0; y1 < height; y1++) {
+                for (int x1 = 0; x1 < width; x1++) {
+                    System.out.println("(get-value (f"+ x1 +"-"+ y1 +"))");
+                    writer.write("(get-value (f" + x1 + "-" + y1 + "))" + "\n");
+                    writer.flush();
+
+                    //line = reader.readLine();
+                    //System.out.println("-------RESULT-------");
+                    //System.out.println(line);
+                }
+            }
+
+            writer.write("(exit)\n");
+            writer.close();
+            try {
+                one.join();
+            } catch (InterruptedException e){
+                System.exit(-1);
+            }
+            reader.close();
+
+        } catch (IOException e){
+
+            e.printStackTrace();
+            System.err.println("IOFailed");
+            System.exit(-1);
+        }
+    }
+
 
     public boolean checkOnlyOneSolution(String string) {
         boolean only_one_solution = false;
@@ -1198,6 +1445,15 @@ public class Puzzle implements Serializable {
     static public String[] parseResult(String string){
         String pattern;
         pattern = "(\\(\\(f)(\\d+)(-)(\\d+)( *\\(*)(-* *\\d+)(\\)+)";
+        String pattern2 = ";";
+        string = string.replaceAll(pattern, "$2;$4;$6");
+
+        return string.split(pattern2);
+    }
+
+    static public String[] parseResult_QF_UF(String string){
+        String pattern;
+        pattern = "(\\(\\(f)(\\d+)(-)(\\d+)( *@uc_A_*)(-* *\\d+)(\\)+)";
         String pattern2 = ";";
         string = string.replaceAll(pattern, "$2;$4;$6");
 
