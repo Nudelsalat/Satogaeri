@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.11.3)  11 NOV 2014 14:27
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.11.3)  17 NOV 2014 15:21
 entering extended mode
 **content.tex
 ("C:\Users\Cloud\Studium\SS 2014\Bachelor thesis\Satogaeri\Thesis\content.tex"
@@ -83,7 +83,7 @@ Missing character: There is no j in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no c in font nullfont!
 Missing character: There is no t in font nullfont!
-Missing character: There is no ' in font nullfont!
+Missing character: There is no ` in font nullfont!
 Missing character: There is no S in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no t in font nullfont!
@@ -6259,16 +6259,13 @@ Overfull \hbox (4.48613pt too wide) in paragraph at lines 90--91
 
 ! Undefined control sequence.
 l.92 \chapter
-             {The Solver} \label{The Solver}
+             {Solver} \label{The Solver}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-Missing character: There is no T in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no e in font nullfont!
 Missing character: There is no S in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no l in font nullfont!
@@ -12872,17 +12869,14 @@ Overfull \hbox (10.86105pt too wide) in paragraph at lines 196--205
 
 ! Undefined control sequence.
 l.206 \section
-              {The solution}
+              {Solution}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-Missing character: There is no T in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no s in font nullfont!
+Missing character: There is no S in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no u in font nullfont!
@@ -14250,16 +14244,13 @@ Overfull \hbox (20.0pt too wide) in paragraph at lines 228--238
 
 ! Undefined control sequence.
 l.239 \chapter
-              {The Generator} \label{The Generator}
+              {Generator} \label{The Generator}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-Missing character: There is no T in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no e in font nullfont!
 Missing character: There is no G in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no n in font nullfont!
@@ -14847,7 +14838,7 @@ Overfull \hbox (10.86105pt too wide) in paragraph at lines 239--247
 
 ! Undefined control sequence.
 l.248 \section
-              {Country generation}
+              {Country Generation}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -14861,7 +14852,7 @@ Missing character: There is no n in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no y in font nullfont!
-Missing character: There is no g in font nullfont!
+Missing character: There is no G in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no e in font nullfont!
@@ -15529,7 +15520,7 @@ Overfull \hbox (20.0pt too wide) in paragraph at lines 251--252
 
 ! Undefined control sequence.
 l.253 \section
-              {Circle generation}
+              {Circle Generation}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -15542,7 +15533,7 @@ Missing character: There is no r in font nullfont!
 Missing character: There is no c in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no e in font nullfont!
-Missing character: There is no g in font nullfont!
+Missing character: There is no G in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no e in font nullfont!
@@ -16771,7 +16762,7 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no . in font nullfont!
 ! Undefined control sequence.
 l.268 \section
-              {Verifying uniqueness}
+              {Verifying Uniqueness}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -16787,7 +16778,7 @@ Missing character: There is no y in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no g in font nullfont!
-Missing character: There is no u in font nullfont!
+Missing character: There is no U in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no q in font nullfont!
@@ -17947,16 +17938,13 @@ Overfull \hbox (12.2666pt too wide) in paragraph at lines 271--283
 
 ! Undefined control sequence.
 l.284 \chapter
-              {The Tool} \label{The Tool}
+              {Tool} \label{The Tool}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-Missing character: There is no T in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no e in font nullfont!
 Missing character: There is no T in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no o in font nullfont!
@@ -18390,17 +18378,17 @@ Overfull \hbox (10.86105pt too wide) in paragraph at lines 287--295
 
 ! Undefined control sequence.
 l.296 \subsection
-                 {new game} will open up another menu where on can choose a ...
+                 {New Game} will open up another menu where on can choose a ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-Missing character: There is no n in font nullfont!
+Missing character: There is no N in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no w in font nullfont!
-Missing character: There is no g in font nullfont!
+Missing character: There is no G in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no e in font nullfont!

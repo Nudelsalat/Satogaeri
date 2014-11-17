@@ -1,28 +1,28 @@
 
 \chapter{Introduction} \label{Introduction}
-This thesis discusses the bachelor project 'Satogaeri' for the computational logic research group at the University of Innsbruck. The project was proposed as part of the logic puzzle focus\footnote{http://cl-informatik.uibk.ac.at/software/puzzles/} of the mentioned research group. Over the years several solvers for Japanese puzzles similar to Sudoku have been developed to demonstrate how logic can be used in problem domains known by a broad audience.
+This thesis discusses the bachelor project `Satogaeri' for the computational logic research group at the University of Innsbruck. The project was proposed as part of the logic puzzle focus\footnote{http://cl-informatik.uibk.ac.at/software/puzzles/} of the mentioned research group. Over the years several solvers for Japanese puzzles similar to Sudoku have been developed to demonstrate how logic can be used in problem domains known by a broad audience.
 
 The project had the following aims: 
 \begin{enumerate}
-	\item implement a solver for Satogaeri puzzles
-	\item implement a generator for Satogaeri puzzles
-	\item implement a tool that has (at least) the same functionality as the Satogaeri player of Nikoli\footnote{http://www.nikoli.com/en/puzzles/satogaeri/} and incorporates (1) and (2)
+	\item implement a solver for Satogaeri puzzles,
+	\item implement a generator for Satogaeri puzzles,
+	\item implement a tool that has (at least) the same functionality as the Satogaeri player of Nikoli\footnote{http://www.nikoli.com/en/puzzles/satogaeri/} and incorporates (1) and (2).
 \end{enumerate}
 
-While reading this thesis one will be lead through the steps how those aims were met and additionally will be given some further background information concerning Satisfiability Modulo Theories(Section~\ref{Satisfiability Modulo Theories}) and JavaFX (Section~\ref{JavaFX}.
+While reading this thesis one will be lead through the steps how those aims were met and additionally will be given some further background information concerning Satisfiability Modulo Theories (Section~\ref{Satisfiability Modulo Theories}) and JavaFX (Section~\ref{JavaFX}).
 
 However everything can be improved therefore some thoughts about future optimisations and work are added in the Conclusion (Section~\ref{Conclusion}).
 
-Furthermore there was an optional task to proof that the Satogaeri puzzle problem is a NP-complete problem. Unfortunately this point was not fulfilled during the project.
+Furthermore there was an optional task to prove that the Satogaeri puzzle problem is an NP-complete problem. Unfortunately this point was not fulfilled during the project.
 
 \chapter{Satogaeri} \label{Satogaeri}
-Satogaeri is a logic puzzle published by the Japanese company Nikoli Co.m Ltd. in 2002. Satogaeri only made a booklet appearance in Nikoli Vol. 99, Vol. 100 and Vol. 101. However it got revived on nikoli.com in 2013.
+Satogaeri is a logic puzzle published by the Japanese company Nikoli Ltd. in 2002. Satogaeri only made a booklet appearance in Nikoli Vol. 99, Vol. 100 and Vol. 101. However it got revived on nikoli.com in 2013.
 
 \section{Rules}
 The official rules from Nikoi state:
 
 \begin{enumerate}
-  \item The areas enclosed by bold lines, are called "Countries." Move the circles, vertically or horizontally, so each country contains only one circle.
+  \item The areas enclosed by bold lines, are called ``Countries". Move the circles, vertically or horizontally, so each country contains only one circle.
   \item The numbers in the circles indicate how many cells they have to pass through. Circles without numbers may move any distance, but some of them do not move.
   \item The circles cannot cross the tracks of other circles and cannot go over other circles. 
 \end{enumerate}
@@ -38,16 +38,16 @@ And additionally the 4th rule, which counts for every logic puzzle:
   \label{fig:sample_small}
 \end{figure}
 
-Handcrafted puzzles tend to have a mirrored country-layout either vertically, horizontally or both as can be seen in Figure~\ref{fig:sample_small}. Numberless Circles are here referred to as '\#'.
+Handcrafted puzzles tend to have a mirrored country-layout either vertically, horizontally or both as can be seen in Figure~\ref{fig:sample_small}.
 
 \chapter{Satisfiability Modulo Theories} \label{Satisfiability Modulo Theories}
-Before we can go on and talk about how to solve Satogaeri problems we first have to look intt Satisfiability Modulo Theories (SMT) for this was used to create the solver and the generator.
+Before we can go on and talk about how to solve Satogaeri problems we first have to look into Satisfiability Modulo Theories (SMT) for this was used to create the solver and the generator.
 
-SMT can be seen as an enhancement of the traditional Satisfiability (SAT) solving. In SAT solving one tries to find an interpretation of a given problem, where this interpretation is a boolean formula composed of boolean variables and expressions like AND, OR and NOT; to state a few. If this constructed formula has a configuration of its variables where the formula evaluates to 'true', then also the original problem must have a solution. A satisfying configuration of the variables often gives a good clue on how to solve the original problem.
+SMT can be seen as an enhancement of traditional Satisfiability (SAT) solving. In SAT solving one tries to find an interpretation of a given problem, where this interpretation is a boolean formula composed of boolean variables and expressions like AND, OR and NOT; to state a few. If this constructed formula has a configuration of its variables where the formula evaluates to `true', then also the original problem must have a solution. A satisfying configuration of the variables often gives a good clue on how to solve the original problem.
 
 To state an example: the formula
 \[(a \lor b \lor (\neg c)) \iff ((\neg a) \land c)\]
-is satisfied with the assignment \textit{a} is 'false', \textit{b} and \textit{c} are 'true'. Therefore the originating problem of this formula must be solvable too.
+is satisfied with the assignment \textit{a} is 'false', \textit{b} and \textit{c} are 'true'. Therefore the problem interpreted by this formula must be solvable too.
 
 SMT goes one step beyond that by replacing some boolean variables with predicates. A predicate is basically a binary-valued function of non-binary variables, which allows us to have function symbols with different arities. Now we can express formulas in first-order logic like
 \[x > y \land 3 x + 4 \leq 4 y\]
@@ -55,15 +55,15 @@ where a natural number can be seen as a function symbol with arity 0, a so calle
 There are many different approaches of implementing SMT solvers, but the two major ones are the \textit{eager} and the \textit{lazy} approach.
 
 \section{Eager SMT}
-In the \textit{eager} approach one tries to convert the given formula into an equisatisfiable propositional formula with all the additional needed constraints of the originating problem. With this constraints the search-space should be reduced so that a common SAT solver can solve the formula much quicker. And this is the appealing part of thes approach: one can use already existing SAT solver to finally check the satisfiability. However the converting process into a propositional formula can be cost-intensive.\cite{2009satisfiability}
+In the \textit{eager} approach one tries to convert the given formula into an equisatisfiable propositional formula with all the additional needed constraints of the originating problem. With these constraints the search-space should be reduced so that a common SAT solver can solve the formula much quicker. And this is the appealing part of this approach: one can use already existing SAT solver to finally check the satisfiability. However the converting process into a propositional formula can be cost-intensive.\cite{2009satisfiability}
 
 \section{Lazy SMT}
 The \textit{lazy} approach consists of two parts. The first part are theory-specific solvers ($\mathcal{T}$-solvers) to handle conjunctions of literals, which are embedded again into a SAT solver. The advantage of incorporating $\mathcal{T}$-solvers is that one can use a specific algorithm and data-structure which fits the problem at hand best. This should lead to a better performance.\cite{sebastiani2007lazy}
 
 \section{SMT-Library}
-The SMT-Library (SMT-Lib) was found in 2003 to provide common standards and a library of benchmarks for diverse SMT-Solvers. With this standards and benchmarks evaluation and comparison of SMT-Systems should be made easier to give the research a competitive touch, which ultimately should result in advancing the state of the art in the SMT-Field. They even organize an annually SMT-Solver competition (SMT-COMP).
+The SMT library (SMT-Lib) was found in 2003 to provide common standards and a library of benchmarks for diverse SMT solvers. With this standards and benchmarks evaluation and comparison of SMT systems should be made easier to give the research a competitive touch, which ultimately should result in advancing the state of the art in SMT. They even organize an annually SMT solver competition (SMT-COMP).
 
-SMT-Lib was greatly useful for this thesis by providing an easily understandable syntax which made many SMT-Solver accessible, like Boolector, CVC4 and MathSAT 5 to state a few. On their web-site\footnote{www.SMT-LIB.org} one can find a long list of Solver supporting SMT-LIB and a separate list of these Solver still under active development.
+SMT-Lib was greatly useful for this thesis by providing an easily understandable syntax which made many SMT-Solver accessible, like Boolector, CVC4 and MathSAT 5 to name a few. On their web-site\footnote{www.SMT-LIB.org} one can find a long list of solvers supporting SMT-LIB and a separate list of these solvers still under active development.
 
 \section{Logics}
 SMT-LIB supports a huge variety of different logics. The advantage here is to be able to apply more specialized and therefore more efficient algorithms.
@@ -79,18 +79,19 @@ The meaning of the logics in Figure~\ref{fig:logics} is letter coded. For exampl
   \item IA stands for the theory Ints (Integer Arithmetic)
   \item L before IA, RA, or IRA stands for the linear fragment of those arithmetics 
 \end{enumerate}
-So QF\_LIA is an unquantified linear integer arithmetic. In essence, Boolean combinations of inequations between linear polynomials over integer variables.
+So QF\_LIA is an unquantified linear integer arithmetic. In essence, Boolean combinations of inequations between linear polynomials over integer variables. Beside this logic we will also use the QF_UF logic throughout this project. QF_UF is the logic of Quantifier-Free Uninterpreted Functions. It incorporates just the Core theory, providing the Bool sort and the various standard operations on Boolean values.
+ 
 The whole explanation can be found on the SMT-Lib web-site\footnote{www.SMT-LIB.org} in the section Logics.
 
 \section{CVC4}
 The SMT-Solver used in this project is the Cooperating Validity Checker 4 (CVC4), currently the most novel  successor of the Stanford Validity Checker which was found in 1996. CVC4 is a joined project of the New York University and the University of Iowa.
 
-Supported features are inter alia: several built-in base theories, support of quantifiers and a model generation ability. The latter is a very important requirement for this project at hand.
+Supported features are including: several built-in base theories, support of quantifiers and a model generation ability. The latter is a very important requirement for this project at hand.
 
-Furthermore CVC4 has its own wiki-web-page\footnote{http://cvc4.cs.nyu.edu/wiki} with useful tutorials, user manual and an developer section.
+Furthermore CVC4 has its own wiki\footnote{http://cvc4.cs.nyu.edu/wiki} with useful tutorials, a user manual and a developer section.
 
-\chapter{The Solver} \label{The Solver}
-Now we will discuss how to represent a Satogaeri puzzle in SMT and what are the needed inputs for the CVC4 solver. Because we use the SMT-Lib and its generalized input syntax the CVC4 solver could be replaced by any other solver supporting the SMT-Lib. For illustration purposes we will now manually create a SMT representation of the Satogaeri puzzle of Figure~\ref{fig:solver_example}.
+\chapter{Solver} \label{The Solver}
+Now we will discuss how to represent a Satogaeri puzzle in SMT and what are the required inputs for the CVC4 solver. Because we use the SMT-Lib and its generalized input syntax the CVC4 solver could be replaced by any other solver supporting the SMT-Lib. For illustration purposes we will now manually create a SMT representation of the Satogaeri puzzle of Figure~\ref{fig:solver_example}.
 \begin{figure}
   \centering
   \includegraphics[scale=1]{Pictures/Solver_example.png} 
@@ -109,16 +110,16 @@ The parameter additionally given to the program via the command-line are the fol
 
 \emph{-m} enables the generation of a model which means once our problem is satisfiable the solver also generates a satisfying assignment for all variables to give us an example model in which the problem has a solution.
 
-\emph{--statistics} prints a long list of statistics if our problem was satisfiable. We will use these statistics to decide how 'difficult' the given Satogaeri puzzle was. More about that later in section ''''. 
+\emph{--statistics} prints a long list of statistics if our problem was satisfiable. We will use these statistics to decide how `difficult' the given Satogaeri puzzle was. More about that later in Section~\ref{Statistics}. 
 
 \section{Declaring Functions}
 Now that CVC4 is started with the proper presetting we can start our representation of the puzzle in Figure~\ref{fig:solver_example}.
 
-First thing to do is to define the logic to be used.
+The first thing to do is to define the logic to be used:
 \begin{lstlisting}
 (set-logic QF_LIA)
 \end{lstlisting}
-In our case it is the unquantified linear integer arithmetic. Simple because we do not need quantifiers nor anything other than simple integer functions. By restricting the search-space for the solver it should be faster in find a solution.
+In our case it is the unquantified linear integer arithmetic. Simple because we do not need quantifiers nor anything other than simple integer functions. By restricting the search-space for the solver it should be faster in finding a solution.
 
 Finally we can start our SMT-interpretation of the Satogaeri puzzle. First of all we define every cell of the puzzle as a constant integer. One can think of the puzzle as an 2-by-3 matrix filled with yet unknown numbers.
 \begin{lstlisting}
@@ -203,7 +204,7 @@ Last one is the '\#'-circle at c1-1. Because of rule 2:'Circles without numbers 
 Now we are done. The Satogaeri puzzle of Figure~\ref{fig:solver_example} is translated into SMT.
 Mention worthy is that the final solver is smart enough to detect simple collisions like if there is a circle in the path before hand and will not add that particular move to the SMT-syntax, this reduces the possible cases the CVC4 solver has to check.
 
-\section{The solution}
+\section{Solution}
 Once we translated the puzzle into an SMT-problem we can evoke the solving procedure by simply typing
 \begin{lstlisting}
 (check-sat)
@@ -236,7 +237,7 @@ We could also look into the circle-matrix with this lines:
 \end{lstlisting}
 However there we will only see the path taken of every circle marked with its ID and the unneeded fields will be filled with random numbers most likely 0, but it could also be a number used as an ID for a circle which makes the circle-matrix inaccurate.
 
-\chapter{The Generator} \label{The Generator}
+\chapter{Generator} \label{The Generator}
 \begin{figure}
   \centering
   \includegraphics[scale=1]{Pictures/generator.png} 
@@ -245,12 +246,12 @@ However there we will only see the path taken of every circle marked with its ID
 \end{figure}
 The Generator should be able to generate random Satogaeri puzzles with varying size and difficulty. The user enters the width and hight of the desired puzzle and another parameter called Countrysize which is a double between 0.0 and 1.0. (Figure~\ref{fig:generator}) The higher the value of Countrysize the more likely it is to get countries with a higher amount of fields. The idea was that the more smaller countries are generated the more difficult the puzzle may get. Unfortunately it contributes very little to the difficulty of the generated puzzle.
 
-\section{Country generation}
+\section{Country Generation}
 As mentioned before the user defines the width and hight of the puzzle. Now the program will take the topmost leftmost field which is not yet involved in any country and will declare it as a new country. With the probability of \emph{Countrysize} each of the four connecting fields (top, bottom, left, right) will be added to this newly created country. Next the four connecting fields of each new member have a chance of \emph{\((previous_chance)^2\)} to be added too until there are no new members.
 
 Theoretically with this algorithm it is possible to generate countries in every conceivable shape, however some general shape are more likely than others. And a very small Countrysize-value will end up in puzzles with a lot of countries consisting only of one field which are uninterestingly easy to solve.
 
-\section{Circle generation}
+\section{Circle Generation}
 After we know the layout of all the countries we can start adding Circles. The Generator now randomly picks one field in every country and declares it as the origin of the circle. At this point we do have the solution to the upcoming puzzle. Next step is to shuffle these circles around.
 
 Therefore the Generator randomly picks a direction in which the circle should move and calculates the distance to the next obstacle (e.g.: the boarder of the puzzle, another circle, the track of another circle). Another random number will be picked between 1 and the distance to the next obstacle and this indicates the movement of this circle. 
@@ -265,7 +266,7 @@ Now everything is generated except '\#'-circles. Those are not be picked randoml
 \end{enumerate}
 If one of these requirements is violated it will break the uniqueness of the puzzle.
 
-\section{Verifying uniqueness}
+\section{Verifying Uniqueness}
 Uniqueness of the solution to a puzzle is very important for the joy of play. In other words the Generator must assure that the puzzle only has one solution. This is done by simply giving the puzzle to the solver with the premiss that the already known solution is prohibited, and if the solver finds a different solution the uniqueness of the puzzle is violated.
 
 But how to model this premiss in SMT? To answer that we will look again at the puzzle in Figure~\ref{fig:solver_example}. But this time we need the solution to this puzzle which looks like in Figure~\ref{fig:solver_example_solution}.
@@ -281,7 +282,7 @@ We remember that for example the '\#'-circle had the ID 1. So all we have to do 
 \end{lstlisting}
 If this line is added to our previous example of SMT-encoding the solver will return \emph{unsat} if the given solution is the only one and will return \emph{sat} if there is a second possible solution. Because we enabled the model generating feature we can also have a look at this second solution via the \emph{(get-value ())} input.
 
-\chapter{The Tool} \label{The Tool}
+\chapter{Tool} \label{The Tool}
 With the tool one should be able to play crafted and generated Satogaeri puzzles. In addition to that one has the option of drawing puzzles and save them as .pzl files. These files can of course be loaded by the tool so one can share puzzles and play puzzles created by others.
 
 \section{Usability}
@@ -293,7 +294,7 @@ With the tool one should be able to play crafted and generated Satogaeri puzzles
 \end{figure}
 In Figure~\ref{fig:main_menu} we can see the main menu and its options.
 
-\subsection{new game} will open up another menu where on can choose a difficulty for the upcoming puzzle which ranges from Easy, Medium to Hard. After choosing the difficulty one has the option between a few puzzles which were created and published by Nikolin\footnote{http://www.nikoli.com/en/puzzles/satogaeri/}.
+\subsection{New Game} will open up another menu where on can choose a difficulty for the upcoming puzzle which ranges from Easy, Medium to Hard. After choosing the difficulty one has the option between a few puzzles which were created and published by Nikolin\footnote{http://www.nikoli.com/en/puzzles/satogaeri/}.
 
 By dragging the numbers the player can move the circles around, however only vertical and horizontal. Once a number moved into a country this country will turn green to mark the habitation, this feature can be deactivated by the check-box \emph{colored countries}.
 \begin{figure}
