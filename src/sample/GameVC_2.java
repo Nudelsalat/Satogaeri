@@ -3,12 +3,15 @@ package sample;
 import Solver.Pair;
 import Solver.Puzzle;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -33,6 +36,7 @@ public class GameVC_2 {
 
     Stage primaryStage;
     Boolean trymode = false;
+    Boolean coloredCountries = true;
 
     public GameVC_2(final Stage primaryStage, Puzzle puzzle) {
         this.puzzle = puzzle;
@@ -44,12 +48,30 @@ public class GameVC_2 {
         int height = 30;
         int width = 30;
 
-// ### winning Popup start ###
+//### checkbox for country coloring
+        CheckBox cbColor = new CheckBox("Colored Countries");
+        cbColor.setIndeterminate(false);
+        if(coloredCountries){
+            cbColor.setSelected(true);
+        } else {
+            cbColor.setSelected(false);
+        }
+        cbColor.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            public void changed(ObservableValue<? extends Boolean> ov,
+                                Boolean old_val, Boolean new_val) {
+                coloredCountries = new_val;
+                draw(puzzle,primaryStage);
+            }
+        });
+//### end checkbox for country coloring
+
+//### winning Popup start ###
         final Text hello = new Text();
         hello.setText("Congratz! You are victorious.");
         hello.setFont(Font.font(24));
         final Text errorMessage = new Text();
         Button ok = new Button("Back to Mainmenu");
+
 
         VBox popUpVBox = new VBox();
         popUpVBox.getChildren().add(hello);
@@ -72,7 +94,7 @@ public class GameVC_2 {
 
             }
         });
-// ### winning popup end ###
+//### winning popup end ###
 
 
         final GridPane gameGrid = new GridPane();
@@ -197,7 +219,7 @@ public class GameVC_2 {
                     gameGrid.add(line, x, y);
                 } else {
                     final Rectangle drag_to = new Rectangle(x, y, width, height);
-                    if (puzzle.getInhabited(x / 2, y / 2)) {
+                    if (puzzle.getInhabited(x / 2, y / 2) && cbColor.isSelected()) {
                         drag_to.setFill(Color.LIGHTGREEN);
                     } else {
                         drag_to.setFill(Color.AQUA);
@@ -323,6 +345,7 @@ public class GameVC_2 {
 
         rootGrid.add(btnGrid, 0, 0);
         rootGrid.add(gameGrid, 0, 1);
+        rootGrid.add(cbColor,0,2);
 
         primaryStage.setTitle("Satogaeri");
         primaryStage.setScene(scene);
