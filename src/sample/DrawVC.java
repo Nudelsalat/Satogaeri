@@ -146,11 +146,11 @@ public class DrawVC extends Application{
         GridPane btnGrid = new GridPane();
         btnGrid.setAlignment(Pos.CENTER);
         btnGrid.setHgap(10);
-        btnGrid.add(btnCircle,0,0);
-        btnGrid.add(btnCountry,1,0);
+        btnGrid.add(btnCountry,0,0);
+        btnGrid.add(btnCircle,1,0);
 
-        int height = 20;
-        int width = 20;
+        int height = 30;
+        int width = 30;
 
         final GridPane gameGrid = new GridPane();
         GridPane superRoot = new GridPane();
