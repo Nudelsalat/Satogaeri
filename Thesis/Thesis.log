@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.11.3)  17 NOV 2014 15:22
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.11.3)  18 NOV 2014 12:50
 entering extended mode
 **Thesis.tex
 ("C:\Users\Cloud\Studium\SS 2014\Bachelor thesis\Satogaeri\Thesis\Thesis.tex"
@@ -693,19 +693,19 @@ LaTeX Info: Redefining \nameref on input line 10.
 \ifibox=\box35
 \unibox=\box36
 \logoheight=\dimen125
- <clshortlogo_new.pdf, id=123, 240.9pt x 240.9pt>
+ <clshortlogo_new.pdf, id=139, 240.9pt x 240.9pt>
 File: clshortlogo_new.pdf Graphic file (type pdf)
  <use clshortlogo_new.pdf>
 Package pdftex.def Info: clshortlogo_new.pdf used on input line 20.
 (pdftex.def)             Requested size: 86.72392pt x 86.72392pt.
 
-<ifilogo.pdf, id=124, 452.3992pt x 233.31163pt>
+<ifilogo.pdf, id=140, 452.3992pt x 233.31163pt>
 File: ifilogo.pdf Graphic file (type pdf)
  <use ifilogo.pdf>
 Package pdftex.def Info: ifilogo.pdf used on input line 20.
 (pdftex.def)             Requested size: 171.91347pt x 88.65933pt.
 
-<unilogo.png, id=125, 210.7875pt x 418.56375pt>
+<unilogo.png, id=141, 210.7875pt x 418.56375pt>
 File: unilogo.png Graphic file (type png)
  <use unilogo.png>
 Package pdftex.def Info: unilogo.png used on input line 20.
@@ -747,10 +747,13 @@ uded in a single page
 
 
 ]
-("C:\Users\Cloud\Studium\SS 2014\Bachelor thesis\Satogaeri\Thesis\Thesis.toc")
-\tf@toc=\write4
-
+("C:\Users\Cloud\Studium\SS 2014\Bachelor thesis\Satogaeri\Thesis\Thesis.toc"
 [6
+
+])
+\tf@toc=\write4
+ [7] [8
+
 
 ]
 ("C:\Users\Cloud\Studium\SS 2014\Bachelor thesis\Satogaeri\Thesis\content.tex"
@@ -775,11 +778,9 @@ Class scrreprt Warning: \float@addtolists detected!
 
 
 
-
-
 ]
 Chapter 2.
-<Pictures/sample_small.png, id=535, 249.18094pt x 122.70844pt>
+<Pictures/sample_small.png, id=563, 249.18094pt x 122.70844pt>
 File: Pictures/sample_small.png Graphic file (type png)
 
 <use Pictures/sample_small.png>
@@ -800,7 +801,7 @@ LaTeX Warning: Citation `sebastiani2007lazy' on page 4 undefined on input line
 
 [4
 
-] <Pictures/logics.png, id=560, 761.84625pt x 423.5825pt>
+] <Pictures/logics.png, id=588, 761.84625pt x 423.5825pt>
 File: Pictures/logics.png Graphic file (type png)
 
 <use Pictures/logics.png>
@@ -809,130 +810,156 @@ Package pdftex.def Info: Pictures/logics.png used on input line 72.
  [5 <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesis/Pictures/l
 ogics.png>] [6]
 Chapter 4.
-<Pictures/Solver_example.png, id=580, 50.43843pt x 35.38219pt>
+<Pictures/Solver_example.png, id=609, 73.02281pt x 72.27pt>
 File: Pictures/Solver_example.png Graphic file (type png)
 
 <use Pictures/Solver_example.png>
-Package pdftex.def Info: Pictures/Solver_example.png used on input line 96.
-(pdftex.def)             Requested size: 50.4383pt x 35.3821pt.
+Package pdftex.def Info: Pictures/Solver_example.png used on input line 97.
+(pdftex.def)             Requested size: 73.02261pt x 72.2698pt.
  [7
 
  <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesis/Pictures/Solv
 er_example.png>]
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 151.
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 159.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omlcmr.fd"
 File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 151.
-
-Overfull \hbox (77.53094pt too wide) in paragraph at lines 151--152
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][] 
- []
-
-<Pictures/tree_structure.png, id=593, 280.79906pt x 137.7647pt>
-File: Pictures/tree_structure.png Graphic file (type png)
-
-<use Pictures/tree_structure.png>
-Package pdftex.def Info: Pictures/tree_structure.png used on input line 156.
-(pdftex.def)             Requested size: 280.79837pt x 137.76434pt.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 159.
  [8]
-Overfull \hbox (77.53094pt too wide) in paragraph at lines 167--168
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][] 
+Overfull \hbox (11.83026pt too wide) in paragraph at lines 199--200
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-
-Overfull \hbox (77.53094pt too wide) in paragraph at lines 168--169
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][] 
- []
-
-[9 <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesis/Pictures/tr
-ee_structure.png>] [10] [11]
+[9] [10] [11] [12] [13]
 Chapter 5.
-<Pictures/generator.png, id=663, 191.21437pt x 141.52875pt>
+<Pictures/generator.png, id=755, 191.21437pt x 141.52875pt>
 File: Pictures/generator.png Graphic file (type png)
 
 <use Pictures/generator.png>
-Package pdftex.def Info: Pictures/generator.png used on input line 242.
+Package pdftex.def Info: Pictures/generator.png used on input line 333.
 (pdftex.def)             Requested size: 191.2139pt x 141.5284pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [12
+ [14
 
  <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesis/Pictures/gene
-rator.png>] <Pictures/solver_example_solution.png, id=674, 74.52844pt x 46.6743
+rator.png>] <Pictures/solver_example_solution.png, id=765, 73.02281pt x 71.5171
 8pt>
 File: Pictures/solver_example_solution.png Graphic file (type png)
 
 <use Pictures/solver_example_solution.png>
 Package pdftex.def Info: Pictures/solver_example_solution.png used on input lin
-e 274.
-(pdftex.def)             Requested size: 74.52824pt x 46.67424pt.
- [13 <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesis/Pictures/
-solver_example_solution.png>]
-Overfull \hbox (38.11053pt too wide) in paragraph at lines 280--281
+e 365.
+(pdftex.def)             Requested size: 73.02261pt x 71.517pt.
+
+Overfull \hbox (38.11053pt too wide) in paragraph at lines 371--372
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[14]
+[15] [16 <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesis/Pictu
+res/solver_example_solution.png>]
 Chapter 6.
-<Pictures/main_menu.png, id=691, 164.11313pt x 155.07938pt>
+<Pictures/main_menu.png, id=782, 164.11313pt x 155.07938pt>
 File: Pictures/main_menu.png Graphic file (type png)
 
 <use Pictures/main_menu.png>
-Package pdftex.def Info: Pictures/main_menu.png used on input line 290.
+Package pdftex.def Info: Pictures/main_menu.png used on input line 385.
 (pdftex.def)             Requested size: 164.11272pt x 155.07898pt.
 
-<Pictures/game.png, id=694, 275.52937pt x 294.34969pt>
+<Pictures/game.png, id=785, 275.52937pt x 294.34969pt>
 File: Pictures/game.png Graphic file (type png)
  <use Pictures/game.png>
-Package pdftex.def Info: Pictures/game.png used on input line 301.
+Package pdftex.def Info: Pictures/game.png used on input line 396.
 (pdftex.def)             Requested size: 275.52869pt x 294.34895pt.
 
-[15
+[17
 
  <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesis/Pictures/main
-_menu.png>] [16 <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesi
+_menu.png>] [18 <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesi
 s/Pictures/game.png>]
-<Pictures/drawing_screen.png, id=711, 201.00093pt x 211.54031pt>
+<Pictures/drawing_screen.png, id=803, 201.00093pt x 211.54031pt>
 File: Pictures/drawing_screen.png Graphic file (type png)
 
 <use Pictures/drawing_screen.png>
-Package pdftex.def Info: Pictures/drawing_screen.png used on input line 325.
+Package pdftex.def Info: Pictures/drawing_screen.png used on input line 420.
 (pdftex.def)             Requested size: 201.00043pt x 211.53978pt.
- [17] [18 <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesis/Pict
+ [19] [20 <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesis/Pict
 ures/drawing_screen.png>]
 Chapter 7.
-[19
+[21
 
 ]
 Chapter 8.
-[20
+[22
 
 ]
 Chapter 9.
-) [21
+) [23
 
 ]
 No file Thesis.bbl.
 ("C:\Users\Cloud\Studium\SS 2014\Bachelor thesis\Satogaeri\Thesis\appendix.tex"
-)
+Appendix A.
+[24
+
+
+
+
+]
+Overfull \hbox (24.9704pt too wide) in paragraph at lines 48--49
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[25]
+Appendix B.
+
+Overfull \hbox (70.96088pt too wide) in paragraph at lines 96--97
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (70.96088pt too wide) in paragraph at lines 97--98
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (70.96088pt too wide) in paragraph at lines 98--99
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (84.10101pt too wide) in paragraph at lines 99--101
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (57.82074pt too wide) in paragraph at lines 104--105
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[26
+
+]
+Overfull \hbox (24.9704pt too wide) in paragraph at lines 116--117
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+) [27]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 27.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 27.
- ("C:\Users\Cloud\Studium\SS 2014\Bachelor thesis\Satogaeri\Thesis\Thesis.aux" 
+
+("C:\Users\Cloud\Studium\SS 2014\Bachelor thesis\Satogaeri\Thesis\Thesis.aux"
 ("C:\Users\Cloud\Studium\SS 2014\Bachelor thesis\Satogaeri\Thesis\content.aux")
- ("C:\Users\Cloud\Studium\SS 2014\Bachelor thesis\Satogaeri\Thesis\appendix.aux
-"))
+("C:\Users\Cloud\Studium\SS 2014\Bachelor thesis\Satogaeri\Thesis\appendix.aux"
+))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 27.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 27.
 Package rerunfilecheck Info: File `Thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 6F4EA6F89C32DE60F459897F004F7B30;1701.
+(rerunfilecheck)             Checksum: 336BB48D80C9200AAA60CECB9BFD02C2;1969.
 
 
 LaTeX Warning: There were undefined references.
@@ -940,28 +967,27 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 27.
  ) 
 Here is how much of TeX's memory you used:
- 9996 strings out of 493921
- 145203 string characters out of 3147282
- 280715 words of memory out of 3000000
- 12988 multiletter control sequences out of 15000+200000
- 15688 words of font info for 61 fonts, out of 3000000 for 9000
+ 10195 strings out of 493921
+ 148111 string characters out of 3147282
+ 300648 words of memory out of 3000000
+ 12989 multiletter control sequences out of 15000+200000
+ 16389 words of font info for 63 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 46i,11n,49p,605b,1765s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 46i,10n,49p,594b,1767s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
-msfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
-/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb>
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on Thesis.pdf (27 pages, 1294114 bytes).
+eX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
+sfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
+cmr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.p
+fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/P
+rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program F
+iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on Thesis.pdf (35 pages, 1327646 bytes).
 PDF statistics:
- 809 PDF objects out of 1000 (max. 8388607)
- 144 named destinations out of 1000 (max. 500000)
- 301 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1085 PDF objects out of 1200 (max. 8388607)
+ 341 named destinations out of 1000 (max. 500000)
+ 328 words of extra memory for PDF output out of 10000 (max. 10000000)
 

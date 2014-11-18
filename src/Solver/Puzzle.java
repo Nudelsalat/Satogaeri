@@ -682,7 +682,7 @@ public class Puzzle implements Serializable {
                             if (greater.equals(element)) {
                                 string_countries.append(" (> f").append(element.getElement0()).append("-").append(element.getElement1()).append(" 0)");
                             } else {
-                                string_countries.append(" (< f").append(element.getElement0()).append("-").append(element.getElement1()).append(" 0)");
+                                string_countries.append(" (= f").append(element.getElement0()).append("-").append(element.getElement1()).append(" 0)");
                             }
                         }
                         string_countries.append(")");
@@ -1182,7 +1182,7 @@ public class Puzzle implements Serializable {
                                 if (greater.equals(element)) {
                                     string_countries.append(" (> f" + element.getElement0() + "-" + element.getElement1() + " 0)");
                                 } else {
-                                    string_countries.append(" (< f" + element.getElement0() + "-" + element.getElement1() + " 0)");
+                                    string_countries.append(" (= f" + element.getElement0() + "-" + element.getElement1() + " 0)");
                                 }
                             }
                             string_countries.append(")");
