@@ -1,5 +1,6 @@
 package sample;
 
+import Solver.OwnList;
 import Solver.Pair;
 import Solver.Puzzle;
 import javafx.application.Application;
@@ -20,6 +21,9 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Created by Cloud on 23.10.2014.
  */
@@ -28,11 +32,13 @@ public class DrawVC extends Application{
     private int height;
     private int width;
     private Puzzle puzzle;
+    private Puzzle unsolved;
     private int countryCounter = 1;
     private int circleCounter = 1;
     private int input = -1;
     private int xCoordinate;
     private int yCoordinate;
+    private boolean showingSolution = false;
 
     public enum Drawmode {COUNTRY, CIRCLE};
 
@@ -104,6 +110,33 @@ public class DrawVC extends Application{
         });
 // end popup
 
+//Popup
+        final Label popupSolutionLable = new Label();
+        Button btnSolutionOk = new Button("Back to drawing");
+
+        VBox popUpSolutionVBox = new VBox();
+        popUpSolutionVBox.getChildren().add(popupSolutionLable);
+        popUpSolutionVBox.getChildren().add(btnSolutionOk);
+        popUpSolutionVBox.setStyle("-fx-background-color: #FFFFFF;");
+
+        final Popup popupSolution = new Popup();
+        popupSolution.setAutoFix(false);
+        popupSolution.setHideOnEscape(true);
+        popupSolution.getContent().addAll(popUpSolutionVBox);
+        popupSolution.setX(250);
+        popupSolution.setY(175);
+
+        btnSolutionOk.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent t) {
+                popupSolution.hide();
+                showingSolution = false;
+                draw(unsolved, primaryStage);
+            }
+        });
+// end popup
+
         Button btnCountry = new Button();
         btnCountry.setText("Draw Country");
         btnCountry.setOnAction(new EventHandler<ActionEvent>() {
@@ -125,6 +158,37 @@ public class DrawVC extends Application{
             }
         });
 
+        Button btnSolve = new Button();
+        btnSolve.setText("Solve Puzzle");
+        btnSolve.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                //TODO: Check if Puzzle is okay 'n stuff.
+                for(int x =0; x<puzzle.getWidth();x++){
+                    for(int y = 0; y<puzzle.getHeight();y++){
+                        OwnList pairs = new OwnList();
+                        for(int i =0; i<puzzle.getWidth();i++) {
+                            for (int j = 0; j < puzzle.getHeight(); j++) {
+                                if(puzzle.getCountry(x,y) == puzzle.getCountry(i,j)){
+                                    pairs.add(new Pair(i,j));
+                                }
+                            }
+                        }
+                        Pair[] pairs2 = pairs.toArray();
+                        puzzle.setNeighbors(pairs2, x, y);
+                    }
+                }
+                puzzle.print();
+                unsolved = puzzle.clonePuzzle();
+                puzzle.generateSMTPiping();
+                popupSolutionLable.setText("Is this solution unique? "+checkOnlyOneSolution());
+                popupSolution.show(primaryStage);
+                showingSolution = true;
+                draw(puzzle, primaryStage);
+            }
+        });
+
         Button btnSave = new Button();
         btnSave.setText("Save Puzzle");
         btnSave.setOnAction(new EventHandler<ActionEvent>() {
@@ -139,7 +203,8 @@ public class DrawVC extends Application{
 
         GridPane saveGrid = new GridPane();
         saveGrid.setAlignment(Pos.CENTER_RIGHT);
-        saveGrid.add(btnSave,0,0);
+        saveGrid.add(btnSolve,0,0);
+        saveGrid.add(btnSave,1,0);
 
 
 
@@ -200,7 +265,7 @@ public class DrawVC extends Application{
 //Country & Drag part:
                     rectangle.setOnDragDetected(new EventHandler<MouseEvent>() {
                         public void handle(MouseEvent event) {
-                            if (drawmode == Drawmode.COUNTRY) {
+                            if (drawmode == Drawmode.COUNTRY && !showingSolution) {
                                 Dragboard db = rectangle.startDragAndDrop(TransferMode.ANY);
                                 ClipboardContent content = new ClipboardContent();
                                 content.putString(rectangle.getId());
@@ -216,7 +281,7 @@ public class DrawVC extends Application{
 
                     rectangle.setOnDragDone(new EventHandler<DragEvent>() {
                         public void handle(DragEvent event) {
-                            if (drawmode == Drawmode.COUNTRY) {
+                            if (drawmode == Drawmode.COUNTRY && !showingSolution) {
                     /* the drag-and-drop gesture ended */
                                 System.out.println("onDragDone");
                     /* if the data was successfully moved, clear it */
@@ -232,7 +297,7 @@ public class DrawVC extends Application{
 
                     rectangle.setOnDragEntered(new EventHandler<DragEvent>() {
                         public void handle(DragEvent event) {
-                            if (drawmode == Drawmode.COUNTRY) {
+                            if (drawmode == Drawmode.COUNTRY && !showingSolution) {
                                 Pair[] pair = new Pair[1];
                                 pair[0] = new Pair(((int) rectangle.getX())/2, ((int) rectangle.getY())/2);
                                 puzzle.setCountry(pair, countryCounter);
@@ -248,7 +313,7 @@ public class DrawVC extends Application{
 // Circle & Click Part:
                     rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
                         public void handle(MouseEvent event) {
-                            if (drawmode == Drawmode.CIRCLE) {
+                            if (drawmode == Drawmode.CIRCLE && !showingSolution) {
                                 if (popup.isShowing()) {
                                     popup.hide();
                                 } else {
@@ -286,15 +351,50 @@ public class DrawVC extends Application{
             }
         }
 
-        superRoot.add(btnGrid, 0, 0);
+        if(!showingSolution){
+            superRoot.add(btnGrid, 0, 0);
+            superRoot.add(saveGrid, 0 ,2);
+        }
         superRoot.add(gameGrid, 0, 1);
-        superRoot.add(saveGrid, 0 ,2);
+
 
 
         primaryStage.setTitle("Satogaeri");
         primaryStage.setScene(scene);
         primaryStage.show();
         puzzle.print();
+    }
+
+    public boolean checkOnlyOneSolution(){
+        Pair[] circle_id_init_pos = getAllCircles();
+        StringBuilder check_only_one_solution = new StringBuilder();
+        int circle_trace;
+        check_only_one_solution.append("(assert (or");
+        for (Pair init_pos : circle_id_init_pos) {
+            circle_trace = puzzle.getCircle_trace(init_pos.getElement0(), init_pos.getElement1());
+            check_only_one_solution.append(" (not (= f" + init_pos.getElement0() + "-" + init_pos.getElement1() + " " + circle_trace + "))");
+        }
+        check_only_one_solution.append("))");
+        return unsolved.checkOnlyOneSolution(check_only_one_solution.toString());
+    }
+    public Pair[] getAllCircles() {
+
+        List<Pair> allCircles = new LinkedList<Pair>();
+
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                if (puzzle.getCircle_trace(x, y) > 0 && puzzle.getCircle_value(x,y)!=-1) {
+                    allCircles.add(new Pair(x, y));
+                }
+            }
+        }
+        Pair[] allCirclesArray = new Pair[allCircles.size()];
+        int i = 0;
+        for (Pair countryPair : allCircles) {
+            allCirclesArray[i] = countryPair;
+            i++;
+        }
+        return allCirclesArray;
     }
 
     public static void main(String[] args) {
