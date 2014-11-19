@@ -57,7 +57,7 @@ public class DrawVC extends Application{
     }
 
     public void draw(final Puzzle puzzle, final Stage primaryStage) {
-
+        this.puzzle = puzzle;
 //Popup
         final Label hello = new Label();
         final TextField popupTextfield = new TextField();

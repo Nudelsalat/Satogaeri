@@ -117,6 +117,7 @@ public class Shuffler {
             }
 
             if (!direction_found) {
+                //Todo: a zero circle can be # too
                 System.out.println("!#!#!#! no Direction found... is zero circle?" + circle_trace);
             }
 
@@ -129,106 +130,141 @@ public class Shuffler {
         int x = circle_id_init_pos.getElement0();
         int y = circle_id_init_pos.getElement1();
         int circleID = puzzle.getCircle_trace(x, y);
-        int direction = rand.nextInt(4); // number between 0-3 up=0 down=1 left=2 right=3
+        int direction;
 
         System.out.println("Circle position: " + x + " " + y);
         // delete old circle-position. -1 is equivalent to "no-circle". also the Circle_trace is set to -1 because later
         // later on we will check if on the fields are any traces (for they are not to be crossed)
-        puzzle.setCircle(circle_id_init_pos, -1, -1);
+        //puzzle.setCircle(circle_id_init_pos, -1, -1);
         //up
-        if (direction == 0) {
-            int movement;
-            if (y == 0) {
-                movement = 0;
-            } else {
-                movement = rand.nextInt(y); // number between 0 and y. where y is the distance to the top boarder of the puzzle.
-                if (movement == 0) {
-                    movement = y;
-                }
+        boolean gotZero = true;
+        boolean breakout = false;
+        int counter = 0;
+        while(!breakout){
+            if(counter >= 4){
+                breakout = true;
             }
-            for (int i = 0; i <= movement; i++) {
-                if (puzzle.getCircle_trace(x, y - i) == -1) {
-                    puzzle.setCircle_trace(new Pair(x, y - i), circleID);
+            gotZero=false;
+            System.out.println("counter = "+counter);
+            direction = rand.nextInt(4); // number between 0-3 up=0 down=1 left=2 right=3
+            if (direction == 0) {
+                int movement;
+                if (y == 0) {
+                    movement = 0;
                 } else {
-                    puzzle.setCircle(new Pair(x, y - i + 1), i - 1, circleID);
-                    // if an obstacle is hit set the circle and return the new position
-                    return new Pair(x, y - i + 1);
+                    movement = rand.nextInt(y); // number between 0 and y. where y is the distance to the top boarder of the puzzle.
+                    if (movement == 0) {
+                        movement = y;
+                    }
                 }
-            }
-            puzzle.setCircle(new Pair(x, y - movement), movement, circleID);
-            // if no obstacle is hit set the circle and return the new position
-            return new Pair(x, y - movement);
+                for (int i = 1; i <= movement && !gotZero; i++) {
+                    System.out.println("movement = "+movement+" gotZero = "+gotZero);
+                    if (puzzle.getCircle_trace(x, y - i) == -1) {
+                        puzzle.setCircle_trace(new Pair(x, y - i), circleID);
+                    } else if(i==1 && !gotZero) {
+                        gotZero = true;
+                        System.out.println("!?!?!?!?!?!Secondchance. movement = "+movement+"\nCircletrace "+circleID);
+                    }else{
+                        puzzle.setCircle(new Pair(x, y - i + 1), i - 1, circleID);
+                        // if an obstacle is hit set the circle and return the new position
+                        return new Pair(x, y - i + 1);
+                    }
+                }
+                if(!gotZero && movement!=0) {
+                    puzzle.setCircle(new Pair(x, y - movement), movement, circleID);
+                    // if no obstacle is hit set the circle and return the new position
+                    return new Pair(x, y - movement);
+                }
 
-        }
-        //down
-        else if (direction == 1) {
-            int movement;
-            if ((height - y) - 1 == 0) {
-                movement = 0;
-            } else {
-                movement = rand.nextInt((height - y) - 1); // number between 0 and the distance to the bottom boarder of the puzzle.
-                if (movement == 0) {
-                    movement = (height - y) - 1;
-                }
             }
-            for (int i = 0; i <= movement; i++) {
-                if (puzzle.getCircle_trace(x, y + i) == -1) {
-                    puzzle.setCircle_trace(new Pair(x, y + i), circleID);
+            //down
+            else if (direction == 1) {
+                int movement;
+                if ((height - y) - 1 == 0) {
+                    movement = 0;
                 } else {
-                    puzzle.setCircle(new Pair(x, y + i - 1), i - 1, circleID);
-                    return new Pair(x, y + i - 1);
+                    movement = rand.nextInt((height - y) - 1); // number between 0 and the distance to the bottom boarder of the puzzle.
+                    if (movement <= 1) {
+                        movement = (height - y) - 1;
+                    }
+                }
+                for (int i = 1; i <= movement && !gotZero; i++) {
+                    System.out.println("movement = "+movement+" gotZero = "+gotZero);
+                    if (puzzle.getCircle_trace(x, y + i) == -1) {
+                        puzzle.setCircle_trace(new Pair(x, y + i), circleID);
+                    }else if(i==1 && !gotZero) {
+                        gotZero = true;
+                        System.out.println("!?!?!?!?!?!Secondchance. movement = "+movement+"\nCircletrace "+circleID);
+                    } else {
+                        puzzle.setCircle(new Pair(x, y + i - 1), i - 1, circleID);
+                        return new Pair(x, y + i - 1);
+                    }
+                }
+                if(!gotZero && movement!=0) {
+                    puzzle.setCircle(new Pair(x, y + movement), movement, circleID);
+                    return new Pair(x, y + movement);
                 }
             }
-            puzzle.setCircle(new Pair(x, y + movement), movement, circleID);
-            return new Pair(x, y + movement);
-        }
-        //left
-        else if (direction == 2) {
-            int movement;
-            if (x == 0) {
-                movement = 0;
-            } else {
-                movement = rand.nextInt(x); // number between 0 and x. where x is the distance to the left boarder of the puzzle.
-                if (movement == 0) {
-                    movement = x;
-                }
-            }
-            for (int i = 0; i <= movement; i++) {
-                if (puzzle.getCircle_trace(x - i, y) == -1) {
-                    puzzle.setCircle_trace(new Pair(x - i, y), circleID);
+            //left
+            else if (direction == 2) {
+                int movement;
+                if (x == 0) {
+                    movement = 0;
                 } else {
-                    puzzle.setCircle(new Pair(x - i + 1, y), i - 1, circleID);
-                    return new Pair(x - i + 1, y);
+                    movement = rand.nextInt(x); // number between 0 and x. where x is the distance to the left boarder of the puzzle.
+                    if (movement <= 1) {
+                        movement = x;
+                    }
+                }
+                for (int i = 1; i <= movement && !gotZero; i++) {
+                    System.out.println("movement = "+movement+" gotZero = "+gotZero);
+                    if (puzzle.getCircle_trace(x - i, y) == -1) {
+                        puzzle.setCircle_trace(new Pair(x - i, y), circleID);
+                    }else if(i==1 && !gotZero) {
+                        gotZero = true;
+                        System.out.println("!?!?!?!?!?!Secondchance. movement = "+movement+"\nCircletrace "+circleID);
+                    } else {
+                        puzzle.setCircle(new Pair(x - i + 1, y), i - 1, circleID);
+                        return new Pair(x - i + 1, y);
+                    }
+                }
+                if(!gotZero && movement != 0) {
+                    puzzle.setCircle(new Pair(x - movement, y), movement, circleID);
+                    return new Pair(x - movement, y);
                 }
             }
-            puzzle.setCircle(new Pair(x - movement, y), movement, circleID);
-            return new Pair(x - movement, y);
-        }
-        //right
-        else if (direction == 3) {
-            int movement;
-            if ((width - x) - 1 == 0) {
-                movement = 0;
-            } else {
-                movement = rand.nextInt((width - x) - 1); // number between 0 and the distance to the right boarder of the puzzle.
-                if (movement == 0) {
-                    movement = (width - x) - 1;
-                }
-            }
-            for (int i = 0; i <= movement; i++) {
-                if (puzzle.getCircle_trace(x + i, y) == -1) {
-                    puzzle.setCircle_trace(new Pair(x + i, y), circleID);
+            //right
+            else if (direction == 3) {
+                int movement;
+                if ((width - x) - 1 == 0) {
+                    movement = 0;
                 } else {
-                    puzzle.setCircle(new Pair(x + i - 1, y), i - 1, circleID);
-                    return new Pair(x + i - 1, y);
+                    movement = rand.nextInt((width - x) - 1); // number between 0 and the distance to the right boarder of the puzzle.
+                    if (movement <= 1) {
+                        movement = (width - x) - 1;
+                    }
+                }
+                for (int i = 1; i <= movement && !gotZero; i++) {
+                    System.out.println("movement = "+movement+" gotZero = "+gotZero);
+                    if (puzzle.getCircle_trace(x + i, y) == -1) {
+                        puzzle.setCircle_trace(new Pair(x + i, y), circleID);
+                    }else if(i==1 && !gotZero) {
+                        gotZero = true;
+                        System.out.println("!?!?!?!?!?!Secondchance. movement = "+movement+"\nCircletrace "+circleID);
+                    } else {
+                        puzzle.setCircle(new Pair(x + i - 1, y), i - 1, circleID);
+                        return new Pair(x + i - 1, y);
+                    }
+                }
+                if(!gotZero && movement != 0) {
+                    puzzle.setCircle(new Pair(x + movement, y), movement, circleID);
+                    return new Pair(x + movement, y);
                 }
             }
-            puzzle.setCircle(new Pair(x + movement, y), movement, circleID);
-            return new Pair(x + movement, y);
-        } else {
-            // should not be possible to reach!
-            return new Pair(-1, -1);
+            counter++;
         }
+        puzzle.setCircle(new Pair(x, y), 0, circleID);
+        return new Pair(x,y);
     }
 
     /**
