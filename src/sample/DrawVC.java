@@ -108,7 +108,42 @@ public class DrawVC extends Application{
                 }
             }
         });
-// end popup
+// end Savepopup
+
+        //Popup
+        final Label saveLabel = new Label();
+        final TextField saveTextField = new TextField();
+        final Text saveErrorMessage = new Text();
+        Button btnSaveOk = new Button("Save");
+
+        VBox savepopUpVBox = new VBox();
+        savepopUpVBox.getChildren().add(saveLabel);
+        savepopUpVBox.getChildren().add(saveTextField);
+        savepopUpVBox.getChildren().add(btnSaveOk);
+        savepopUpVBox.getChildren().add(saveErrorMessage);
+        //popUpVBox.setStyle("-fx-background-color: #FFFFFF;");
+
+        final Popup savepopup = new Popup();
+        savepopup.setAutoFix(false);
+        savepopup.setHideOnEscape(true);
+        savepopup.getContent().addAll(savepopUpVBox);
+        savepopup.setX(250);
+        savepopup.setY(175);
+
+        btnSaveOk.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent t) {
+                if (saveTextField.getText().equals("")) {
+                    saveErrorMessage.setText("Please enter a Filename.");
+                    saveErrorMessage.setFill(Color.FIREBRICK);
+                }else{
+                    puzzle.savePuzzle(saveTextField.getText());
+                    savepopup.hide();
+                }
+            }
+        });
+// end Savepopup
 
 //Popup
         final Label popupSolutionLable = new Label();
@@ -197,7 +232,7 @@ public class DrawVC extends Application{
             public void handle(ActionEvent event) {
                 //TODO: Check if Puzzle is okay 'n stuff.
                 puzzle.print();
-                puzzle.savePuzzle("test");
+                savepopup.show(primaryStage);
             }
         });
 

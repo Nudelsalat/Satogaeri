@@ -246,12 +246,12 @@ public class GameVC_2 {
                     drag_to.setOnDragEntered(new EventHandler<DragEvent>() {
                         public void handle(DragEvent event) {
                 /* the drag-and-drop gesture entered the target */
-                            System.out.println("onDragEntered");
+                            //System.out.println("onDragEntered");
                 /* show to the user that it is an actual gesture target */
                             if (event.getGestureSource() != drag_to &&
                                     event.getDragboard().hasString()) {
                                 drag_to.setFill(Color.BLUE);
-                                System.out.println("x= " + drag_to.getX() + "\ny= " + drag_to.getY());
+                                //System.out.println("x= " + drag_to.getX() + "\ny= " + drag_to.getY());
                             }
 
                             event.consume();
@@ -269,14 +269,14 @@ public class GameVC_2 {
                     drag_to.setOnDragDropped(new EventHandler<DragEvent>() {
                         public void handle(DragEvent event) {
                 /* data dropped */
-                            System.out.println("onDragDropped");
+                            //System.out.println("onDragDropped");
                 /* if there is a string data on dragboard, read it and use it */
                             Dragboard db = event.getDragboard();
                             boolean success = false;
                             if (db.hasString()) {
-                                System.out.println("string is: " + db.getString());
+                                //System.out.println("string is: " + db.getString());
                                 String[] circlevalue = parseResult(db.getString());
-                                System.out.println(circlevalue[0] + " " + circlevalue[1]);
+                                //System.out.println(circlevalue[0] + " " + circlevalue[1]);
                                 success = puzzle.move(Integer.parseInt(circlevalue[0]) / 2, Integer.parseInt(circlevalue[1]) / 2, ((int) drag_to.getX()) / 2, ((int) drag_to.getY()) / 2);
                                 if (success) {
                                     puzzle.logListAdd(((int) drag_to.getX()) / 2, ((int) drag_to.getY()) / 2, Integer.parseInt(circlevalue[0]) / 2, Integer.parseInt(circlevalue[1]) / 2);
@@ -328,7 +328,7 @@ public class GameVC_2 {
                         source.setOnDragDone(new EventHandler<DragEvent>() {
                             public void handle(DragEvent event) {
                     /* the drag-and-drop gesture ended */
-                                System.out.println("onDragDone");
+                                //System.out.println("onDragDone");
                     /* if the data was successfully moved, clear it */
                                 if (event.getTransferMode() == TransferMode.MOVE) {
                                     source.setText("");

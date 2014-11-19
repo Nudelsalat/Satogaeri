@@ -60,7 +60,6 @@ public class Generator {
                 int y = nextPair.getElement1()-1;
                 if(x >= 0 && y >= 0 && x < this.width && y < this.height && puzzle.getCountry(x, y) < 0){
                     if(rand.nextDouble()<=probability){
-                        System.out.println("Add " + x +" , "+ y + " to " + countryID);
                         aboutToAdd.add(new Pair(x,y));
                         if(!countryPairs.contains(new Pair(x,y))) {
                             countryPairs.add(new Pair(x, y));
@@ -72,7 +71,6 @@ public class Generator {
                 y = nextPair.getElement1()+1;
                 if(x >= 0 && y >= 0 && x < this.width && y < this.height && puzzle.getCountry(x, y) < 0){
                     if(rand.nextDouble()<=probability){
-                        System.out.println("Add " + x +" , "+ y + " to " + countryID);
                         aboutToAdd.add(new Pair(x,y));
                         if(!countryPairs.contains(new Pair(x,y))) {
                             countryPairs.add(new Pair(x, y));
@@ -84,7 +82,6 @@ public class Generator {
                 y = nextPair.getElement1();
                 if(x >= 0 && y >= 0 && x < this.width && y < this.height && puzzle.getCountry(x, y) < 0){
                     if(rand.nextDouble()<=probability){
-                        System.out.println("Add " + x +" , "+ y + " to " + countryID);
                         aboutToAdd.add(new Pair(x,y));
                         if(!countryPairs.contains(new Pair(x,y))) {
                             countryPairs.add(new Pair(x, y));
@@ -96,7 +93,6 @@ public class Generator {
                 y = nextPair.getElement1();
                 if(x >= 0 && y >= 0 && x < this.width && y < this.height && puzzle.getCountry(x, y) < 0){
                     if(rand.nextDouble()<=probability){
-                        System.out.println("Add " + x + " , " + y + " to " + countryID);
                         aboutToAdd.add(new Pair(x,y));
                         if(!countryPairs.contains(new Pair(x,y))) {
                             countryPairs.add(new Pair(x, y));
