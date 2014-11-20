@@ -27,7 +27,7 @@ import java.util.List;
 /**
  * Created by Cloud on 23.10.2014.
  */
-public class DrawVC extends Application{
+public class DrawVC{
 
     private int height;
     private int width;
@@ -39,19 +39,16 @@ public class DrawVC extends Application{
     private int xCoordinate;
     private int yCoordinate;
     private boolean showingSolution = false;
+    private Stage primaryStage;
 
     public enum Drawmode {COUNTRY, CIRCLE};
 
     private Drawmode drawmode = Drawmode.COUNTRY;
 
 
-    @Override
-    public void start(final Stage primaryStage) throws Exception{
-
-        height=3;
-        width=3;
-
-        puzzle = new Puzzle(width,height);
+    public DrawVC(final Stage primaryStage, Puzzle puzzle){
+        this.primaryStage = primaryStage;
+        this.puzzle = puzzle;
 
         draw(puzzle, primaryStage);
     }
@@ -236,10 +233,22 @@ public class DrawVC extends Application{
             }
         });
 
+        Button btnBack = new Button();
+        btnBack.setText("back");
+        btnBack.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent t) {
+                MainVC main = new MainVC(primaryStage);
+                main.show(primaryStage);
+            }
+        });
+
         GridPane saveGrid = new GridPane();
         saveGrid.setAlignment(Pos.CENTER_RIGHT);
         saveGrid.add(btnSolve,0,0);
         saveGrid.add(btnSave,1,0);
+        saveGrid.add(btnBack,2,0);
 
 
 
@@ -432,7 +441,8 @@ public class DrawVC extends Application{
         return allCirclesArray;
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+   public void show(Stage stage){
+       primaryStage = stage;
+       draw(puzzle,stage);
+   }
 }

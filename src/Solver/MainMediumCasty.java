@@ -275,7 +275,7 @@ public class MainMediumCasty {
             puzzle.setCircle(new Pair(17,9),-2, 36);
 
             puzzle.print();
-
+            puzzle.savePuzzle("casty");
             puzzle.generateSMTPiping();
 
             puzzle.print();

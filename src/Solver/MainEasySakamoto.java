@@ -34,7 +34,7 @@ public class MainEasySakamoto {
             puzzle.setCircle(new Pair(8,6), 2, 11);
 
             puzzle.print();
-
+            puzzle.savePuzzle("sakamoto");
             puzzle.generateSMTPiping();
 
             puzzle.print();

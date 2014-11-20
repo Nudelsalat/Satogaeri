@@ -159,7 +159,7 @@ public class MainEasyAquablue {
             puzzle.setCircle(new Pair(8,8), 1, 19);
 
             puzzle.print();
-
+            puzzle.savePuzzle("aquablue");
             puzzle.generateSMT_QF_UF_Piping();
 
             puzzle.print();

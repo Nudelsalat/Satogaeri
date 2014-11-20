@@ -254,7 +254,7 @@ public class MainHardAiko {
 
 
             puzzle.print();
-
+            puzzle.savePuzzle("aiko");
             puzzle.generateSMTPiping();
 
             puzzle.print();

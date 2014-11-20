@@ -90,7 +90,7 @@ public class MainMediumZ_H {
         puzzle.setCircle(new Pair(7,9), -2, 29);
 
         puzzle.print();
-
+        puzzle.savePuzzle("z_h");
         puzzle.generateSMTPiping();
 
         puzzle.print();

@@ -73,7 +73,7 @@ public class MainMediumAlkaline {
             puzzle.setCircle(new Pair(17,9), 4, 30);
 
             puzzle.print();
-
+            puzzle.savePuzzle("alkaline");
             puzzle.generateSMTPiping();
 
             puzzle.print();

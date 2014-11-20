@@ -12,6 +12,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -40,7 +42,7 @@ public class GameVC_2 {
 
     public GameVC_2(final Stage primaryStage, Puzzle puzzle) {
         this.puzzle = puzzle;
-        //this.primaryStage = primaryStage;
+        this.primaryStage = primaryStage;
         startLayoutPuzzle = puzzle.clonePuzzle();
     }
 
@@ -90,11 +92,59 @@ public class GameVC_2 {
 
             @Override
             public void handle(ActionEvent t) {
-                errorMessage.setText("back to menu not done yet....");
-
+                popup.hide();
+                MainVC main = new MainVC(primaryStage);
+                main.show(primaryStage);
             }
         });
 //### winning popup end ###
+
+
+//Popup
+        final Label saveLabel = new Label();
+        final TextField saveTextField = new TextField();
+        final Text saveErrorMessage = new Text();
+        Button btnSaveOk = new Button("Save");
+
+        VBox savepopUpVBox = new VBox();
+        savepopUpVBox.getChildren().add(saveLabel);
+        savepopUpVBox.getChildren().add(saveTextField);
+        savepopUpVBox.getChildren().add(btnSaveOk);
+        savepopUpVBox.getChildren().add(saveErrorMessage);
+        //popUpVBox.setStyle("-fx-background-color: #FFFFFF;");
+
+        final Popup savepopup = new Popup();
+        savepopup.setAutoFix(false);
+        savepopup.setHideOnEscape(true);
+        savepopup.getContent().addAll(savepopUpVBox);
+        savepopup.setX(250);
+        savepopup.setY(175);
+
+        btnSaveOk.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent t) {
+                if (saveTextField.getText().equals("")) {
+                    saveErrorMessage.setText("Please enter a Filename.");
+                    saveErrorMessage.setFill(Color.FIREBRICK);
+                }else{
+                    puzzle.savePuzzle(saveTextField.getText());
+                    savepopup.hide();
+                }
+            }
+        });
+// end Savepopup
+        Button btnSave = new Button();
+        btnSave.setText("Save Puzzle");
+        btnSave.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                //TODO: Check if Puzzle is okay 'n stuff.
+                puzzle.print();
+                savepopup.show(primaryStage);
+            }
+        });
 
 
         final GridPane gameGrid = new GridPane();
@@ -343,9 +393,27 @@ public class GameVC_2 {
             }
         }
 
+        Button btnBack = new Button();
+        btnBack.setText("back");
+        btnBack.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent t) {
+                MainVC main = new MainVC(primaryStage);
+                main.show(primaryStage);
+            }
+        });
+
+        GridPane lowerBtn = new GridPane();
+        lowerBtn.add(cbColor,0,0);
+        lowerBtn.add(btnSave,1,0);
+        lowerBtn.add(btnBack,2,0);
+        lowerBtn.setHgap(25);
+        lowerBtn.setAlignment(Pos.BASELINE_CENTER);
         rootGrid.add(btnGrid, 0, 0);
         rootGrid.add(gameGrid, 0, 1);
-        rootGrid.add(cbColor,0,2);
+        rootGrid.add(lowerBtn, 0, 2);
+
 
         primaryStage.setTitle("Satogaeri");
         primaryStage.setScene(scene);
