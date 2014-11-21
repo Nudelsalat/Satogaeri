@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 
@@ -48,7 +49,7 @@ public class Puzzles {
 
             @Override
             public void handle(ActionEvent event) {
-                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles\\sakamoto"));
+                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"sakamoto"));
                 gameVC.show(primarystage);
             }
         });
@@ -57,7 +58,7 @@ public class Puzzles {
 
             @Override
             public void handle(ActionEvent event) {
-                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles\\aquablue"));
+                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"aquablue"));
                 gameVC.show(primarystage);
             }
         });
@@ -85,7 +86,7 @@ public class Puzzles {
 
             @Override
             public void handle(ActionEvent event) {
-                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles\\alkaline"));
+                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"alkaline"));
                 gameVC.show(primarystage);
             }
         });
@@ -94,7 +95,7 @@ public class Puzzles {
 
             @Override
             public void handle(ActionEvent event) {
-                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles\\casty"));
+                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"casty"));
                 gameVC.show(primarystage);
             }
         });
@@ -103,7 +104,7 @@ public class Puzzles {
 
             @Override
             public void handle(ActionEvent event) {
-                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles\\cubic_function"));
+                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"cubic_function"));
                 gameVC.show(primarystage);
             }
         });
@@ -112,7 +113,7 @@ public class Puzzles {
 
             @Override
             public void handle(ActionEvent event) {
-                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles\\z_h"));
+                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"z_h"));
                 gameVC.show(primarystage);
             }
         });
@@ -141,7 +142,7 @@ public class Puzzles {
 
             @Override
             public void handle(ActionEvent event) {
-                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles\\t_karino"));
+                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"t_karino"));
                 gameVC.show(primarystage);
             }
         });
@@ -149,7 +150,7 @@ public class Puzzles {
 
             @Override
             public void handle(ActionEvent event) {
-                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles\\minus_4"));
+                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"minus_4"));
                 gameVC.show(primarystage);
             }
         });
@@ -157,7 +158,7 @@ public class Puzzles {
 
             @Override
             public void handle(ActionEvent event) {
-                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles\\aiko"));
+                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"aiko"));
                 gameVC.show(primarystage);
             }
         });
@@ -165,7 +166,7 @@ public class Puzzles {
 
             @Override
             public void handle(ActionEvent event) {
-                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles\\bay_wolf_jr"));
+                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"bay_wolf_jr"));
                 gameVC.show(primarystage);
             }
         });

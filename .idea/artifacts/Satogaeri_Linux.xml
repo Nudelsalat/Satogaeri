@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact type="javafx" name="Satogaeri_Linux">
-    <output-path>$PROJECT_DIR$/out/artifacts/Satogaeri_Linux</output-path>
+  <artifact type="javafx" name="Satogaeri_linux">
+    <output-path>$PROJECT_DIR$/out/artifacts/Satogaeri_linux</output-path>
     <properties id="javafx-properties">
       <options>
         <option name="appClass" value="sample.Main" />
