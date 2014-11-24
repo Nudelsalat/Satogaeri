@@ -239,7 +239,7 @@ public class DrawVC{
 
             @Override
             public void handle(ActionEvent t) {
-                MainVC main = new MainVC(primaryStage);
+                MainVC main = new MainVC(primaryStage,puzzle.getPath());
                 main.show(primaryStage);
             }
         });
@@ -424,10 +424,12 @@ public class DrawVC{
     public Pair[] getAllCircles() {
 
         List<Pair> allCircles = new LinkedList<Pair>();
-
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
+        System.out.println("circle addddinnnng");
+        for (int y = 0; y < puzzle.getHeight(); y++) {
+            for (int x = 0; x < puzzle.getWidth(); x++) {
+                System.out.println("trace: "+puzzle.getCircle_trace(x, y)+ " Circle value: "+puzzle.getCircle_value(x,y));
                 if (puzzle.getCircle_trace(x, y) > 0 && puzzle.getCircle_value(x,y)!=-1) {
+                    System.out.println("circle added: "+x + " "+y);
                     allCircles.add(new Pair(x, y));
                 }
             }

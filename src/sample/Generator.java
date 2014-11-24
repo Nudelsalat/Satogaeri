@@ -24,7 +24,7 @@ import javafx.stage.Stage;
 public class Generator{
     Scene scene;
 
-    public Generator(final Stage primaryStage){
+    public Generator(final Stage primaryStage, final String path){
         Button generate = new Button("generate");
         HBox hbBtn = new HBox(10);
         hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
@@ -84,7 +84,7 @@ public class Generator{
                     action_target.setFill(Color.FIREBRICK);
                     action_target.setText("Generation in progress...");
                     //TODO: start the generation && maybe check if the number is exorbitant high...
-                    Solver.Generator gen = new Solver.Generator(Integer.parseInt(width_input),Integer.parseInt(height_input), Double.parseDouble(prop_input));
+                    Solver.Generator gen = new Solver.Generator(Integer.parseInt(width_input),Integer.parseInt(height_input), Double.parseDouble(prop_input),path);
                     Puzzle puzzle = gen.getPuzzle();
                     GameVC_2 gameVC = new GameVC_2(primaryStage, puzzle);
                     gameVC.show(primaryStage);

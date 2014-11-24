@@ -8,7 +8,7 @@ public class Main_Testing {
         //System.setOut(new PrintStream(new FileOutputStream("../CVC4/cvc4-1.3-win32-opt.txt")));
 
         // Satogaeri: Medium; Author: Z_H
-        Puzzle puzzle = new Puzzle(5,10);
+        Puzzle puzzle = new Puzzle(5,10,"cvc4-1.3-win32-opt.exe --lang smt -m --statistics");
 
         Pair[] country1 = new Pair[5];
         country1[0] = new Pair(0,0);

@@ -6,7 +6,7 @@ package Solver;
 public class MainEasySakamoto {
         public static void main(String[] args) {
             // Satogaeri: Easy; Author: Sakamoto Nobuyuki
-            Puzzle puzzle = new Puzzle(10, 10);
+            Puzzle puzzle = new Puzzle(10, 10,"C:\\Users\\Cloud\\Studium\\SS 2014\\Bachelor thesis\\Satogaeri\\cvc4\\cvc4-1.3-win32-opt.exe --lang smt -m --statistics");
 
 
             puzzle.setCountryBlock(new Pair(0,0), new Pair(1,4), 1);

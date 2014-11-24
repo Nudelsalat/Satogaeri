@@ -12,13 +12,13 @@ public class Generator {
     private int height;
     private double countrySize = 0.7;
 
-    public Generator(int width, int height, double countrySize) {
+    public Generator(int width, int height, double countrySize, String pathSolver) {
         this.width = width;
         this.height = height;
         this.countrySize = countrySize;
         int countryID = 1;
 
-        puzzle = new Puzzle(width,height);
+        puzzle = new Puzzle(width,height,pathSolver);
 
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {

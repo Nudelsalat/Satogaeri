@@ -21,10 +21,11 @@ import java.io.ObjectInputStream;
  */
 public class Puzzles {
 
+
     Scene scene;
     Stage primarystage;
 
-    public Puzzles(final Stage primarystage){
+    public Puzzles(final Stage primarystage, final String path){
 
         this.primarystage = primarystage;
         Button easy = new Button("easy");
@@ -205,7 +206,7 @@ public class Puzzles {
 
             @Override
             public void handle(ActionEvent event) {
-                MainVC main = new MainVC(primarystage);
+                MainVC main = new MainVC(primarystage,path);
                 main.show(primarystage);
             }
         });

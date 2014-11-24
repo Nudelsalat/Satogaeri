@@ -10,7 +10,7 @@ public class Main extends Application {
 
     @Override
     public void start(final Stage primaryStage) throws Exception{
-        MainVC main = new MainVC(primaryStage);
+        ChooseSolverVC main = new ChooseSolverVC(primaryStage);
         main.show(primaryStage);
     }
 

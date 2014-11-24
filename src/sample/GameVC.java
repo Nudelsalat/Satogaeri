@@ -34,7 +34,7 @@ public class GameVC extends Application {
 
     public Puzzle EasyAquabluePuzzle(){
         // Satogaeri: Easy; Author: Aquablue
-        Puzzle puzzle = new Puzzle(10, 10);
+        Puzzle puzzle = new Puzzle(10, 10,"cvc4-1.3-win32-opt.exe --lang smt -m --statistics");
 
         Pair[] country1 = new Pair[4];
         country1[0] = new Pair(0,0);

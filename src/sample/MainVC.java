@@ -24,7 +24,7 @@ public class MainVC{
     private Stage primaryStage;
 
     
-    MainVC(final Stage primaryStage){
+    MainVC(final Stage primaryStage, final String path){
         this.primaryStage = primaryStage;
         Button new_game = new Button();
         Button generate = new Button();
@@ -35,7 +35,7 @@ public class MainVC{
 
             @Override
             public void handle(ActionEvent event) {
-                Puzzles puzzles = new Puzzles(primaryStage);
+                Puzzles puzzles = new Puzzles(primaryStage,path);
                 puzzles.show(primaryStage);
                 System.out.println("game in progress...");
             }
@@ -46,7 +46,7 @@ public class MainVC{
 
             @Override
             public void handle(ActionEvent event) {
-                Generator generator = new Generator(primaryStage);
+                Generator generator = new Generator(primaryStage,path);
                 generator.show(primaryStage);
                 }
         });
@@ -56,7 +56,7 @@ public class MainVC{
 
             @Override
             public void handle(ActionEvent event) {
-                Drawing drawing = new Drawing(primaryStage);
+                Drawing drawing = new Drawing(primaryStage,path);
                 drawing.show(primaryStage);
             }
         });

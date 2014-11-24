@@ -11,7 +11,7 @@ public class MainMediumZ_H {
         //System.setOut(new PrintStream(new FileOutputStream("../CVC4/cvc4-1.3-win32-opt.txt")));
 
         // Satogaeri: Medium; Author: Z_H
-        Puzzle puzzle = new Puzzle(10,10);
+        Puzzle puzzle = new Puzzle(10,10,"C:\\Users\\Cloud\\Studium\\SS 2014\\Bachelor thesis\\Satogaeri\\cvc4\\cvc4-1.3-win32-opt.exe --lang smt -m --statistics");
 
         puzzle.setCountryBlock(new Pair(0,0), new Pair(0,2), 1);
         puzzle.setCountryBlock(new Pair(1,0), new Pair(3,1), 2);

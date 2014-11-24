@@ -11,11 +11,11 @@
   </resources>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Satogaeri.jar" size="196266" download="eager" />
+    <jar href="Satogaeri.jar" size="214885" download="eager" />
   </resources>
-  <applet-desc  width="600" height="400" main-class="com.javafx.main.NoJavaFXFallback"  name="Satogaeri_Linux_v1" >
+  <applet-desc  width="600" height="400" main-class="com.javafx.main.NoJavaFXFallback"  name="Satogaeri_linux_v1" >
     <param name="requiredFXVersion" value="2.2+"/>
   </applet-desc>
-  <jfx:javafx-desc  width="600" height="400" main-class="sample.Main"  name="Satogaeri_Linux_v1" />
+  <jfx:javafx-desc  width="600" height="400" main-class="sample.Main"  name="Satogaeri_linux_v1" />
   <update check="background"/>
 </jnlp>

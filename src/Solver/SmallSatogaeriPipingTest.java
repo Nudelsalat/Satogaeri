@@ -8,7 +8,7 @@ public class SmallSatogaeriPipingTest {
         //System.setOut(new PrintStream(new FileOutputStream("../CVC4/cvc4-1.3-win32-opt.txt")));
 
         // Satogaeri: Medium; Author: Z_H
-        Puzzle puzzle = new Puzzle(3,2);
+        Puzzle puzzle = new Puzzle(3,2,"cvc4-1.3-win32-opt.exe --lang smt -m --statistics");
 
         puzzle.setCountryBlock(new Pair(0,0), new Pair(0,1), 1);
         puzzle.setCountryBlock(new Pair(1,0), new Pair(1,1), 2);

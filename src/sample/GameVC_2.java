@@ -93,7 +93,7 @@ public class GameVC_2 {
             @Override
             public void handle(ActionEvent t) {
                 popup.hide();
-                MainVC main = new MainVC(primaryStage);
+                MainVC main = new MainVC(primaryStage,puzzle.getPath());
                 main.show(primaryStage);
             }
         });
@@ -399,7 +399,7 @@ public class GameVC_2 {
 
             @Override
             public void handle(ActionEvent t) {
-                MainVC main = new MainVC(primaryStage);
+                MainVC main = new MainVC(primaryStage,puzzle.getPath());
                 main.show(primaryStage);
             }
         });

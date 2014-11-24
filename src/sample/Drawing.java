@@ -24,7 +24,7 @@ import javafx.stage.Stage;
 public class Drawing {
     Scene scene;
 
-    public Drawing(final Stage primaryStage){
+    public Drawing(final Stage primaryStage, final String pathSolver){
         Button generate = new Button("Start");
         HBox hbBtn = new HBox(10);
         hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
@@ -71,7 +71,7 @@ public class Drawing {
                     action_target.setText("Width must be a positive Number");
                 } else{
                     //TODO: start the generation && maybe check if the number is exorbitant high...
-                    Puzzle puzzle = new Puzzle(Integer.parseInt(width_input),Integer.parseInt(height_input));
+                    Puzzle puzzle = new Puzzle(Integer.parseInt(width_input),Integer.parseInt(height_input),pathSolver);
                     DrawVC drawVC = new DrawVC(primaryStage, puzzle);
                     drawVC.show(primaryStage);
                 }
