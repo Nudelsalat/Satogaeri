@@ -6,6 +6,7 @@
         <option name="appClass" value="sample.Main" />
         <option name="description" value="" />
         <option name="htmlParamFile" value="" />
+        <option name="nativeBundle" value="rpm" />
         <option name="paramFile" value="" />
         <option name="title" value="Satogaeri" />
         <option name="vendor" value="" />
