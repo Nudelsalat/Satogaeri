@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_satogaeri" default="compile.module.satogaeri">
+  <dirname property="module.satogaeri.basedir" file="${ant.file.module_satogaeri}"/>
+  
+  <property name="module.jdk.home.satogaeri" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.satogaeri" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.satogaeri" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.satogaeri" value="-encoding UTF-8 -source 1.6 -target 1.7 ${compiler.args}"/>
+  
+  <property name="satogaeri.output.dir" value="${module.satogaeri.basedir}/out/production/Satogaeri"/>
+  <property name="satogaeri.testoutput.dir" value="${module.satogaeri.basedir}/out/test/Satogaeri"/>
+  
+  <path id="satogaeri.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="satogaeri.module.production.classpath">
+    <path refid="${module.jdk.classpath.satogaeri}"/>
+  </path>
+  
+  <path id="satogaeri.runtime.production.module.classpath">
+    <pathelement location="${satogaeri.output.dir}"/>
+  </path>
+  
+  <path id="satogaeri.module.classpath">
+    <path refid="${module.jdk.classpath.satogaeri}"/>
+    <pathelement location="${satogaeri.output.dir}"/>
+  </path>
+  
+  <path id="satogaeri.runtime.module.classpath">
+    <pathelement location="${satogaeri.testoutput.dir}"/>
+    <pathelement location="${satogaeri.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.satogaeri">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.satogaeri">
+    <patternset refid="excluded.from.module.satogaeri"/>
+  </patternset>
+  
+  <path id="satogaeri.module.sourcepath">
+    <dirset dir="${module.satogaeri.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.satogaeri" depends="compile.module.satogaeri.production,compile.module.satogaeri.tests" description="Compile module Satogaeri"/>
+  
+  <target name="compile.module.satogaeri.production" depends="register.custom.compilers" description="Compile module Satogaeri; production classes">
+    <mkdir dir="${satogaeri.output.dir}"/>
+    <javac2 destdir="${satogaeri.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.satogaeri}/javac">
+      <compilerarg line="${compiler.args.satogaeri}"/>
+      <bootclasspath refid="satogaeri.module.bootclasspath"/>
+      <classpath refid="satogaeri.module.production.classpath"/>
+      <src refid="satogaeri.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.satogaeri"/>
+    </javac2>
+    
+    <copy todir="${satogaeri.output.dir}">
+      <fileset dir="${module.satogaeri.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.satogaeri.tests" depends="register.custom.compilers,compile.module.satogaeri.production" description="compile module Satogaeri; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.satogaeri" description="cleanup module">
+    <delete dir="${satogaeri.output.dir}"/>
+    <delete dir="${satogaeri.testoutput.dir}"/>
+  </target>
+</project>

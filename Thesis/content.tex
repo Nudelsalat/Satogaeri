@@ -16,7 +16,7 @@ However everything can be improved therefore some thoughts about future optimisa
 Furthermore there was an optional task to prove that the Satogaeri puzzle problem is an NP-complete problem. Unfortunately this point was not fulfilled during the project.
 
 \chapter{Satogaeri} \label{Satogaeri}
-Satogaeri is a logic puzzle published by the Japanese company Nikoli Ltd. in 2002. Satogaeri only made a booklet appearance in Nikoli Vol. 99, Vol. 100 and Vol. 101. However it got revived on nikoli.com in 2013.
+Satogaeri is a logic puzzle published by the Japanese company Nikoli Ltd. in 2002. Satogaeri only made a booklet appearance in Nikoli Vol.\ 99, Vol.\ 100 and Vol.\ 101. However it got revived on nikoli.com in 2013.
 
 \section{Rules}
 The official rules from Nikoi state:
@@ -63,7 +63,7 @@ The \textit{lazy} approach consists of two parts. The first part are theory-spec
 \section{SMT-Library}
 The SMT library (SMT-Lib) was found in 2003 to provide common standards and a library of benchmarks for diverse SMT solvers. With this standards and benchmarks evaluation and comparison of SMT systems should be made easier to give the research a competitive touch, which ultimately should result in advancing the state of the art in SMT. They even organize an annually SMT solver competition (SMT-COMP).
 
-SMT-Lib was greatly useful for this thesis by providing an easily understandable syntax which made many SMT-Solver accessible, like Boolector, CVC4 and MathSAT 5 to name a few. On their web-site\footnote{www.SMT-LIB.org} one can find a long list of solvers supporting SMT-LIB and a separate list of these solvers still under active development.
+SMT-Lib was greatly useful for this thesis by providing an easily understandable syntax which made many SMT solvers accessible, like Boolector, CVC4 and MathSAT 5 to name a few. On their web-site\footnote{www.SMT-LIB.org} one can find a long list of solvers supporting SMT-LIB and a separate list of these solvers still under active development.
 
 \section{Logics}
 SMT-LIB supports a huge variety of different logics. The advantage here is to be able to apply more specialized and therefore more efficient algorithms.
@@ -77,14 +77,14 @@ The meaning of the logics in Figure~\ref{fig:logics} is letter coded. For exampl
 \begin{enumerate}
   \item QF stands for the restriction to quantifier free formulas
   \item IA stands for the theory Ints (Integer Arithmetic)
-  \item L before IA, RA, or IRA stands for the linear fragment of those arithmetics 
+  \item L before IA, RA, or IRA stands for the linear fragment of those logics 
 \end{enumerate}
-So QF\_LIA is an unquantified linear integer arithmetic. In essence, Boolean combinations of inequations between linear polynomials over integer variables. Beside this logic we will also use the QF\_UF logic throughout this project. QF\_UF is the logic of Quantifier-Free Uninterpreted Functions. It incorporates just the Core theory, providing the Bool sort and the various standard operations on Boolean values.
+So QF\_LIA is unquantified linear integer arithmetic. In essence, Boolean combinations of inequations between linear polynomials over integer variables. Beside this logic we will also use the QF\_UF logic throughout this project. QF\_UF is the logic of Quantifier-Free Uninterpreted Functions. It incorporates just the Core theory, providing the Bool sort and the various standard operations on Boolean values.
  
 The whole explanation can be found on the SMT-Lib web-site\footnote{www.SMT-LIB.org} in the section Logics.
 
 \section{CVC4}
-The SMT-Solver used in this project is the Cooperating Validity Checker 4 (CVC4), currently the most novel  successor of the Stanford Validity Checker which was found in 1996. CVC4 is a joined project of the New York University and the University of Iowa.
+The SMT solver used in this project is the Cooperating Validity Checker 4 (CVC4), currently the most novel  successor of the Stanford Validity Checker which was found in 1996. CVC4 is a joined project of the New York University and the University of Iowa.
 
 Supported features are including: several built-in base theories, support of quantifiers and a model generation ability. The latter is a very important requirement for this project at hand.
 
@@ -119,7 +119,7 @@ The first thing to do is to define the logic to be used:
 \begin{lstlisting}
 (set-logic QF_LIA)
 \end{lstlisting}
-In our case it is the unquantified linear integer arithmetic. Simple because we do not need quantifiers nor anything other than simple integer functions. By restricting the search-space for the solver it should be faster in finding a solution.
+In our case it is unquantified linear integer arithmetic. Simple because we do not need quantifiers nor anything other than simple integer functions. By restricting the search-space for the solver it should be faster in finding a solution.
 
 Finally we can start our SMT-interpretation of the Satogaeri puzzle. First of all we define every cell of the puzzle as a variable integer. One can think of the puzzle as a 3-by-3 matrix filled with yet unknown numbers.
 \begin{lstlisting}
@@ -154,10 +154,10 @@ One can think of it as a circle-matrix on top of a country-matrix and both only 
 \section{Country Rules}
 We declared a country-matrix but there are no restrictions on it whatsoever. Next we address the encoding of the rule: `one or several fields combined result in a country. Every country only can be occupied by one circle.'
 
-For example `f1-2' and `f1-3' combined are one country. That means once `f1-2' is occupied `f1-3' is not allowed to accommodate any circles and vice versa. Later on we will define that a circle is a positive natural number, where as the absence of a circle is modelled as `0'. In the SMT syntax it will look like
+For example `f1-2' and `f1-3' combined are one country. That means once `f1-2' is occupied `f1-3' is not allowed to accommodate any circles and vice versa. Later on we will define that a circle is a positive natural number, whereas the absence of a circle is modelled as `0'. In the SMT syntax it will look like
 \begin{lstlisting}
 (assert (or (and (> f1-2 0) (= f1-3 0)) 
-(and (< f1-2 0) (= f1-3 0))))
+	    (and (< f1-2 0) (= f1-3 0))))
 \end{lstlisting}
 Important to state is that the SMT syntax consists only of prefix notations. 
 
@@ -169,19 +169,20 @@ Now we have successfully translated rule number 1 into SMT-syntax for one countr
 
 \begin{lstlisting}
 (assert (or 
-(and (> f1-1 0) (= f1-2 0) (= f1-3 0) (= f2-3 0)) 
-(and (= f1-1 0) (> f1-2 0) (= f1-3 0) (= f2-3 0)) 
-(and (= f1-1 0) (= f1-2 0) (> f1-3 0) (= f2-3 0)) 
-(and (= f1-1 0) (= f1-2 0) (= f1-3 0) (> f2-3 0))))
+	(and (> f1-1 0) (= f1-2 0) (= f1-3 0) (= f2-3 0)) 
+	(and (= f1-1 0) (> f1-2 0) (= f1-3 0) (= f2-3 0)) 
+	(and (= f1-1 0) (= f1-2 0) (> f1-3 0) (= f2-3 0)) 
+	(and (= f1-1 0) (= f1-2 0) (= f1-3 0) (> f2-3 0))))
 
-(assert (or (and (> f2-2 0) (= f3-2 0) (= f3-3 0)) 
-(and (= f2-2 0) (> f3-2 0) (= f3-3 0)) 
-(and (= f2-2 0) (= f3-2 0) (> f3-3 0))))
+(assert (or 
+	(and (> f2-2 0) (= f3-2 0) (= f3-3 0)) 
+	(and (= f2-2 0) (> f3-2 0) (= f3-3 0)) 
+	(and (= f2-2 0) (= f3-2 0) (> f3-3 0))))
 \end{lstlisting}
 And we are done with the country-matrix.
 
 \section{Circle Rules}
-First thing we do is to assign every circle with its own ID.
+The first thing we do is to assign every circle with its own ID.
 \begin{lstlisting}
 (assert (and (= c1-1 1) (= c1-3 2) (= c3-1 3)))
 \end{lstlisting}
@@ -196,8 +197,9 @@ We have our first interaction with the country-matrix and the circle-matrix. Wit
 
 Next is the `2'-circle in c1-3. This circle can move to 2 positions either to c1-1 or c3-3 because of its movement-range of 2.
 \begin{lstlisting}
-(assert (or (and (= c3-2 c3-1) (= c3-3 c3-1) (= f3-3 c3-1)) 
-(and (= c2-1 c3-1) (= c1-1 c3-1) (= f1-1 c3-1))))
+(assert (or 
+	(and (= c3-2 c3-1) (= c3-3 c3-1) (= f3-3 c3-1)) 
+	(and (= c2-1 c3-1) (= c1-1 c3-1) (= f1-1 c3-1))))
 \end{lstlisting}
 In this case we not only override the position in the country-matrix but also all the fields we pass in the circle-matrix, because rule 3 states: `The circles cannot cross the tracks of other circles and cannot go over other circles.' By leaving the ID of every circle in the fields they passed we basically leave a track which is not allowed to be crossed.
 
@@ -212,8 +214,8 @@ It is worth mentioning that the final solver is smart enough to detect simple co
 In this case moving to c1-3 and moving to c3-1 is not an option
 \begin{lstlisting}
 (assert (or (and (= f1-1 c1-1)) 
-(and (= c1-2 c1-1) (= f1-2 c1-1))
-(and (= c2-1 c1-1) (= f2-1 c1-1))))
+	    (and (= c1-2 c1-1) (= f1-2 c1-1))
+	    (and (= c2-1 c1-1) (= f2-1 c1-1))))
 \end{lstlisting}
 Now we are done. The Satogaeri puzzle of Figure~\ref{fig:solver_example} is translated into SMT.
 
@@ -307,8 +309,8 @@ Now we model the country restriction. Last time we said: `If a field is greater 
 
 For example:
 \begin{lstlisting}
-((assert (or (and (distinct f2-1 zero) (= f3-1 zero)) 
-(and (= f2-1 zero) (distinct f3-1 zero)))))
+(assert (or (and (distinct f2-1 zero) (= f3-1 zero)) 
+	    (and (= f2-1 zero) (distinct f3-1 zero))))
 \end{lstlisting}
 
 Our next step will be to distinguish all circles and zero from each other. Last time we did that via IDs but this time we simply use distinct:
@@ -319,13 +321,20 @@ Our next step will be to distinguish all circles and zero from each other. Last 
 All that is left is the circle trace rule which is encoded exactly like what we did with the QF\_LIA logic. We use the `empty'-circle as an example:
 \begin{lstlisting}
 (assert (or (= f1-1 c1-1) 
-(and (= c1-2 c1-1) (= f1-2 c1-1)) 
-(and (= c2-1 c1-1) (= f2-1 c1-1))))
+	(and (= c1-2 c1-1) (= f1-2 c1-1)) 
+	(and (= c2-1 c1-1) (= f2-1 c1-1))))
 \end{lstlisting}
 
-The \emph{(check-sat)} and the \emph{(get-value ())} command work exactly like before. To see the full encoding in QF\_UF and the corresponding output please go to the Appendix section.
+The \emph{(check-sat)} and the \emph{(get-value ())} command work exactly like before. However the output looks a bit different:
+\begin{lstlisting}
+((f1-1 @uc_A_0))
+((f1-2 @uc_A_0))
+((f1-3 @uc_A_2))
+...
+\end{lstlisting}
+The difference between the fields is shown via numbers once again, but this time we did not mark the circles with IDs which means if we want to know which circle is represented by which number we need to consult the circle-matrix and trace the numbers back from the occupied country to the origin of the circle. To hear more about that and to find the full encoding QF\_UF please consult the Appendix section.
 
-To see how the QF\_UF encoding held up against the QF\_LIA encoding time-wise please got to Section~\ref{Statistics}.
+To see how the QF\_UF encoding held up against the QF\_LIA encoding time-wise please consult Section~\ref{Statistics}.
 
 \chapter{Generator} \label{The Generator}
 \begin{figure}
@@ -334,7 +343,7 @@ To see how the QF\_UF encoding held up against the QF\_LIA encoding time-wise pl
   \caption{Generator graphical interface}
   \label{fig:generator}
 \end{figure}
-The Generator should be able to generate random Satogaeri puzzles with varying size and difficulty. The user enters the width and height of the desired puzzle and another parameter called Countrysize which is a rational number between 0.0 and 1.0. (Figure~\ref{fig:generator}) The higher the value of Countrysize the more likely it is to get larger countries. The idea was that the more smaller countries are generated the more difficult the puzzle may get. Unfortunately it contributes very little to the difficulty of the generated puzzle.
+The Generator should be able to generate random Satogaeri puzzles with varying size and difficulty. The user enters the width and height of the desired puzzle and another parameter called Countrysize which is a rational number between 0.0 and 1.0 (Figure~\ref{fig:generator}). The higher the value of Countrysize the more likely it is to get larger countries. The idea was that the more smaller countries are generated the more difficult the puzzle may get. Unfortunately it contributes very little to the difficulty of the generated puzzle.
 
 \section{Country Generation}
 As mentioned before the user defines the width and height of the puzzle. Now the program will take the topmost leftmost field which is not yet involved in any country and will declare it as a new country. With the probability of \emph{Countrysize} each of the four connecting fields (top, bottom, left, right) will be added to this newly created country. Next the four connecting fields of each new member have a chance of \emph{\((previous\_chance)^2\)} to be added too, until there are no new members.
@@ -342,7 +351,7 @@ As mentioned before the user defines the width and height of the puzzle. Now the
 Theoretically with this algorithm it is possible to generate countries in every conceivable shape, however some general shapes are more likely than others. And a very small Countrysize-value will end up in puzzles with a lot of countries consisting only of one field which are too easy.
 
 \section{Circle Generation}
-After we know the layout of all the countries we can start adding Circles. The Generator now randomly picks one field in every country and declares it as the home field of the circle. At this point we do have the solution to the upcoming puzzle. The next step is to shuffle these circles around.
+After we know the layout of all the countries we can start adding circles. The Generator now randomly picks one field in every country and declares it as the home field of the circle. At this point we do have the solution to the upcoming puzzle. The next step is to shuffle these circles around.
 
 Therefore the Generator randomly picks a direction in which the circle should move and calculates the distance to the next obstacle (e.g.: the boarder of the puzzle, another circle, the track of another circle). Another random number will be picked between 1 and the distance to the next obstacle and this indicates the movement of this circle. 
 
@@ -357,9 +366,9 @@ Now everything is generated except `empty'-circles. Those are not be picked rand
 If one of these requirements is violated it will break the uniqueness of the puzzle.
 
 \section{Verifying Uniqueness}
-Uniqueness of the solution to a puzzle is very important for the joy of play. In other words the Generator must assure that the puzzle only has one solution. This is done by simply giving the puzzle to the solver with an additional constrain which negates the solution, and if the solver finds a different solution the uniqueness of the puzzle is violated.
+Uniqueness of the solution to a puzzle is very important for the joy of play. In other words the Generator must assure that the puzzle only has one solution. This is done by simply giving the puzzle to the solver with an additional constraint which negates the solution, and if the solver finds a different solution the uniqueness of the puzzle is violated.
 
-But how to model this additional constrain in SMT? To answer that we will look again at the puzzle in Figure~\ref{fig:solver_example}. But this time we need the solution to this puzzle which looks like in Figure~\ref{fig:solver_example_solution}.
+But how to model this additional constraint in SMT? To answer that we will look again at the puzzle in Figure~\ref{fig:solver_example}. But this time we need the solution to this puzzle which looks like in Figure~\ref{fig:solver_example_solution}.
 \begin{figure}
   \centering
   \includegraphics[scale=1]{Pictures/solver_example_solution.png} 
@@ -368,7 +377,9 @@ But how to model this additional constrain in SMT? To answer that we will look a
 \end{figure}
 We remember that for example the `empty'-circle had the ID 1 and now occupies the field in f2-1. So all we have to do is to tell the home field f2-1 of the `empty'-circle that the ID 1 is not allowed to land there. And the same goes for the rest of the circles. In the SMT syntax it will look like this:
 \begin{lstlisting}
-(asser (or (not (= f2-1 1)) (not (= f1-3 2)) (not (= f3-3 3))))
+(asser (or (not (= f2-1 1)) 
+	   (not (= f1-3 2)) 
+	   (not (= f3-3 3))))
 \end{lstlisting}
 If this line is added to our previous example of SMT encoding we have the same SMT problem as before however the solution found in Figure~\ref{fig:solver_example_solution} is prohibited.
 
@@ -410,7 +421,7 @@ As can be seen in Figure~\ref{fig:game} the game also consists of four buttons.
 \subsection{Generator} will lead to the generator menu which was already shown and explained in Section~\ref{The Generator}.
 
 \subsection{Drawing} leads to similar menu like in Generator where one can choose the width and height of the puzzle and this is followed by a screen similar to the one in Figure~\ref{fig:drawing_screen}.
-Now one can draw ones own puzzle. If in \emph{Draw Country Mode} one can add countries via clicking into a field and hovering over all fields which should be part of this country. By releasing the left mouse button the sequence is over and ever 'added' field will turn green and the country will receive its boarders. Fields that are already in a country can be easily overwritten by hovering over them whilst creating a different country.
+Now one can draw one's own puzzle. If in \emph{Draw Country Mode} one can add countries via clicking into a field and hovering over all fields which should be part of this country. By releasing the left mouse button the sequence is over and ever 'added' field will turn green and the country will receive its boarders. Fields that are already in a country can be easily overwritten by hovering over them whilst creating a different country.
 
 In \emph{Draw Circle Mode} one can click on the desired field and a pop-up will arise in which one can enter positive numbers or '\#' to enter a circle with the given movement value to this field. If a circle is misplaced one can re-click the field and by typing a negative number the circle will be removed.
 

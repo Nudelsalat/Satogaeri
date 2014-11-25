@@ -213,7 +213,7 @@ public class DrawVC{
                 }
                 puzzle.print();
                 unsolved = puzzle.clonePuzzle();
-                puzzle.generateSMTPiping();
+                puzzle.generateSMT_QF_UF_Piping();
                 popupSolutionLable.setText("Is this solution unique? "+checkOnlyOneSolution());
                 popupSolution.show(primaryStage);
                 showingSolution = true;
@@ -227,7 +227,6 @@ public class DrawVC{
 
             @Override
             public void handle(ActionEvent event) {
-                //TODO: Check if Puzzle is okay 'n stuff.
                 puzzle.print();
                 savepopup.show(primaryStage);
             }

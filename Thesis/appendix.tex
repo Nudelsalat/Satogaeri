@@ -57,6 +57,7 @@
 (get-value (f3-2))
 (get-value (f3-3))
 
+Output:
 ((f1-1 0))
 ((f1-2 0))
 ((f1-3 3))
@@ -125,6 +126,17 @@
 (get-value (f3-2))
 (get-value (f3-3))
 
+(get-value (c1-1))
+(get-value (c1-2))
+(get-value (c1-3))
+(get-value (c2-1))
+(get-value (c2-2))
+(get-value (c2-3))
+(get-value (c3-1))
+(get-value (c3-2))
+(get-value (c3-3))
+
+Output:
 ((f1-1 @uc_A_0))
 ((f1-2 @uc_A_0))
 ((f1-3 @uc_A_2))
@@ -134,4 +146,20 @@
 ((f3-1 @uc_A_0))
 ((f3-2 @uc_A_0))
 ((f3-3 @uc_A_3))
+
+((c1-1 @uc_A_1))
+((c1-2 @uc_A_1))
+((c1-3 @uc_A_2))
+((c2-1 @uc_A_1))
+((c2-2 @uc_A_0))
+((c2-3 @uc_A_0))
+((c3-1 @uc_A_3))
+((c3-2 @uc_A_3))
+((c3-3 @uc_A_3))
 \end{lstlisting}
+
+We know that in f3-3 the circle with the `ID' 3 landed. in the circle-matrix we can trace this `ID' back via c3-3, c3-2 to c3-1. In other words the circle which occupied f3-3 had it's origin in c3-1, which is the `2'-circle.
+
+One can also observe that c1-1, c1-2 and c2-1 share the same `ID' which makes little sense, for a circle cannot move in curves. This is because c2-1 actually never was visited by the `\#'-circle but the solver will give unused fields in the circle-matrix `IDs' at random. Like stated earlier in most cases it will be `0' however there is a chance that it is a different number.
+
+However this is not a real problem, for as long as one tracks from the occupied field back to the origin one will always determine which circle belongs to which country.
