@@ -33,10 +33,8 @@ public class MainEasySakamoto {
             puzzle.setCircle(new Pair(6,6), 3, 10);
             puzzle.setCircle(new Pair(8,6), 2, 11);
 
-            puzzle.print();
             puzzle.savePuzzle("sakamoto");
+            puzzle.generateSMT_QF_UF_Piping();
             puzzle.generateSMTPiping();
-
-            puzzle.print();
         }
 }

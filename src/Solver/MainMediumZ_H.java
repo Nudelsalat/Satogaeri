@@ -89,11 +89,10 @@ public class MainMediumZ_H {
         puzzle.setCircle(new Pair(5,9), -2, 28);
         puzzle.setCircle(new Pair(7,9), -2, 29);
 
-        puzzle.print();
+
         puzzle.savePuzzle("z_h");
+        puzzle.generateSMT_QF_UF_Piping();
         puzzle.generateSMTPiping();
 
-        puzzle.print();
-        // TODO: Pipe output to CVC4 and get that output... http://stackoverflow.com/questions/18669245/how-can-i-pipe-the-java-console-output-to-file-without-java-web-start
     }
 }

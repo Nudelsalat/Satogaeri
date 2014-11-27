@@ -274,10 +274,9 @@ public class MainMediumCasty {
             puzzle.setCircle(new Pair(15,9),-2, 35);
             puzzle.setCircle(new Pair(17,9),-2, 36);
 
-            puzzle.print();
             puzzle.savePuzzle("casty");
+            puzzle.generateSMT_QF_UF_Piping();
             puzzle.generateSMTPiping();
 
-            puzzle.print();
         }
 }

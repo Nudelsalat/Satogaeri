@@ -213,7 +213,7 @@ public class DrawVC{
                 }
                 puzzle.print();
                 unsolved = puzzle.clonePuzzle();
-                puzzle.generateSMT_QF_UF_Piping();
+                puzzle.generateSMTPiping();
                 popupSolutionLable.setText("Is this solution unique? "+checkOnlyOneSolution());
                 popupSolution.show(primaryStage);
                 showingSolution = true;

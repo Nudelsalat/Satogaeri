@@ -253,10 +253,9 @@ public class MainHardAiko {
             puzzle.setCircle(new Pair(29,19), 1, 120);
 
 
-            puzzle.print();
             puzzle.savePuzzle("aiko");
+            puzzle.generateSMT_QF_UF_Piping();
             puzzle.generateSMTPiping();
 
-            puzzle.print();
         }
 }

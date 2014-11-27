@@ -72,10 +72,9 @@ public class MainMediumAlkaline {
             puzzle.setCircle(new Pair(11,9),-2, 29);
             puzzle.setCircle(new Pair(17,9), 4, 30);
 
-            puzzle.print();
             puzzle.savePuzzle("alkaline");
+            puzzle.generateSMT_QF_UF_Piping();
             puzzle.generateSMTPiping();
 
-            puzzle.print();
         }
 }
