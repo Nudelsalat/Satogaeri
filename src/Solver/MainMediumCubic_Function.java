@@ -14,7 +14,7 @@ public class MainMediumCubic_Function {
 
         try{
 // Open file to read from, named SavedObj.sav.
-            FileInputStream loadFile = new FileInputStream("test.pzl");
+            FileInputStream loadFile = new FileInputStream("CubicFunction.pzl");
 
 // Create an ObjectInputStream to get objects from save file.
             ObjectInputStream load = new ObjectInputStream(loadFile);
@@ -26,7 +26,8 @@ public class MainMediumCubic_Function {
             puzzle = (Puzzle) load.readObject();
 // Close the file.
             load.close(); // This also closes saveFile.
-            puzzle.print();
+            puzzle.generateSMT_QF_UF_Piping();
+            puzzle.generateSMTPiping();
         }
         catch(Exception exc){
             exc.printStackTrace(); // If there was an error, print the info.
