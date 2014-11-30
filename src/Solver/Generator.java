@@ -30,7 +30,11 @@ public class Generator {
         }
 
         shuffled = new Shuffler(puzzle,width,height);
+
         puzzle.print();
+
+        Puzzle copy = puzzle.clonePuzzle();
+        copy.generateSMTPiping();
     }
 
     public Puzzle getPuzzle(){
