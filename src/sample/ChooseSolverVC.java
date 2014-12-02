@@ -35,7 +35,7 @@ public class ChooseSolverVC {
         final Label parameterLabel = new Label();
         parameterLabel.setText("Additional Parameters:");
         final TextField parameterTextField = new TextField();
-        final Text parameterText = new Text("For example: \nfor CVC4 \"--lang smt -m\" is mandetory.");
+        final Text parameterText = new Text("For example: \nfor CVC4 \"--lang smt -m\" is mandatory.");
 
         final Text errorMessage = new Text();
         Button btnOk = new Button("OK");
@@ -76,7 +76,7 @@ public class ChooseSolverVC {
             }
             });
         GridPane root = new GridPane();
-        Text title = new Text(1.5,2.5,"Choos your Solver");
+        Text title = new Text(1.5,2.5,"Choose your Solver");
         title.setTextAlignment(TextAlignment.CENTER);
         title.setFill(Color.BLUEVIOLET);
         title.setFont(Font.font(26));

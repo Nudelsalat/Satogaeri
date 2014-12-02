@@ -1,8 +1,6 @@
 package sample;
 
-import Solver.Pair;
 import Solver.Puzzle;
-import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -32,16 +30,17 @@ import javafx.stage.Stage;
  */
 public class GameVC_2 {
 
-    Puzzle puzzle;
+    Puzzle puzzle1;
     Puzzle startLayoutPuzzle;
     Puzzle clone;
 
     Stage primaryStage;
     Boolean trymode = false;
+    Boolean showingSolution = false;
     Boolean coloredCountries = true;
 
     public GameVC_2(final Stage primaryStage, Puzzle puzzle) {
-        this.puzzle = puzzle;
+        this.puzzle1 = puzzle;
         this.primaryStage = primaryStage;
         startLayoutPuzzle = puzzle.clonePuzzle();
     }
@@ -99,6 +98,29 @@ public class GameVC_2 {
         });
 //### winning popup end ###
 
+        Button btnSolutionOk = new Button("Back");
+        btnSolutionOk.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent t) {
+                showingSolution = false;
+                draw(puzzle1, primaryStage);
+            }
+        });
+
+        Button btnSolve = new Button();
+        btnSolve.setText("Solve Puzzle");
+        btnSolve.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                puzzle1 = puzzle;
+                clone = startLayoutPuzzle.clonePuzzle();
+                clone.generateSMTPiping();
+                showingSolution = true;
+                draw(clone, primaryStage);
+            }
+        });
 
 //Popup
         final Label saveLabel = new Label();
@@ -134,6 +156,7 @@ public class GameVC_2 {
             }
         });
 // end Savepopup
+
         Button btnSave = new Button();
         btnSave.setText("Save Puzzle");
         btnSave.setOnAction(new EventHandler<ActionEvent>() {
@@ -276,6 +299,21 @@ public class GameVC_2 {
                     }
                     drag_to.setId("f" + x + "-" + y);
                     gameGrid.add(drag_to, x, y);
+
+                    drag_to.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                        public void handle(MouseEvent event) {
+                            int x = ((int) drag_to.getX())/2;
+                            int y = ((int) drag_to.getY())/2;
+                            if (puzzle.getCircle_value(x,y) == 0 ||
+                                    puzzle.getCircle_value(x,y) == -2){
+                                puzzle.move(x,y,x,y);
+                                puzzle.logListAdd(x,y,x,y);
+                                draw(puzzle, primaryStage);
+                            }
+                            event.consume();
+                        }
+                    });
+
                     drag_to.setOnDragOver(new EventHandler<DragEvent>() {
                         public void handle(DragEvent event) {
                 /* data is dragged over the target */
@@ -359,6 +397,22 @@ public class GameVC_2 {
                         // TODO: center does not work
                         source.setTextAlignment(TextAlignment.CENTER);
                         source.setId("X:" + x + "Y:" + y);
+                        source.setX(x);
+                        source.setY(y);
+                        source.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                            public void handle(MouseEvent event) {
+                                int x = ((int) source.getX())/2;
+                                int y = ((int) source.getY())/2;
+                                if (puzzle.getCircle_value(x,y) == 0 ||
+                                        puzzle.getCircle_value(x,y) == -2){
+                                    puzzle.move(x,y,x,y);
+                                    puzzle.logListAdd(x,y,x,y);
+                                    draw(puzzle, primaryStage);
+                                }
+                                event.consume();
+                            }
+                        });
+
                         source.setOnDragDetected(new EventHandler<MouseEvent>() {
                             public void handle(MouseEvent event) {
                     /* drag was detected, start drag-and-drop gesture*/
@@ -405,12 +459,19 @@ public class GameVC_2 {
         });
 
         GridPane lowerBtn = new GridPane();
-        lowerBtn.add(cbColor,0,0);
-        lowerBtn.add(btnSave,1,0);
-        lowerBtn.add(btnBack,2,0);
+        if(!showingSolution) {
+            lowerBtn.add(cbColor, 0, 0);
+            lowerBtn.add(btnSolve, 1, 0);
+            lowerBtn.add(btnSave, 2, 0);
+            lowerBtn.add(btnBack, 3, 0);
+        } else {
+            lowerBtn.add(btnSolutionOk,0,0);
+        }
         lowerBtn.setHgap(25);
         lowerBtn.setAlignment(Pos.BASELINE_CENTER);
-        rootGrid.add(btnGrid, 0, 0);
+        if(!showingSolution) {
+            rootGrid.add(btnGrid, 0, 0);
+        }
         rootGrid.add(gameGrid, 0, 1);
         rootGrid.add(lowerBtn, 0, 2);
 
@@ -423,7 +484,7 @@ public class GameVC_2 {
 
     public void show(Stage stage){
         primaryStage = stage;
-        draw(puzzle,stage);
+        draw(puzzle1,stage);
     }
 
     static public String[] parseResult(String string) {

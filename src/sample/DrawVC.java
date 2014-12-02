@@ -29,8 +29,6 @@ import java.util.List;
  */
 public class DrawVC{
 
-    private int height;
-    private int width;
     private Puzzle puzzle;
     private Puzzle unsolved;
     private int countryCounter = 1;
@@ -59,9 +57,9 @@ public class DrawVC{
         final Label hello = new Label();
         final TextField popupTextfield = new TextField();
         final Text errorMessage = new Text();
-        Button ok = new Button("ok");
+        final Button ok = new Button("ok");
 
-        VBox popUpVBox = new VBox();
+        final VBox popUpVBox = new VBox();
         popUpVBox.getChildren().add(hello);
         popUpVBox.getChildren().add(popupTextfield);
         popUpVBox.getChildren().add(ok);
@@ -75,6 +73,18 @@ public class DrawVC{
         popup.setX(250);
         popup.setY(175);
 
+        popupTextfield.setOnKeyPressed(new EventHandler<KeyEvent>()
+        {
+            @Override
+            public void handle(KeyEvent ke)
+            {
+                if (ke.getCode().equals(KeyCode.ENTER))
+                {
+                    ok.fire();
+                }
+            }
+        });
+
         ok.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -85,6 +95,8 @@ public class DrawVC{
                     System.out.println("Next Circle ID= " + circleCounter);
                     popup.hide();
                     draw(puzzle, primaryStage);
+                } else if(popupTextfield.getText().isEmpty()) {
+                    popup.hide();
                 } else {
                     try {
                         input = Integer.parseInt(popupTextfield.getText());
@@ -101,6 +113,7 @@ public class DrawVC{
                         errorMessage.setText("Input has to be Integer or '#' !\n" +
                                 "Negative numbers will do nothing OR delete the current number.");
                         errorMessage.setFill(Color.FIREBRICK);
+                        popUpVBox.setStyle("-fx-background-color: #5100FF;");
                     }
                 }
             }
@@ -356,7 +369,8 @@ public class DrawVC{
 // Circle & Click Part:
                     rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
                         public void handle(MouseEvent event) {
-                            if (drawmode == Drawmode.CIRCLE && !showingSolution) {
+
+                            if (drawmode == Drawmode.CIRCLE && !showingSolution && event.getButton() == MouseButton.PRIMARY) {
                                 if (popup.isShowing()) {
                                     popup.hide();
                                 } else {
@@ -366,6 +380,9 @@ public class DrawVC{
 
                                     rectangle.setFill(Color.RED);
                                 }
+                            } else if(drawmode == Drawmode.CIRCLE && !showingSolution && event.getButton() == MouseButton.SECONDARY) {
+                                puzzle.setCircle(new Pair(((int) rectangle.getX())/2, ((int) rectangle.getY())/2), -1, -1);
+                                draw(puzzle, primaryStage);
                             }
 
                             event.consume();
