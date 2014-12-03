@@ -15,6 +15,7 @@ public class Field implements Serializable {
     private boolean down = false;
     private boolean has_moved = false;
     private boolean is_origin = false;
+    private boolean is_try_mode = false;
     // id of the circle
     private int circle_trace = -1;
     // allowed movement value of the circle
@@ -27,6 +28,14 @@ public class Field implements Serializable {
     public void setCountry(int c, Pair[] neighbors){
         this.neighbors = neighbors;
         country = c;
+    }
+
+    public boolean getTry(){
+        return is_try_mode;
+    }
+
+    public void setTry(boolean bool){
+        is_try_mode = bool;
     }
 
     public int getCountry(){

@@ -20,8 +20,11 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.FileChooser;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
+
+import java.io.File;
 
 /**
  * Created by Cloud on 17.09.2014.
@@ -105,6 +108,51 @@ public class GameVC_2 {
             public void handle(ActionEvent t) {
                 showingSolution = false;
                 draw(puzzle1, primaryStage);
+            }
+        });
+
+//Popup writing SMT
+        final Label writeLabel = new Label();
+        final TextField writeTextField = new TextField();
+        final Text writeErrorMessage = new Text();
+        Button btnWriterOK = new Button("Ok");
+
+        VBox writepopUpVBox = new VBox();
+        writepopUpVBox.getChildren().add(writeLabel);
+        writepopUpVBox.getChildren().add(writeTextField);
+        writepopUpVBox.getChildren().add(btnWriterOK);
+        writepopUpVBox.getChildren().add(writeErrorMessage);
+        //popUpVBox.setStyle("-fx-background-color: #FFFFFF;");
+
+        final Popup writepopup = new Popup();
+        writepopup.setAutoFix(false);
+        writepopup.setHideOnEscape(true);
+        writepopup.getContent().addAll(writepopUpVBox);
+        writepopup.setX(250);
+        writepopup.setY(175);
+
+        btnWriterOK.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent t) {
+                if (writeTextField.getText().equals("")) {
+                    writeErrorMessage.setText("Please enter a Filename.");
+                    writeErrorMessage.setFill(Color.FIREBRICK);
+                }else{
+                    puzzle.writeIntoFile(writeTextField.getText());
+                    writepopup.hide();
+                }
+            }
+        });
+// end Write smt popup
+
+        Button btnWriter = new Button();
+        btnWriter.setText("SMT to file");
+        btnWriter.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                writepopup.show(primaryStage);
             }
         });
 
@@ -230,6 +278,7 @@ public class GameVC_2 {
             @Override
             public void handle(ActionEvent event) {
                 trymode = false;
+                puzzle.unTry();
                 draw(puzzle, primaryStage);
             }
         });
@@ -242,6 +291,7 @@ public class GameVC_2 {
             public void handle(ActionEvent event) {
                 puzzle.overwritePuzzle(clone);
                 trymode = false;
+                puzzle.unTry();
                 draw(puzzle, primaryStage);
             }
         });
@@ -293,7 +343,11 @@ public class GameVC_2 {
                 } else {
                     final Rectangle drag_to = new Rectangle(x, y, width, height);
                     if (puzzle.getInhabited(x / 2, y / 2) && cbColor.isSelected()) {
-                        drag_to.setFill(Color.LIGHTGREEN);
+                        if(puzzle.getTry(x / 2, y / 2)){
+                            drag_to.setFill(Color.DARKGREEN);
+                        } else {
+                            drag_to.setFill(Color.LIGHTGREEN);
+                        }
                     } else {
                         drag_to.setFill(Color.AQUA);
                     }
@@ -306,7 +360,7 @@ public class GameVC_2 {
                             int y = ((int) drag_to.getY())/2;
                             if (puzzle.getCircle_value(x,y) == 0 ||
                                     puzzle.getCircle_value(x,y) == -2){
-                                puzzle.move(x,y,x,y);
+                                puzzle.move(x,y,x,y,trymode);
                                 puzzle.logListAdd(x,y,x,y);
                                 draw(puzzle, primaryStage);
                             }
@@ -365,7 +419,7 @@ public class GameVC_2 {
                                 //System.out.println("string is: " + db.getString());
                                 String[] circlevalue = parseResult(db.getString());
                                 //System.out.println(circlevalue[0] + " " + circlevalue[1]);
-                                success = puzzle.move(Integer.parseInt(circlevalue[0]) / 2, Integer.parseInt(circlevalue[1]) / 2, ((int) drag_to.getX()) / 2, ((int) drag_to.getY()) / 2);
+                                success = puzzle.move(Integer.parseInt(circlevalue[0]) / 2, Integer.parseInt(circlevalue[1]) / 2, ((int) drag_to.getX()) / 2, ((int) drag_to.getY()) / 2, trymode);
                                 if (success) {
                                     puzzle.logListAdd(((int) drag_to.getX()) / 2, ((int) drag_to.getY()) / 2, Integer.parseInt(circlevalue[0]) / 2, Integer.parseInt(circlevalue[1]) / 2);
                                 }
@@ -391,7 +445,11 @@ public class GameVC_2 {
                 if (puzzle.getCircle_trace(x / 2, y / 2) != -1) {
                     final Text source = new Text(20, 20, "" + puzzle.getCircleToString(x / 2, y / 2));
                     if (puzzle.getHas_moved(x / 2, y / 2)) {
-                        source.setFill(Color.RED);
+                        if(puzzle.getTry(x / 2, y / 2)){
+                            source.setFill(Color.LAVENDERBLUSH);
+                        } else {
+                            source.setFill(Color.RED);
+                        }
                     }
                     if (puzzle.getCircle_value(x / 2, y / 2) != -1) {
                         // TODO: center does not work
@@ -405,7 +463,7 @@ public class GameVC_2 {
                                 int y = ((int) source.getY())/2;
                                 if (puzzle.getCircle_value(x,y) == 0 ||
                                         puzzle.getCircle_value(x,y) == -2){
-                                    puzzle.move(x,y,x,y);
+                                    puzzle.move(x,y,x,y,trymode);
                                     puzzle.logListAdd(x,y,x,y);
                                     draw(puzzle, primaryStage);
                                 }
@@ -461,9 +519,10 @@ public class GameVC_2 {
         GridPane lowerBtn = new GridPane();
         if(!showingSolution) {
             lowerBtn.add(cbColor, 0, 0);
-            lowerBtn.add(btnSolve, 1, 0);
-            lowerBtn.add(btnSave, 2, 0);
-            lowerBtn.add(btnBack, 3, 0);
+            lowerBtn.add(btnWriter,1 ,0);
+            lowerBtn.add(btnSolve, 2, 0);
+            lowerBtn.add(btnSave, 3, 0);
+            lowerBtn.add(btnBack, 4, 0);
         } else {
             lowerBtn.add(btnSolutionOk,0,0);
         }
