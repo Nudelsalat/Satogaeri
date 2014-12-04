@@ -31,7 +31,7 @@ public class MainHardBayWolfJR {
             puzzle.setCountry(country4,333);
 
             puzzle.setCountryBlock(new Pair(0,6), new Pair(1,8), 4);
-            puzzle.setCountryBlock(new Pair(0,8), new Pair(1,10), 5);
+            puzzle.setCountryBlock(new Pair(0,9), new Pair(1,10), 5);
             puzzle.setCountryBlock(new Pair(0,11), new Pair(1,14), 6);
 
 
@@ -151,7 +151,7 @@ public class MainHardBayWolfJR {
             country19[11] = new Pair(8 ,13);
             puzzle.setCountry(country19,19);
 
-            puzzle.setCountryBlock(new Pair(5,12), new Pair(6,12), 20);
+            puzzle.setCountryBlock(new Pair(4,15), new Pair(5,15), 20);
 
             Pair[] country21 = new Pair[9];
             country21[0] = new Pair(5 , 1);
@@ -278,7 +278,7 @@ public class MainHardBayWolfJR {
             country35[1] = new Pair(9 , 1);
             country35[2] = new Pair(9 , 3);
             country35[3] = new Pair(10, 0);
-            country35[4] = new Pair(10, 0);
+            country35[4] = new Pair(10, 3);
             country35[5] = new Pair(11, 0);
             country35[6] = new Pair(11, 1);
             country35[7] = new Pair(11, 2);
@@ -306,56 +306,56 @@ public class MainHardBayWolfJR {
             puzzle.setCountryBlock(new Pair(10,5), new Pair(10,7), 37);
 
             Pair[] country38 = new Pair[5];
-            country38[0] = new Pair(10, 5);
-            country38[1] = new Pair(11, 5);
-            country38[2] = new Pair(12, 5);
-            country38[3] = new Pair(13, 5);
-            country38[4] = new Pair(13, 4);
+            country38[0] = new Pair(11, 5);
+            country38[1] = new Pair(12, 5);
+            country38[2] = new Pair(13, 5);
+            country38[3] = new Pair(14, 5);
+            country38[4] = new Pair(14, 4);
             puzzle.setCountry(country38,38);
 
             Pair[] country39 = new Pair[4];
-            country39[0] = new Pair(10, 9);
-            country39[1] = new Pair(10, 9);
-            country39[2] = new Pair(10, 9);
-            country39[3] = new Pair(11,10);
+            country39[0] = new Pair(11, 9);
+            country39[1] = new Pair(11,10);
+            country39[2] = new Pair(11,11);
+            country39[3] = new Pair(12,11);
             puzzle.setCountry(country39,39);
 
             Pair[] country40 = new Pair[11];
-            country40[0] = new Pair(10,12);
-            country40[1] = new Pair(11,12);
-            country40[2] = new Pair(12,12);
-            country40[3] = new Pair(12,13);
-            country40[4] = new Pair(12,11);
-            country40[5] = new Pair(12,10);
-            country40[6] = new Pair(12, 9);
-            country40[7] = new Pair(11, 9);
-            country40[8] = new Pair(11,10);
-            country40[9] = new Pair(13, 9);
-            country40[10] = new Pair(13,10);
+            country40[0] = new Pair(11,12);
+            country40[1] = new Pair(12,12);
+            country40[2] = new Pair(13,12);
+            country40[3] = new Pair(13,13);
+            country40[4] = new Pair(13,11);
+            country40[5] = new Pair(13,10);
+            country40[6] = new Pair(13, 9);
+            country40[7] = new Pair(12, 9);
+            country40[8] = new Pair(12,10);
+            country40[9] = new Pair(14, 9);
+            country40[10] = new Pair(14,10);
             puzzle.setCountry(country40,40);
 
             Pair[] country41 = new Pair[10];
-            country41[0] = new Pair(10,14);
-            country41[1] = new Pair(10,15);
-            country41[2] = new Pair(10,16);
-            country41[3] = new Pair(11,14);
-            country41[4] = new Pair(11,15);
-            country41[5] = new Pair(11,16);
-            country41[6] = new Pair(12,14);
-            country41[7] = new Pair(12,16);
-            country41[8] = new Pair(13,14);
-            country41[9] = new Pair(13,16);
+            country41[0] = new Pair(11,14);
+            country41[1] = new Pair(11,15);
+            country41[2] = new Pair(11,16);
+            country41[3] = new Pair(12,14);
+            country41[4] = new Pair(12,15);
+            country41[5] = new Pair(12,16);
+            country41[6] = new Pair(13,14);
+            country41[7] = new Pair(13,16);
+            country41[8] = new Pair(14,14);
+            country41[9] = new Pair(14,16);
             puzzle.setCountry(country41,41);
 
             Pair[] country42 = new Pair[8];
-            country42[0] = new Pair(10,19);
-            country42[1] = new Pair(11,19);
-            country42[2] = new Pair(11,18);
-            country42[3] = new Pair(12,19);
-            country42[4] = new Pair(12,18);
-            country42[5] = new Pair(13,19);
-            country42[6] = new Pair(13,18);
-            country42[7] = new Pair(13,17);
+            country42[0] = new Pair(11,19);
+            country42[1] = new Pair(12,19);
+            country42[2] = new Pair(12,18);
+            country42[3] = new Pair(13,19);
+            country42[4] = new Pair(13,18);
+            country42[5] = new Pair(14,19);
+            country42[6] = new Pair(14,18);
+            country42[7] = new Pair(14,17);
             puzzle.setCountry(country42,42);
 
             Pair[] country43 = new Pair[6];
@@ -739,7 +739,7 @@ public class MainHardBayWolfJR {
             country86[11] = new Pair(33, 5);
             puzzle.setCountry(country86,86);
 
-            Pair[] country87 = new Pair[16];
+            Pair[] country87 = new Pair[6];
             country87[0] = new Pair(29,11);
             country87[1] = new Pair(30,10);
             country87[2] = new Pair(30,11);
@@ -754,14 +754,14 @@ public class MainHardBayWolfJR {
             country88[2] = new Pair(32, 8);
             country88[3] = new Pair(32, 7);
             country88[4] = new Pair(33, 9);
-            country88[5] = new Pair(33, 9);
-            country88[6] = new Pair(34, 9);
-            country88[7] = new Pair(34, 8);
-            country88[8] = new Pair(34, 7);
-            country88[9] = new Pair(34, 6);
-            country88[10] = new Pair(34, 5);
-            country88[11] = new Pair(33, 6);
-            country88[12] = new Pair(33, 5);
+            country88[5] = new Pair(34, 9);
+            country88[6] = new Pair(34, 6);
+            country88[7] = new Pair(34, 5);
+            country88[8] = new Pair(35, 9);
+            country88[9] = new Pair(35, 8);
+            country88[10] = new Pair(35, 7);
+            country88[11] = new Pair(35, 6);
+            country88[12] = new Pair(35, 5);
             puzzle.setCountry(country88,88);
 
             Pair[] country89 = new Pair[14];
@@ -819,7 +819,7 @@ public class MainHardBayWolfJR {
             puzzle.setCountry(country93,93);
 
             puzzle.setCountryBlock(new Pair(32,18), new Pair(32,19), 94);
-            puzzle.setCountryBlock(new Pair(33,19), new Pair(33,19), 95);
+            puzzle.setCountryBlock(new Pair(33,19), new Pair(35,19), 95);
             puzzle.setCountryBlock(new Pair(33,17), new Pair(35,18), 96);
 
             Pair[] country97 = new Pair[5];
@@ -834,12 +834,12 @@ public class MainHardBayWolfJR {
             country98[0] = new Pair(33, 6);
             country98[1] = new Pair(33, 7);
             country98[2] = new Pair(33, 8);
-            country98[3] = new Pair(34, 6);
-            country98[4] = new Pair(34, 7);
+            country98[3] = new Pair(34, 7);
+            country98[4] = new Pair(34, 8);
             puzzle.setCountry(country98,98);
 
             Pair[] country99 = new Pair[5];
-            country99[0] = new Pair(33,16);
+            country99[0] = new Pair(33,11);
             country99[1] = new Pair(34,11);
             country99[2] = new Pair(35,11);
             country99[3] = new Pair(35,12);
@@ -847,11 +847,110 @@ public class MainHardBayWolfJR {
             puzzle.setCountry(country99,99);
 
 
+            puzzle.setCircle(new Pair( 0, 3),-2, 1);
+            puzzle.setCircle(new Pair( 0, 4), 4, 2);
+            puzzle.setCircle(new Pair( 0,11), 2, 3);
+            puzzle.setCircle(new Pair( 1, 1), 2, 4);
+            puzzle.setCircle(new Pair( 1, 6), 1, 5);
+            puzzle.setCircle(new Pair( 1,11), 3, 6);
+            puzzle.setCircle(new Pair( 1,16), 1, 7);
+            puzzle.setCircle(new Pair( 2, 3), 3, 8);
+            puzzle.setCircle(new Pair( 2, 8), 5, 9);
+            puzzle.setCircle(new Pair( 2,17), 2, 10);
+            puzzle.setCircle(new Pair( 2,19), 2, 11);
+            puzzle.setCircle(new Pair( 3, 7),-2, 12);
+            puzzle.setCircle(new Pair( 3,11), 3, 13);
+            puzzle.setCircle(new Pair( 4, 0), 5, 14);
+            puzzle.setCircle(new Pair( 4,15),4, 15);
+            puzzle.setCircle(new Pair( 4,18), 3, 16);
+            puzzle.setCircle(new Pair( 5, 2), 2, 17);
+            puzzle.setCircle(new Pair( 5, 6), 3, 18);
+            puzzle.setCircle(new Pair( 5,12), 2, 19);
+            puzzle.setCircle(new Pair( 5,17),-2, 20);
+            puzzle.setCircle(new Pair( 6,10),-2, 21);
+            puzzle.setCircle(new Pair( 6,14), 2, 22);
+            puzzle.setCircle(new Pair( 6,19), 2, 23);
+            puzzle.setCircle(new Pair( 7, 1), 2, 24);
+            puzzle.setCircle(new Pair( 7, 7), 1, 25);
+            puzzle.setCircle(new Pair( 7, 9),-2, 26);
+            puzzle.setCircle(new Pair( 7,10),-2, 27);
+            puzzle.setCircle(new Pair( 7,18), 1, 28);
+            puzzle.setCircle(new Pair( 8, 0), 5, 29);
+            puzzle.setCircle(new Pair( 8,11),-2, 30);
+            puzzle.setCircle(new Pair( 8,17), 4, 31);
+            puzzle.setCircle(new Pair( 9, 1), 3, 32);
+            puzzle.setCircle(new Pair( 9,12),-2, 33);
+            puzzle.setCircle(new Pair(10,13), 2, 34);
+            puzzle.setCircle(new Pair(10,15),-2, 35);
+            puzzle.setCircle(new Pair(11, 0),-2, 36);
+            puzzle.setCircle(new Pair(11, 5), 4, 37);
+            puzzle.setCircle(new Pair(11,10), 3, 38);
+            puzzle.setCircle(new Pair(12, 3), 3, 39);
+            puzzle.setCircle(new Pair(12, 8),-2, 40);
+            puzzle.setCircle(new Pair(12,16), 3, 41);
+            puzzle.setCircle(new Pair(13, 6), 3, 42);
+            puzzle.setCircle(new Pair(13,14), 4, 43);
+            puzzle.setCircle(new Pair(14, 2),-2, 44);
+            puzzle.setCircle(new Pair(14, 9), 3, 45);
+            puzzle.setCircle(new Pair(14,18), 2, 46);
+            puzzle.setCircle(new Pair(15,11), 2, 47);
+            puzzle.setCircle(new Pair(15,13), 4, 48);
+            puzzle.setCircle(new Pair(16,15), 2, 49);
+            puzzle.setCircle(new Pair(16,19), 3, 50);
+            puzzle.setCircle(new Pair(17, 3), 3, 51);
+            puzzle.setCircle(new Pair(17, 6), 3, 52);
+            puzzle.setCircle(new Pair(17,12), 3, 53);
+            puzzle.setCircle(new Pair(17,17), 4, 54);
+            puzzle.setCircle(new Pair(18, 7), 3, 55);
+            puzzle.setCircle(new Pair(19, 4), 4, 56);
+            puzzle.setCircle(new Pair(19,18),-2, 57);
+            puzzle.setCircle(new Pair(20, 3), 2, 58);
+            puzzle.setCircle(new Pair(20, 5), 1, 59);
+            puzzle.setCircle(new Pair(20, 9), 3, 60);
+            puzzle.setCircle(new Pair(21, 2), 2, 61);
+            puzzle.setCircle(new Pair(21,10),-2, 62);
+            puzzle.setCircle(new Pair(21,15), 2, 63);
+            puzzle.setCircle(new Pair(21,19), 2, 64);
+            puzzle.setCircle(new Pair(22, 0), 4, 65);
+            puzzle.setCircle(new Pair(22, 1), 4, 66);
+            puzzle.setCircle(new Pair(22,10),-2, 67);
+            puzzle.setCircle(new Pair(23, 6), 3, 68);
+            puzzle.setCircle(new Pair(23,12), 3, 69);
+            puzzle.setCircle(new Pair(23,14),-2, 70);
+            puzzle.setCircle(new Pair(23,16), 4, 71);
+            puzzle.setCircle(new Pair(24, 2), 3, 72);
+            puzzle.setCircle(new Pair(24,15), 1, 73);
+            puzzle.setCircle(new Pair(25, 4), 2, 74);
+            puzzle.setCircle(new Pair(25,10), 4, 75);
+            puzzle.setCircle(new Pair(26, 9), 3, 76);
+            puzzle.setCircle(new Pair(26,14), 3, 77);
+            puzzle.setCircle(new Pair(27, 2), 2, 78);
+            puzzle.setCircle(new Pair(27, 7), 4, 79);
+            puzzle.setCircle(new Pair(27,18),-2, 80);
+            puzzle.setCircle(new Pair(28, 0), 4, 81);
+            puzzle.setCircle(new Pair(28,19), 4, 82);
+            puzzle.setCircle(new Pair(29, 5),-2, 83);
+            puzzle.setCircle(new Pair(29,17), 2, 84);
+            puzzle.setCircle(new Pair(30, 0), 3, 85);
+            puzzle.setCircle(new Pair(30, 7), 2, 86);
+            puzzle.setCircle(new Pair(30,13), 3, 87);
+            puzzle.setCircle(new Pair(30,19), 4, 88);
+            puzzle.setCircle(new Pair(31, 5), 5, 89);
+            puzzle.setCircle(new Pair(31,14), 3, 90);
+            puzzle.setCircle(new Pair(31,17), 3, 91);
+            puzzle.setCircle(new Pair(32,11), 2, 92);
+            puzzle.setCircle(new Pair(33, 3),-2, 93);
+            puzzle.setCircle(new Pair(33,12),-2, 94);
+            puzzle.setCircle(new Pair(34, 2), 3, 95);
+            puzzle.setCircle(new Pair(35, 5), 1, 96);
+            puzzle.setCircle(new Pair(35, 7), 3, 97);
+            puzzle.setCircle(new Pair(35, 9), 1, 98);
+            puzzle.setCircle(new Pair(35,13), 2, 99);
+            puzzle.setCircle(new Pair(35,18), 2,100);
 
-            puzzle.setCountryBlock(new Pair(9,0), new Pair(11,1), 4);
-            puzzle.setCircle(new Pair(29,19), 1, 120);
 
 
+            puzzle.print();
             puzzle.savePuzzle("BayWolfJR");
             puzzle.generateSMT_QF_UF_Piping();
             puzzle.generateSMTPiping();
