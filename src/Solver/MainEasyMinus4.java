@@ -14,7 +14,7 @@ public class MainEasyMinus4 {
 
         try{
 // Open file to read from, named SavedObj.sav.
-            FileInputStream loadFile = new FileInputStream("easy-4.pzl");
+            FileInputStream loadFile = new FileInputStream("NotMuchToSay.pzl");
 
 // Create an ObjectInputStream to get objects from save file.
             ObjectInputStream load = new ObjectInputStream(loadFile);

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.11.3)  25 NOV 2014 10:30
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.11.3)  6 DEC 2014 16:05
 entering extended mode
 **Thesis.tex
 ("C:\Users\Cloud\Studium\SS 2014\Bachelor thesis\Satogaeri\Thesis\Thesis.tex"
@@ -693,19 +693,19 @@ LaTeX Info: Redefining \nameref on input line 10.
 \ifibox=\box35
 \unibox=\box36
 \logoheight=\dimen125
- <clshortlogo_new.pdf, id=139, 240.9pt x 240.9pt>
+ <clshortlogo_new.pdf, id=151, 240.9pt x 240.9pt>
 File: clshortlogo_new.pdf Graphic file (type pdf)
  <use clshortlogo_new.pdf>
 Package pdftex.def Info: clshortlogo_new.pdf used on input line 20.
 (pdftex.def)             Requested size: 86.72392pt x 86.72392pt.
 
-<ifilogo.pdf, id=140, 452.3992pt x 233.31163pt>
+<ifilogo.pdf, id=152, 452.3992pt x 233.31163pt>
 File: ifilogo.pdf Graphic file (type pdf)
  <use ifilogo.pdf>
 Package pdftex.def Info: ifilogo.pdf used on input line 20.
 (pdftex.def)             Requested size: 171.91347pt x 88.65933pt.
 
-<unilogo.png, id=141, 210.7875pt x 418.56375pt>
+<unilogo.png, id=153, 210.7875pt x 418.56375pt>
 File: unilogo.png Graphic file (type png)
  <use unilogo.png>
 Package pdftex.def Info: unilogo.png used on input line 20.
@@ -780,7 +780,7 @@ Class scrreprt Warning: \float@addtolists detected!
 
 ]
 Chapter 2.
-<Pictures/sample_small.png, id=563, 249.18094pt x 122.70844pt>
+<Pictures/sample_small.png, id=578, 249.18094pt x 122.70844pt>
 File: Pictures/sample_small.png Graphic file (type png)
 
 <use Pictures/sample_small.png>
@@ -801,7 +801,7 @@ LaTeX Warning: Citation `sebastiani2007lazy' on page 4 undefined on input line
 
 [4
 
-] <Pictures/logics.png, id=588, 761.84625pt x 423.5825pt>
+] <Pictures/logics.png, id=603, 761.84625pt x 423.5825pt>
 File: Pictures/logics.png Graphic file (type png)
 
 <use Pictures/logics.png>
@@ -810,7 +810,7 @@ Package pdftex.def Info: Pictures/logics.png used on input line 72.
  [5 <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesis/Pictures/l
 ogics.png>] [6]
 Chapter 4.
-<Pictures/Solver_example.png, id=609, 73.02281pt x 72.27pt>
+<Pictures/Solver_example.png, id=624, 73.02281pt x 72.27pt>
 File: Pictures/Solver_example.png Graphic file (type png)
 
 <use Pictures/Solver_example.png>
@@ -835,7 +835,7 @@ Overfull \hbox (11.83026pt too wide) in paragraph at lines 175--177
 
 [9] [10] [11] [12] [13]
 Chapter 5.
-<Pictures/generator.png, id=762, 191.21437pt x 141.52875pt>
+<Pictures/generator.png, id=777, 191.21437pt x 141.52875pt>
 File: Pictures/generator.png Graphic file (type png)
 
 <use Pictures/generator.png>
@@ -847,7 +847,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [14
 
  <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesis/Pictures/gene
-rator.png>] <Pictures/solver_example_solution.png, id=772, 73.02281pt x 71.5171
+rator.png>] <Pictures/solver_example_solution.png, id=787, 73.02281pt x 71.5171
 8pt>
 File: Pictures/solver_example_solution.png Graphic file (type png)
 
@@ -858,14 +858,14 @@ e 374.
  [15] [16 <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesis/Pict
 ures/solver_example_solution.png>]
 Chapter 6.
-<Pictures/main_menu.png, id=791, 164.11313pt x 155.07938pt>
+<Pictures/main_menu.png, id=806, 164.11313pt x 155.07938pt>
 File: Pictures/main_menu.png Graphic file (type png)
 
 <use Pictures/main_menu.png>
 Package pdftex.def Info: Pictures/main_menu.png used on input line 396.
 (pdftex.def)             Requested size: 164.11272pt x 155.07898pt.
 
-<Pictures/game.png, id=794, 275.52937pt x 294.34969pt>
+<Pictures/game.png, id=809, 275.52937pt x 294.34969pt>
 File: Pictures/game.png Graphic file (type png)
  <use Pictures/game.png>
 Package pdftex.def Info: Pictures/game.png used on input line 407.
@@ -876,7 +876,7 @@ Package pdftex.def Info: Pictures/game.png used on input line 407.
  <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesis/Pictures/main
 _menu.png>] [18 <C:/Users/Cloud/Studium/SS 2014/Bachelor thesis/Satogaeri/Thesi
 s/Pictures/game.png>]
-<Pictures/drawing_screen.png, id=812, 201.00093pt x 211.54031pt>
+<Pictures/drawing_screen.png, id=827, 201.00093pt x 211.54031pt>
 File: Pictures/drawing_screen.png Graphic file (type png)
 
 <use Pictures/drawing_screen.png>
@@ -889,17 +889,31 @@ Chapter 7.
 
 ]
 Chapter 8.
-[22
+
+Overfull \hbox (7.5721pt too wide) in paragraph at lines 464--478
+ [] 
+ []
+
+
+Overfull \hbox (28.65085pt too wide) in paragraph at lines 483--499
+ [] 
+ []
+
+
+Underfull \vbox (badness 1577) has occurred while \output is active []
+
+ [22
 
 ]
+[23]
 Chapter 9.
-) [23
+) [24
 
 ]
 No file Thesis.bbl.
 ("C:\Users\Cloud\Studium\SS 2014\Bachelor thesis\Satogaeri\Thesis\appendix.tex"
 Appendix A.
-[24
+[25
 
 
 
@@ -909,7 +923,7 @@ Overfull \hbox (24.9704pt too wide) in paragraph at lines 48--49
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[25]
+[26]
 Appendix B.
 
 Overfull \hbox (70.96088pt too wide) in paragraph at lines 97--98
@@ -936,7 +950,7 @@ Overfull \hbox (57.82074pt too wide) in paragraph at lines 105--106
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[26
+[27
 
 ]
 Overfull \hbox (24.9704pt too wide) in paragraph at lines 117--118
@@ -944,10 +958,69 @@ Overfull \hbox (24.9704pt too wide) in paragraph at lines 117--118
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 1622) has occurred while \output is active []
 
- [27])
-[28]
+ [28]
+[29]
+Appendix C.
+[30
+
+] [31]
+Overfull \hbox (18.40033pt too wide) in paragraph at lines 257--258
+[][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (18.40033pt too wide) in paragraph at lines 258--259
+[][][][][][][][][][][][][] 
+ []
+
+[32] [33]
+Overfull \hbox (11.83026pt too wide) in paragraph at lines 354--355
+[][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (11.83026pt too wide) in paragraph at lines 355--356
+[][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (24.9704pt too wide) in paragraph at lines 397--398
+[][][][][][][][][][][][][] 
+ []
+
+[34]
+Overfull \hbox (5.2602pt too wide) in paragraph at lines 433--434
+[][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (51.25067pt too wide) in paragraph at lines 435--436
+[][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (90.67108pt too wide) in paragraph at lines 436--437
+[][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (11.83026pt too wide) in paragraph at lines 437--438
+[][][][][][][][][][][][][][][] 
+ []
+
+[35]
+Overfull \hbox (5.2602pt too wide) in paragraph at lines 481--482
+[][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (11.83026pt too wide) in paragraph at lines 488--489
+[][][][][][][][][][][] 
+ []
+
+[36]) [37]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 27.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 27.
 
@@ -957,19 +1030,25 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 27.
 ))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 27.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 27.
-Package rerunfilecheck Info: File `Thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 336BB48D80C9200AAA60CECB9BFD02C2;1969.
 
+
+Package rerunfilecheck Warning: File `Thesis.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `Thesis.out':
+(rerunfilecheck)             Before: C91028E60712926C9DC3B34BDFFCAD4C;2161
+(rerunfilecheck)             After:  DB96C34B792B642D2AD9DB1FFD22D747;2382.
 
 LaTeX Warning: There were undefined references.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 27.
  ) 
 Here is how much of TeX's memory you used:
- 10227 strings out of 493921
- 148605 string characters out of 3147282
- 300648 words of memory out of 3000000
- 12989 multiletter control sequences out of 15000+200000
+ 10591 strings out of 493921
+ 154526 string characters out of 3147282
+ 303652 words of memory out of 3000000
+ 12992 multiletter control sequences out of 15000+200000
  16389 words of font info for 63 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  46i,11n,49p,594b,1767s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -984,9 +1063,9 @@ cmr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.p
 fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/P
 rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program F
 iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on Thesis.pdf (36 pages, 1334561 bytes).
+Output written on Thesis.pdf (45 pages, 1407940 bytes).
 PDF statistics:
- 1127 PDF objects out of 1200 (max. 8388607)
- 373 named destinations out of 1000 (max. 500000)
- 328 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1604 PDF objects out of 1728 (max. 8388607)
+ 734 named destinations out of 1000 (max. 500000)
+ 352 words of extra memory for PDF output out of 10000 (max. 10000000)
 

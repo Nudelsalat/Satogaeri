@@ -452,7 +452,70 @@ However for this project the most important part is that JavaFX supports Cascadi
 FXML files are similar to XML files and they contain all the controls of the GUI. In other words one can finally use the Model-View-Controller pattern without violating some of its regulations.
 
 \chapter{Statistics} \label{Statistics}
-TODO: requires the tool to be fully done + some time of data-collecting.
+In this section we will evaluate some benchmarks concerning the solving of Satogaeri puzzles with different logics and by using the `statistics' option on CVC4 we will find some benchmarks on which we can classify the difficulty of a Satogaeri puzzle.
+
+For the creation of these benchmarks a machine with an Intel(R) Core(TM) i5 CPU M430 prozessor with 4 GB RAM running Windows 8.1 64 bit was used.
+
+\section{Classifying the Difficulty}
+The statistics option of CVC4 produces a long list of statistics, the full list can be found in the Appendix section. However only a few statistics will help categorizing the difficulty and most of them grow rather with the puzzle size than with the actual difficulty of the puzzle.
+
+The only two numbers we take in account are the `nonTrivialSatChecks' and the `sat::conflicts'. Both of them are not influenced by the size of the puzzle, however a single conflict is worth more than a single nonTrivialSatCheck in respect to the difficulty. To get an approximate difficulty level in numbers we add four times the Conflicts to the NonTrivialSatChecks. With this number we now can rank different Satogaeri puzzles.
+\begin{center}
+  \begin{tabular}{ | l | l | l | l | l | l | }
+    \hline
+     			 & Sakamoto & Aquablue 	& Alkaline 	& Casty		& Z\_H \\ \hline
+    Difficulty 	& Easy 		& Easy 		& Medium 	& Medium 	& Medium \\ \hline
+    NonTrivial 	& 9			& 49		& 73		& 84		& 89 \\ \hline
+    Conflicts 	& 0			& 0			& 0			& 0			& 2	 \\ \hline
+    Rating		& 9			& 49		& 73		& 84		& 93 \\ \hline
+    \hline
+     			& Cubic Function & -4 	& Aiko 	& T.Karino		& bay wolf JR \\ \hline
+    Difficulty 	& Medium 		& Hard 		& Hard 	& Hard 		& Hard \\ \hline
+    NonTrivial 	& 174			& 513		& 581	& 438		& 1137 \\ \hline
+    Conflicts 	& 5				& 11		& 17	& 59		& 55 \\ \hline
+    Rating		& 194			& 557		& 649	& 674		& 1357 \\ \hline
+  \end{tabular}
+\end{center}
+
+\section{QF UF vs QF LIA}
+The time unit in the table below is Second.
+\begin{center}
+  \begin{tabular}{ | l | l | l | l | l | l | }
+    \hline
+     			 & Sakamoto & Aquablue 	& Alkaline 	& Casty		& Z\_H \\ \hline
+    Difficulty 	& Easy 		& Easy 		& Medium 	& Medium 	& Medium \\ \hline
+    Size 		& 10x10		& 10x10		& 18x10		& 18x10		& 10x10 \\ \hline
+    Rating		& 9			& 49		& 73		& 84		& 93 \\ \hline
+    QF\_UF		& 0.09280818& 0.1097706	& 0.22391504 & 0.24529236	& 0.13142188 \\ \hline
+    QF\_LIA		& 0.1312121	& 0.1678718	& 0.28321594 & 0.31705216	& 0.1864898 \\ \hline
+    \hline
+     			& Cubic Function & -4 	& Aiko 	& T.Karino		& bay wolf JR \\ \hline
+    Difficulty 	& Medium 		& Hard 		& Hard 	& Hard 		& Hard \\ \hline
+    Size 		& 18x10			& 24x14		& 36x20	& 24x14		& 36x20 \\ \hline
+    Rating		& 194			& 557		& 649	& 674		& 1357 \\ \hline
+    QF\_UF		& 0.27157508	& 0.5942921	& 3.21634508 & 1.00228996		& 3.42382674 \\ \hline
+    QF\_LIA		& 0.3991329		& 0.69549096 & 1.35633634 & 0.90596628		& 1.72413418 \\ \hline
+  \end{tabular}
+\end{center}
+
+We can see that for trivial puzzles the QF\_UF logic is faster, however the more difficult it gets the better the QF\_LIA logic becomes. This phenomenon might be explained by the fact that the linear arithmetic finds more use cases in the field and therefore is more optimized, but that is just speculation.
+
+\section{Generating}
+The generation process includes many random factors and therefore it is impossible to create a representative table with timings. Generating 5x5 puzzles should only take a couple of seconds, however the generation time of a 10x10 puzzle can vary from a couple of seconds to several minutes.
+
+Trying to generate puzzles greater than 12x12 will take a pretty long time (up to 30min), one might get lucky and produce a puzzle with an unique solution within seconds but the waiting time of several minutes is way more likely.
 
 \chapter{Conclusion} \label{Conclusion}
-TODO: requires the rest of the project to be done.
+\section{Solver}
+The time needed to solve Satogaeri puzzles with this SMT encoding is satisfying. Even the hardest tested puzzle can be solved within 2 seconds. Additionally it is just as fast to find out if a puzzle has an unique solution or not.
+
+\section{Generator}
+It is possible to generate various puzzles with unique solutions, however exceeding a certain size of a puzzle will end in an inadequate waiting time. One can produce many small puzzles using this generator but for greater ones it is simply to slow.
+
+The reason why it takes so long to generate these puzzles is that once the countries are build the generator shuffles the circles on good luck. If it has more than one solution he will just reshuffle them. A different approach would be finding out which `area' of the puzzle produces more than one solution and only manipulating these parts.
+
+\section{Tool}
+The tool incorporates solver and generator as required and additionally provides a drawing feature which should make crafting one owns puzzles easier, especially with the possibility to check for uniqueness of the solution.
+
+The game incorporates the same features as the tool created by Nikoli\footnote{http://www.nikoli.com/en/puzzles/satogaeri/} and additionally to that one can extract the SMT encoding to feed it to other solvers and it is possible to save the puzzle at any moment and continue playing another time.
+

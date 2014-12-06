@@ -30,7 +30,14 @@
 \contentsline {section}{\numberline {7.1}What is JavaFX?}{21}{section.7.1}
 \contentsline {section}{\numberline {7.2}New Features over Swing}{21}{section.7.2}
 \contentsline {chapter}{\numberline {8}Statistics}{22}{chapter.8}
-\contentsline {chapter}{\numberline {9}Conclusion}{23}{chapter.9}
-\contentsline {chapter}{\numberline {A}Exemplary SMT code in QF LIA}{24}{appendix.A}
-\contentsline {chapter}{\numberline {B}Exemplary SMT code in QF UF}{26}{appendix.B}
-\contentsline {chapter}{Bibliography}{24}{section*.3}
+\contentsline {section}{\numberline {8.1}Classifying the Difficulty}{22}{section.8.1}
+\contentsline {section}{\numberline {8.2}QF UF vs QF LIA}{22}{section.8.2}
+\contentsline {section}{\numberline {8.3}Generating}{23}{section.8.3}
+\contentsline {chapter}{\numberline {9}Conclusion}{24}{chapter.9}
+\contentsline {section}{\numberline {9.1}Solver}{24}{section.9.1}
+\contentsline {section}{\numberline {9.2}Generator}{24}{section.9.2}
+\contentsline {section}{\numberline {9.3}Tool}{24}{section.9.3}
+\contentsline {chapter}{\numberline {A}Exemplary SMT code in QF LIA}{25}{appendix.A}
+\contentsline {chapter}{\numberline {B}Exemplary SMT code in QF UF}{27}{appendix.B}
+\contentsline {chapter}{\numberline {C}Statistics Output}{30}{appendix.C}
+\contentsline {chapter}{Bibliography}{25}{section*.3}
