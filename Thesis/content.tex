@@ -33,8 +33,81 @@ And additionally the 4th rule, which counts for every logic puzzle:
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.9\textwidth]{Pictures/sample_small.png} 
-  \caption{Small sample puzzle with its solution}
+
+\begin{tikzpicture}
+
+
+\begin{scope}
+    \draw[gray] (0, 0) grid (5, 5);
+	\draw[very thick, black] (0, 0) rectangle (5, 5);
+	\draw[very thick] (1, 4)--(5, 4);
+	\draw[very thick] (0, 3)--(2, 3);
+	\draw[very thick] (3, 2)--(5, 2);
+	\draw[very thick] (0, 1)--(4, 1);
+	
+	\draw[very thick] (1, 4)--(1, 3);
+	\draw[very thick] (2, 3)--(2, 0);
+	\draw[very thick] (3, 5)--(3, 2);
+	\draw[very thick] (4, 2)--(4, 1);
+	
+	\node[anchor=center] at (0.5, 4.5) {2};
+	\draw (0.5, 4.5) circle [radius=0.4];
+	\node[anchor=center] at (3.5, 3.5) {1};
+	\draw (3.5, 3.5) circle [radius=0.4];
+	
+	\draw (1.5, 2.5) circle [radius=0.4];
+	\node[anchor=center] at (2.5, 2.5) {2};
+	\draw (2.5, 2.5) circle [radius=0.4];
+	\node[anchor=center] at (3.5, 2.5) {1};
+	\draw (3.5, 2.5) circle [radius=0.4];
+	\node[anchor=center] at (0.5, 1.5) {1};
+	\draw (0.5, 1.5) circle [radius=0.4];
+	\node[anchor=center] at (1.5, 1.5) {1};
+	\draw (1.5, 1.5) circle [radius=0.4];
+	
+\end{scope}
+
+\begin{scope}[xshift=6cm]
+\draw[gray] (0, 0) grid (5, 5);
+	\draw[very thick, black] (0, 0) rectangle (5, 5);
+	\draw[very thick] (1, 4)--(5, 4);
+	\draw[very thick] (0, 3)--(2, 3);
+	\draw[very thick] (3, 2)--(5, 2);
+	\draw[very thick] (0, 1)--(4, 1);
+	
+	\draw[very thick] (1, 4)--(1, 3);
+	\draw[very thick] (2, 3)--(2, 0);
+	\draw[very thick] (3, 5)--(3, 2);
+	\draw[very thick] (4, 2)--(4, 1);
+	
+	\node[anchor=center] at (2.5, 4.5) {2};
+	\draw (2.5, 4.5) circle [radius=0.4];
+	\node[anchor=center] at (3.5, 4.5) {1};
+	\draw (3.5, 4.5) circle [radius=0.4];
+	
+	\draw (1.5, 3.5) circle [radius=0.4];
+	\node[anchor=center] at (2.5, 0.5) {2};
+	\draw (2.5, 0.5) circle [radius=0.4];
+	\node[anchor=center] at (4.5, 2.5) {1};
+	\draw (4.5, 2.5) circle [radius=0.4];
+	\node[anchor=center] at (0.5, 2.5) {1};
+	\draw (0.5, 2.5) circle [radius=0.4];
+	\node[anchor=center] at (1.5, 0.5) {1};
+	\draw (1.5, 0.5) circle [radius=0.4];
+	
+	\draw[very thick,arrows={|->[scale=1.5]}] (0.5, 4.5) -- (2.1, 4.5);
+	\draw[very thick,arrows={|->[scale=1.5]}] (3.5, 3.5) -- (3.5, 4.1);
+	\draw[very thick,arrows={|->[scale=1.5]}] (1.5, 2.5) -- (1.5, 3.1);
+	\draw[very thick,arrows={|->[scale=1.5]}] (2.5, 2.5) -- (2.5, 0.9);
+	\draw[very thick,arrows={|->[scale=1.5]}] (3.5, 2.5) -- (4.1, 2.5);
+	\draw[very thick,arrows={|->[scale=1.5]}] (0.5, 1.5) -- (0.5, 2.1);
+	\draw[very thick,arrows={|->[scale=1.5]}] (1.5, 1.5) -- (1.5, 0.9);
+	
+\end{scope}
+
+\end{tikzpicture}
+
+\caption{Small sample puzzle with its solution}
   \label{fig:sample_small}
 \end{figure}
 
@@ -55,10 +128,10 @@ where a natural number can be seen as a function symbol with arity 0, a so calle
 There are many different approaches of implementing SMT solvers, but the two major ones are the \textit{eager} and the \textit{lazy} approach.
 
 \section{Eager SMT}
-In the \textit{eager} approach one tries to convert the given formula into an equisatisfiable propositional formula with all the additional needed constraints of the originating problem. With these constraints the search-space should be reduced so that a common SAT solver can solve the formula much quicker. And this is the appealing part of this approach: one can use already existing SAT solver to finally check the satisfiability. However the converting process into a propositional formula can be cost-intensive.\cite{2009satisfiability}
+In the \textit{eager} approach one tries to convert the given formula into an equisatisfiable propositional formula with all the additional needed constraints of the originating problem. With these constraints the search-space should be reduced so that a common SAT solver can solve the formula much quicker. And this is the appealing part of this approach: one can use already existing SAT solver to finally check the satisfiability. However the converting process into a propositional formula can be cost-intensive.~\cite{barrett2009satisfiability}
 
 \section{Lazy SMT}
-The \textit{lazy} approach consists of two parts. The first part are theory-specific solvers ($\mathcal{T}$-solvers) to handle conjunctions of literals, which are embedded again into a SAT solver. The advantage of incorporating $\mathcal{T}$-solvers is that one can use a specific algorithm and data-structure which fits the problem at hand best. This should lead to a better performance.\cite{sebastiani2007lazy}
+The \textit{lazy} approach consists of two parts. The first part are theory-specific solvers ($\mathcal{T}$-solvers) to handle conjunctions of literals, which are embedded again into a SAT solver. The advantage of incorporating $\mathcal{T}$-solvers is that one can use a specific algorithm and data-structure which fits the problem at hand best. This should lead to a better performance.~\cite{sebastiani2007lazy}
 
 \section{SMT-Library}
 The SMT library (SMT-Lib) was found in 2003 to provide common standards and a library of benchmarks for diverse SMT solvers. With this standards and benchmarks evaluation and comparison of SMT systems should be made easier to give the research a competitive touch, which ultimately should result in advancing the state of the art in SMT. They even organize an annually SMT solver competition (SMT-COMP).
@@ -94,7 +167,35 @@ Furthermore CVC4 has its own wiki\footnote{http://cvc4.cs.nyu.edu/wiki} with use
 Now we will discuss how to represent a Satogaeri puzzle in SMT and what are the required inputs for the CVC4 solver. Because we use the SMT-Lib and its generalized input syntax the CVC4 solver could be replaced by any other solver supporting the SMT-Lib. For illustration purposes we will now manually create a SMT representation of the Satogaeri puzzle of Figure~\ref{fig:solver_example}.
 \begin{figure}
   \centering
-  \includegraphics[scale=1]{Pictures/Solver_example.png} 
+  \begin{tikzpicture}
+
+
+\begin{scope}[scale=1.5]
+    \draw[gray] (0, 0) grid (3, 3);
+	\draw[very thick, black] (0, 0) rectangle (3, 3);
+	\draw[very thick] (0, 2)--(2, 2);
+	\draw[very thick] (2, 1)--(3, 1);
+	
+	\draw[very thick] (1, 0)--(1, 2);
+	\draw[very thick] (2, 1)--(2, 2);
+	
+	\draw (0.5, 2.5) circle [radius=0.3];
+	\node[anchor=center] at (2.5, 2.5) {0};
+	\draw (2.5, 2.5) circle [radius=0.3];
+	\node[anchor=center] at (0.5, 0.5) {2};
+	\draw (0.5, 0.5) circle [radius=0.3];
+	\node[anchor=center, font=\footnotesize] at (0.75, 2.1) {f 1-1};
+	\node[anchor=center, font=\footnotesize] at (1.75, 2.1) {f 1-2};
+	\node[anchor=center, font=\footnotesize] at (2.75, 2.1) {f 1-3};
+	\node[anchor=center, font=\footnotesize] at (0.75, 1.1) {f 2-1};
+	\node[anchor=center, font=\footnotesize] at (1.75, 1.1) {f 2-2};
+	\node[anchor=center, font=\footnotesize] at (2.75, 1.1) {f 2-3};
+	\node[anchor=center, font=\footnotesize] at (0.75, 0.1) {f 3-1};
+	\node[anchor=center, font=\footnotesize] at (1.75, 0.1) {f 3-2};
+	\node[anchor=center, font=\footnotesize] at (2.75, 0.1) {f 3-3};
+	
+\end{scope}
+\end{tikzpicture}
   \caption{Trivial Satogaeri puzzle}
   \label{fig:solver_example}
 \end{figure}
@@ -460,8 +561,9 @@ For the creation of these benchmarks a machine with an Intel(R) Core(TM) i5 CPU 
 The statistics option of CVC4 produces a long list of statistics, the full list can be found in the Appendix section. However only a few statistics will help categorizing the difficulty and most of them grow rather with the puzzle size than with the actual difficulty of the puzzle.
 
 The only two numbers we take in account are the `nonTrivialSatChecks' and the `sat::conflicts'. Both of them are not influenced by the size of the puzzle, however a single conflict is worth more than a single nonTrivialSatCheck in respect to the difficulty. To get an approximate difficulty level in numbers we add four times the Conflicts to the NonTrivialSatChecks. With this number we now can rank different Satogaeri puzzles.
-\begin{center}
-  \begin{tabular}{ | l | l | l | l | l | l | }
+\begin{figure}
+  \centering
+  	\begin{tabular}{ | l | l | l | l | l | l | }
     \hline
      			 & Sakamoto & Aquablue 	& Alkaline 	& Casty		& Z\_H \\ \hline
     Difficulty 	& Easy 		& Easy 		& Medium 	& Medium 	& Medium \\ \hline
@@ -474,12 +576,15 @@ The only two numbers we take in account are the `nonTrivialSatChecks' and the `s
     NonTrivial 	& 174			& 513		& 581	& 438		& 1137 \\ \hline
     Conflicts 	& 5				& 11		& 17	& 59		& 55 \\ \hline
     Rating		& 194			& 557		& 649	& 674		& 1357 \\ \hline
-  \end{tabular}
-\end{center}
+  	\end{tabular}
+	\caption{Table of rated Satogaeri puzzles}
+  \label{fig:table_Rating}
+\end{figure}
 
 \section{QF UF vs QF LIA}
 The time unit in the table below is Second.
-\begin{center}
+\begin{figure}
+  \centering
   \begin{tabular}{ | l | l | l | l | l | l | }
     \hline
      			 & Sakamoto & Aquablue 	& Alkaline 	& Casty		& Z\_H \\ \hline
@@ -496,7 +601,9 @@ The time unit in the table below is Second.
     QF\_UF		& 0.27157508	& 0.5942921	& 3.21634508 & 1.00228996		& 3.42382674 \\ \hline
     QF\_LIA		& 0.3991329		& 0.69549096 & 1.35633634 & 0.90596628		& 1.72413418 \\ \hline
   \end{tabular}
-\end{center}
+  \caption{Time comparison between QF\_UF and QF\_LIA}
+  \label{fig:table_timing}
+\end{figure}
 
 We can see that for trivial puzzles the QF\_UF logic is faster, however the more difficult it gets the better the QF\_LIA logic becomes. This phenomenon might be explained by the fact that the linear arithmetic finds more use cases in the field and therefore is more optimized, but that is just speculation.
 

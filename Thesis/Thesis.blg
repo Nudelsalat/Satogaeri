@@ -1,0 +1,19 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: Thesis.aux
+A level-1 auxiliary file: content.aux
+The style file: ieeetr.bst
+Illegal, another \bibstyle command---line 31 of file Thesis.aux
+ : \bibstyle
+ :          {abbrv}
+I'm skipping whatever remains of this command
+Illegal, another \bibdata command---line 32 of file Thesis.aux
+ : \bibdata
+ :         {biblio}
+I'm skipping whatever remains of this command
+A level-1 auxiliary file: appendix.aux
+Database file #1: cite.bib
+You're missing a field name---line 23 of file cite.bib
+ :  @techreport{002,  
+ :                    %KEY
+I'm skipping whatever remains of this entry
+Warning--empty journal in sebastiani2007lazy
+(There were 3 error messages)
