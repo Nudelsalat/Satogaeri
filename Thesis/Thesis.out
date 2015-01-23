@@ -29,13 +29,13 @@
 \BOOKMARK [1][-]{section.7.2}{New Features over Swing}{chapter.7}% 29
 \BOOKMARK [0][-]{chapter.8}{Statistics}{}% 30
 \BOOKMARK [1][-]{section.8.1}{Classifying the Difficulty}{chapter.8}% 31
-\BOOKMARK [1][-]{section.8.2}{QF UF vs QF LIA}{chapter.8}% 32
+\BOOKMARK [1][-]{section.8.2}{QF_UF vs QF_LIA}{chapter.8}% 32
 \BOOKMARK [1][-]{section.8.3}{Generating}{chapter.8}% 33
 \BOOKMARK [0][-]{chapter.9}{Conclusion}{}% 34
 \BOOKMARK [1][-]{section.9.1}{Solver}{chapter.9}% 35
 \BOOKMARK [1][-]{section.9.2}{Generator}{chapter.9}% 36
 \BOOKMARK [1][-]{section.9.3}{Tool}{chapter.9}% 37
-\BOOKMARK [0][-]{section*.3}{Bibliography}{}% 38
-\BOOKMARK [0][-]{appendix.A}{Exemplary SMT code in QF LIA}{}% 39
-\BOOKMARK [0][-]{appendix.B}{Exemplary SMT code in QF UF}{}% 40
+\BOOKMARK [0][-]{section*.4}{Bibliography}{}% 38
+\BOOKMARK [0][-]{appendix.A}{Exemplary SMT code in QF_LIA}{}% 39
+\BOOKMARK [0][-]{appendix.B}{Exemplary SMT code in QF_UF}{}% 40
 \BOOKMARK [0][-]{appendix.C}{Statistics Output}{}% 41

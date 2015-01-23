@@ -50,7 +50,7 @@ public class Puzzles {
 
             @Override
             public void handle(ActionEvent event) {
-                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"sakamoto"));
+                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"sakamoto",path));
                 gameVC.show(primarystage);
             }
         });
@@ -59,7 +59,7 @@ public class Puzzles {
 
             @Override
             public void handle(ActionEvent event) {
-                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"aquablue"));
+                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"aquablue",path));
                 gameVC.show(primarystage);
             }
         });
@@ -87,7 +87,7 @@ public class Puzzles {
 
             @Override
             public void handle(ActionEvent event) {
-                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"alkaline"));
+                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"alkaline",path));
                 gameVC.show(primarystage);
             }
         });
@@ -96,7 +96,7 @@ public class Puzzles {
 
             @Override
             public void handle(ActionEvent event) {
-                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"casty"));
+                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"casty",path));
                 gameVC.show(primarystage);
             }
         });
@@ -105,7 +105,7 @@ public class Puzzles {
 
             @Override
             public void handle(ActionEvent event) {
-                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"cubic_function"));
+                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"cubic_function",path));
                 gameVC.show(primarystage);
             }
         });
@@ -114,7 +114,7 @@ public class Puzzles {
 
             @Override
             public void handle(ActionEvent event) {
-                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"z_h"));
+                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"z_h",path));
                 gameVC.show(primarystage);
             }
         });
@@ -143,7 +143,7 @@ public class Puzzles {
 
             @Override
             public void handle(ActionEvent event) {
-                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"t_karino"));
+                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"t_karino",path));
                 gameVC.show(primarystage);
             }
         });
@@ -151,7 +151,7 @@ public class Puzzles {
 
             @Override
             public void handle(ActionEvent event) {
-                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"minus_4"));
+                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"minus_4",path));
                 gameVC.show(primarystage);
             }
         });
@@ -159,7 +159,7 @@ public class Puzzles {
 
             @Override
             public void handle(ActionEvent event) {
-                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"aiko"));
+                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"aiko", path));
                 gameVC.show(primarystage);
             }
         });
@@ -167,7 +167,7 @@ public class Puzzles {
 
             @Override
             public void handle(ActionEvent event) {
-                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"bay_wolf_jr"));
+                GameVC_2 gameVC = new GameVC_2(primarystage,loadPuzzle("puzzles"+ File.separator +"bay_wolf_jr", path));
                 gameVC.show(primarystage);
             }
         });
@@ -257,7 +257,7 @@ public class Puzzles {
         stage.show();
     }
 
-    public Puzzle loadPuzzle(String filename){
+    public Puzzle loadPuzzle(String filename, String path){
         Puzzle puzzle;
         try{
 // Open file to read from, named SavedObj.sav.
@@ -287,6 +287,7 @@ public class Puzzles {
                     puzzle.setNeighbors(pairs2, x, y);
                 }
             }
+            puzzle.setPath(path);
             return puzzle;
         }
         catch(Exception exc){

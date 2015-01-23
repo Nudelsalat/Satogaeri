@@ -100,7 +100,7 @@
 \renewcommand\appendix{%
 \backmatter
 \phantomsection{\addcontentsline{toc}{chapter}{\bibname}}
- \bibliographystyle{abbrv}
+ \bibliographystyle{agsm}
  \bibliography{\@bibfile}
  \@OLDappendix
 }

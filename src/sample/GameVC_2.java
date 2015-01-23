@@ -344,7 +344,7 @@ public class GameVC_2 {
                     final Rectangle drag_to = new Rectangle(x, y, width, height);
                     if (puzzle.getInhabited(x / 2, y / 2) && cbColor.isSelected()) {
                         if(puzzle.getTry(x / 2, y / 2)){
-                            drag_to.setFill(Color.DARKGREEN);
+                            drag_to.setFill(Color.VIOLET);
                         } else {
                             drag_to.setFill(Color.LIGHTGREEN);
                         }
@@ -446,7 +446,7 @@ public class GameVC_2 {
                     final Text source = new Text(20, 20, "" + puzzle.getCircleToString(x / 2, y / 2));
                     if (puzzle.getHas_moved(x / 2, y / 2)) {
                         if(puzzle.getTry(x / 2, y / 2)){
-                            source.setFill(Color.LAVENDERBLUSH);
+                            source.setFill(Color.RED);
                         } else {
                             source.setFill(Color.RED);
                         }

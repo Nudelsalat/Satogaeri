@@ -8,10 +8,13 @@
 \usepackage{tikz}
 \usepackage[square,sort,comma,numbers]{natbib}
 \usetikzlibrary{arrows.meta}
+\usepackage{lmodern}
+
+\usepackage[T1]{fontenc}
 
 
 \begin{document}
-
+\catcode`\_=12
 \title{Satogaeri}
 \mailaddress{csap3977@student.uibk.ac.at}
 \matriculationnumber{1117367}
@@ -23,8 +26,6 @@
 \tableofcontents
 
 \include{content}
-
-\bibliographystyle{ieeetr}
 \bibliography{cite}
 
 \appendix

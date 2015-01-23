@@ -11,7 +11,11 @@
   </resources>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Satogaeri.jar" size="195646" download="eager" />
+    <jar href="Satogaeri.jar" size="195673" download="eager" />
+    <jar href="lib/javaws.jar" size="921111" download="eager" />
+    <jar href="lib/jce.jar" size="113593" download="eager" />
+    <jar href="lib/jfr.jar" size="559892" download="eager" />
+    <jar href="lib/jfxswt.jar" size="32982" download="eager" />
   </resources>
   <applet-desc  width="600" height="400" main-class="com.javafx.main.NoJavaFXFallback"  name="SatogaeriMac" >
     <param name="requiredFXVersion" value="2.2+"/>

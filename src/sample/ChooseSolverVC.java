@@ -31,10 +31,12 @@ public class ChooseSolverVC {
         final Label pathLabel = new Label();
         pathLabel.setText("Path to Solver:");
         final TextField pathTextField = new TextField();
+        pathTextField.setText(System.getProperty("user.dir")+File.separator+"solvers"+File.separator+"cvc4");
 
         final Label parameterLabel = new Label();
         parameterLabel.setText("Additional Parameters:");
         final TextField parameterTextField = new TextField();
+        parameterTextField.setText("--lang smt -m");
         final Text parameterText = new Text("For example: \nfor CVC4 \"--lang smt -m\" is mandatory.");
 
         final Text errorMessage = new Text();

@@ -1,0 +1,13 @@
+\begin{thebibliography}{xx}
+
+\harvarditem[Barrett et~al.]{Barrett, Sebastiani, Seshia \harvardand\
+  Tinelli}{2009}{barrett2009satisfiability}
+Barrett, C.~W., Sebastiani, R., Seshia, S.~A. \harvardand\ Tinelli, C.
+  \harvardyearleft 2009\harvardyearright , `Satisfiability modulo theories',
+  {\em Handbook of satisfiability} {\bf 185},~825--885.
+
+\harvarditem{Sebastiani}{2007}{sebastiani2007lazy}
+Sebastiani, R.  \harvardyearleft 2007\harvardyearright , `Lazy satisfiability
+  modulo theories', {\em University of Trento} .
+
+\end{thebibliography}

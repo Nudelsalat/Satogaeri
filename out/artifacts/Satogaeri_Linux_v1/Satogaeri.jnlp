@@ -11,7 +11,7 @@
   </resources>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Satogaeri.jar" size="1077298" download="eager" />
+    <jar href="Satogaeri.jar" size="1077750" download="eager" />
     <jar href="javaws.jar" size="921111" download="eager" />
     <jar href="jce.jar" size="113593" download="eager" />
     <jar href="jfr.jar" size="559892" download="eager" />
